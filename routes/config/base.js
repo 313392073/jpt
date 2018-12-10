@@ -1,0 +1,1 @@
+const publicPath = 'http://118.31.8.72:1314';

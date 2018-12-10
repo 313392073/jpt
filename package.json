@@ -1,0 +1,40 @@
+{
+  "name": "jpt",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "build": "gulp",
+    "super": "supervisor ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-livereload": "^4.0.1",
+    "gulp-minify-css": "^1.2.4",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "del": "^3.0.0",
+    "express-session": "^1.15.6",
+    "gulp": "^3.9.1",
+    "gulp-base64": "^0.1.3",
+    "gulp-cache": "^1.0.2",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-less": "^3.5.0",
+    "gulp-rename": "^1.3.0",
+    "gulp-rev": "^8.1.1",
+    "gulp-rev-collector": "^1.3.1",
+    "gulp-uglify": "^3.0.0",
+    "minify": "^3.0.5",
+    "run-sequence": "^2.2.1",
+    "superagent": "^3.8.3",
+    "supervisor": "^0.12.0"
+  }
+}

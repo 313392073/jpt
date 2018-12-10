@@ -1,0 +1,296 @@
+@import "share/header.less";
+@import "share/menu.less";
+@import "ctool/iconfont.css";
+@import "ctool/common.css";
+.main-wrapper{
+    width: 100%;
+    min-width: 1415px;
+    margin: 35px auto;
+    .main-box{
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        .content-box{
+            width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            .tab-box{
+                width: 100%;
+                margin: 35px auto 20px;
+                a{
+                    display: inline-block;
+                    padding: 4px 30px;
+                    font-size: 16px;
+                    color: #222222;
+                    text-align: center;
+                    position: relative;
+                    &.active{
+                        background-color: #00b2b8;
+                        color:#fff;
+                        span{
+                            position: absolute;
+                            left: 50%;
+                            top: 30px;
+                            width:0;
+                            height:0;
+                            border-right:10px solid transparent;
+                            border-left:10px solid transparent;
+                            border-top:10px solid #00b2b8;
+                        }
+                    }
+                }
+            }
+            .tab-main-wrapper{
+                height: 410px;
+                background-color: #f6f6f6;
+                overflow: auto;
+                .tab-main{
+                    width: 100%;
+                    height: 100%;
+                    display: none;
+                    &.active{
+                        display: block;
+                    }
+                    table{
+                        width: 100%;
+                        margin: 50px auto;
+                        tr{
+                            line-height: 40px;
+                            height: 40px;
+                            td{
+                                text-align: left;
+                                line-height: 25px;
+                                min-width: 100px;
+                                text-align: left;
+                                &.td-left-border{
+                                    border-right: 1px solid #2a09e4;
+                                    text-align: right;
+                                    padding-right: 10px;
+                                }
+                                &.resetnum{
+                                    span{
+                                        display: block;
+                                        height: 8px;
+                                        margin-left: 5px;
+                                    }
+                                }
+                                &.bg1{
+                                    span{
+                                        background-color: #2ec7c9;
+                                    }
+                                }
+                                &.bg2{
+                                    span{
+                                        background-color: #b6a2de;
+                                    }
+                                }
+                                &.bg3{
+                                    span{
+                                        background-color: #5ab1ef;
+                                    }
+                                }
+                                &.bg4{
+                                    span{
+                                        background-color: #ffb980;
+                                    }
+                                }
+                                &.bg5{
+                                    span{
+                                        background-color: #d87a80;
+                                    }
+                                }
+                                &.bg6{
+                                    span{
+                                        background-color: #8d98b3;
+                                    }
+                                }
+                                &.bg7{
+                                    span{
+                                        background-color: #e5cf0d;
+                                    }
+                                }
+                                &.bg-spec{
+                                    span{
+                                        background-color: #97b552;
+                                    }
+                                }
+                                &.td-bottom{
+                                    border-top: 1px solid #f6f6f6;
+                                    border-right: 1px solid #f6f6ff;
+                                }
+                            }
+                            &.tr-bottom{
+                                border-top: 1px solid #2a09e4;
+                                td{
+                                    text-align: center;
+                                    span{
+                                        margin-top: 10px;
+                                        display: block;
+                                        min-height: 50px;
+                                        margin-right:20px;
+                                        color: #ffffff;
+                                    }
+                                    &.bg1{
+                                        span{
+                                            background-color: #2ec7c9;
+                                        }
+                                    }
+                                    &.bg2{
+                                        span{
+                                            background-color: #b6a2de;
+                                        }
+                                    }
+                                    &.bg3{
+                                        span{
+                                            background-color: #5ab1ef;
+                                        }
+                                    }
+                                    &.bg4{
+                                        span{
+                                            background-color: #ffb980;
+                                        }
+                                    }
+                                    &.bg5{
+                                        span{
+                                            background-color: #d87a80;
+                                        }
+                                    }
+                                    &.bg6{
+                                        span{
+                                            background-color: #8d98b3;
+                                        }
+                                    }
+                                    &.bg7{
+                                        span{
+                                            background-color: #e5cf0d;
+                                        }
+                                    }
+                                    &.bg-spec{
+                                        span{
+                                            background-color: #97b552;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .group-wrapper{
+                width: 100%;
+                margin: 35px auto;
+                .group-box{
+                    width: 100%;
+                    .list{
+                        width: 330px;
+                        margin-right: 105px;
+                        float: left;
+                        .list-title{
+                            font-size: 16px;
+                            color: #333333;
+                            .desc{
+                                float: left;
+                                width: 50%;
+                            }
+                            .item{
+                                float: left;
+                                width: 146px;
+                                height: 32px;
+                                line-height: 32px;
+                                border: 1px solid #00b2b8;
+                                position: relative;
+                                i{
+                                    position: absolute;
+                                    left: 70px;
+                                    top: 13px;
+                                    width:0;
+                                    height:0;
+                                    border-right:6px solid transparent;
+                                    border-left:6px solid transparent;
+                                    border-top:6px solid #00b2b8;
+                                }
+                                select{
+                                    float: left;
+                                    width: 90px;
+                                    height: 30px;
+                                    line-height: 30px;
+                                    padding-left: 5px;
+                                    font-size: 14px;
+                                    background-color: transparent;
+                                    border: none;
+                                    appearance:none;  
+                                    -moz-appearance:none;  
+                                    -webkit-appearance:none;
+                                    &::-ms-expand{ display: none; }
+                                }
+                                a{
+                                    float: right;
+                                    width: 54px;
+                                    height: 30px;
+                                    line-height: 30px;
+                                    background-color: #00b2b8;
+                                    color: #ffffff;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                        .list-main{
+                            width: 100%;
+                            margin: 15px auto;
+                            min-height: 180px;
+                            border: 1px solid #dddddd;
+                            border-radius: 6px;
+                            padding: 15px;
+                            span{
+                                display: inline-block;
+                                padding:0 8px;
+                                height: 30px;
+                                line-height: 30px;
+                                border: 1px solid #b2b2b2;
+                                border-radius: 5px;
+                                margin-right: 20px;
+                                cursor: pointer;
+                                i{
+                                    display: inline-block;
+                                    width: 16px;
+                                    height: 16px;
+                                    vertical-align: middle;
+                                    margin-left: 5px;
+                                    background: url("../images/delete.png") no-repeat center;
+                                    background-size: contain;
+                                }
+                            }
+                        }
+                        &.nofloat{
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+            .btn-wrapper{
+                margin: 20px auto;
+                text-align: center;
+                &>p{
+                    color: #00b2b8;
+                    font-size: 16px;
+                    margin: 10px auto;
+                }
+                .qbtn{
+                    display: inline-block;
+                    width: 105px;
+                    height: 45px;
+                    line-height: 45px;
+                    outline: none;
+                    background-color: #00b2b8;
+                    color: #ffffff;
+                    font-size: 16px;
+                    border: none;
+                    border-radius: 4px;
+                    &:hover{
+                        opacity: 0.9;
+                    }
+                }
+            }
+        }
+    }
+}

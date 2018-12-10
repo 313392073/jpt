@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <link rel="stylesheet" href="/style/courseChoose.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <!--[if !IE]> -->
+  <script type="text/javascript" src="/js/tool/jquery.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]>
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+  <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <script type="text/javascript" src="/js/tool/layer/layer.js"></script>
+</head>
+
+<body>
+  <div class="header-wrapper">
+    <div class="header-box clearfix">
+        <div class="header-logo">
+            <a href="#">
+                <img src="./images/logo.png" alt="logo">食品微生物 一 金黄色葡萄球菌检验</a>
+        </div>
+        <div class="header-search-wrapper clearfix">
+            <div class="search-box clearfix">
+                <input type="text" placeholder="在线试题" class="search">
+                <button>搜索</button>
+            </div>
+            <div class="header-name">你好：
+                <span>王天成</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="nav-wrapper">
+    <div class="nav-box clearfix">
+        <div class="now-pos"></div>
+        <div class="back-home">
+            <a href="">
+                <i class="iconfont icon-home"></i>返回首页</a>
+        </div>
+    </div>
+</div>
+<div class="main-wrapper">
+    <div class="main-box">
+        <form action="./student-bc.html" method="GET" class="form-wrapper clearfix">
+            <div class="list">
+                <div class="item">
+                    <img src="./images/logo.png" alt="">
+                    <p>霉菌、酵母菌检验</p>
+                </div>
+                <div class="tab-check">
+                    <label>
+                        <input type="radio" name="course" value="A">
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item ">
+                    <img src="./images/logo.png" alt="">
+                    <p>霉菌、酵母菌检验</p>
+                </div>
+                <div class="tab-check">
+                    <label>
+                        <input type="radio" name="course" value="A">
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item">
+                    <img src="./images/logo.png" alt="">
+                    <p>霉菌、酵母菌检验</p>
+                </div>
+                <div class="tab-check">
+                    <label>
+                        <input type="radio" name="course" value="A">
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item">
+                    <img src="./images/logo.png" alt="">
+                    <p>霉菌、酵母菌检验</p>
+                </div>
+                <div class="tab-check">
+                    <label>
+                        <input type="radio" name="course" value="A">
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item active">
+                    <img src="./images/logo.png" alt="">
+                    <p>霉菌、酵母菌检验</p>
+                </div>
+                <div class="tab-check">
+                    <label>
+                        <input type="radio" name="course" checked value="A">
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+
+        </form>
+        <div class="btn-box">
+            <input type="submit" class="sbtn" value="确认">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".tab-check").on("click",'label',function(){
+        $(".item").removeClass("active");
+        $(this).closest(".tab-check").siblings('.item').addClass("active")
+    })
+    $(".sbtn").on("click",function(){
+        window.location.href = './student-bc.html'
+    })
+</script>
+</body>
+
+</html>

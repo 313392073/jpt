@@ -1,0 +1,51 @@
+@import "share/header.less";
+@import "share/menu.less";
+@import "ctool/iconfont.css";
+@import "ctool/common.css";
+.main-wrapper{
+    width: 100%;
+    min-width: 1415px;
+    margin: 35px auto;
+    .main-box{
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        .content-box{
+            width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            table{
+                width: 100%;
+                thead{
+                    tr{
+                        height: 60px;
+                        line-height: 60px;
+                        background-color: #00b2b8;
+                        color: #ffffff;
+                        th{
+                            font-size: 18px;
+                            span{
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        min-height: 60px;
+                        line-height: 60px;
+                        text-align: center;
+                        background-color: #ffffff;
+                        td{
+                            font-size: 16px;
+                            color: #333333;
+                        }
+                        &:nth-child(even){
+                            background-color: #f2fbfb;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

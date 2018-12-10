@@ -1,0 +1,79 @@
+@import "share/header.less";
+@import "share/menu.less";
+@import "ctool/iconfont.css";
+@import "ctool/common.css";
+.main-wrapper{
+    width: 100%;
+    min-width: 1415px;
+    margin: 35px auto;
+    .main-box{
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        .content-box{
+            width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            .desc{
+                font-size: 16px;
+                color: #333333;
+            }
+            table{
+                width: 100%;
+                margin: 15px 0;
+                thead{
+                    tr{
+                        height: 85px;
+                        line-height: 85px;
+                        color: #333333;
+                        font-size: 16px;
+                        th{
+                            font-weight: normal;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        line-height: 85px;
+                        height: 85px;
+                        color: #333333;
+                        td{
+                            text-align: center;
+                            font-size: 16px;
+                            input{
+                                line-height: 40px;
+                                height: 40px;
+                                border: 1px solid #dddddd;
+                                color: #333333;
+                                padding: 0 10px;
+                            }
+                        }
+                        &:nth-child(odd){
+                            background-color: #f2fbfb;
+                        }
+                    }
+                }
+            }
+            
+            .btn-box{
+                margin: 35px auto;
+                text-align: center;
+                .sbtn{
+                    display: inline-block;
+                    width: 175px;
+                    height: 55px;
+                    line-height: 55px;
+                    border: none;
+                    text-align: center;
+                    background-color: #00b2b8;
+                    color: #fff;
+                    font-size: 18px;
+                    border-radius: 6px;
+                    &:hover{
+                        opacity: 0.9;
+                    }
+                }
+            }
+        }
+    }
+}

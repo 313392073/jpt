@@ -1,0 +1,60 @@
+.sidebar {
+  position: absolute;
+  left: -215px;
+  width: 180px;
+  background-color: #eef2f2;
+  padding-bottom: 15px;
+}
+.sidebar .back {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background-color: #00b2b8;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.sidebar .back a {
+  color: #ffffff;
+  font-size: 16px;
+}
+.sidebar .back a i {
+  font-size: 26px;
+  color: #ffffff;
+  margin-right: 5px;
+}
+.sidebar .back a:hover {
+  opacity: 0.9;
+}
+.sidebar .menu {
+  float: left;
+  line-height: 40px;
+  color: #333333;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+.sidebar .menu > a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  color: #333333;
+  font-size: 18px;
+}
+.sidebar .menu > a i {
+  color: #00b2b8;
+  font-size: 26px;
+  margin-right: 5px;
+}
+.sidebar .menu .tab li {
+  line-height: 25px;
+  padding: 0 25px;
+}
+.sidebar .menu .tab li a {
+  display: block;
+  padding: 10px;
+  color: #a2a4a4;
+  font-size: 16px;
+}
+.sidebar .menu .tab li:hover a {
+  color: #00b2b8;
+  background-color: #ccf0f1;
+}

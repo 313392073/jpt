@@ -1,0 +1,82 @@
+@import "share/header.less";
+@import "share/menu.less";
+@import "ctool/iconfont.css";
+@import "ctool/common.css";
+.main-wrapper{
+    width: 100%;
+    min-width: 1415px;
+    margin: 35px auto;
+    .main-box{
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        .content-box{
+            width: 1200px;
+            .step-box{
+                width: 100%;
+                margin: 35px auto;
+                text-align: center;
+                font-size: 16px;
+                .step1{
+                    float: left;
+                    width: 395px;
+                    height: 40px;
+                    line-height: 40px;
+                    // margin-right: 5px;
+                    background-color: #00b2b8;
+                    position: relative;
+                    color: #ffffff;
+                    span{
+                        display: inline-block;
+                        color: #00b2b8;
+                        width: 25px;
+                        height: 25px;
+                        line-height: 25px;
+                        border-radius: 50%;
+                        background-color: #ffffff;
+                        margin-right: 40px;
+                    }
+                    i{
+                        position: absolute;
+                        right: -20px;
+                        z-index: 6;
+                        width:0;
+                        height:0;
+                        border-top:20px solid transparent;
+                        border-bottom:20px solid transparent;
+                        border-left:20px solid #00b2b8;
+                        &.sj1{
+                            z-index: 5;
+                            right: -25px;
+                            border-left:20px solid #ffffff;
+                        }
+                    }
+                }
+                .step2{
+                    float: left;
+                    width: 385px;
+                    height: 40px;
+                    background-color: #eeeeee;
+                    position: relative;
+                    i{
+                        position: absolute;
+                        right: -20px;
+                        width:0;
+                        height:0;
+                        border-top:20px solid transparent;
+                        border-bottom:20px solid transparent;
+                        border-left:20px solid #eeeeee;
+                        &.sj1{
+                            left: 0;
+                        }
+                    }
+                }
+                .step3{
+                    float: left;
+                    width: 405px;
+                    background-color: #eeeeee;
+                }
+            }
+        }
+    }
+}

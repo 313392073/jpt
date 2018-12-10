@@ -1,0 +1,60 @@
+@import "share/header.less";
+@import "share/menu.less";
+@import "ctool/iconfont.css";
+@import "ctool/common.css";
+.main-wrapper{
+    width: 100%;
+    min-width: 1415px;
+    margin: 35px auto;
+    .main-box{
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        .content-box{
+            width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            .list{
+                float: left;
+                width: 390px;
+                margin-right: 15px;
+                margin-bottom: 20px;
+                video{
+                    width: 100%;
+                    height: 180px;
+                }
+                .desc{
+                    font-size: 16px;
+                    color: #333333;
+                    margin-top: 10px;
+                    p{
+                        float: left;
+                        &.desc-detail{
+                            width: 75%;
+                        }
+                        &.desc-btns{
+                            width: 25%;
+                            a{
+                                color: #333333;
+                                i{
+                                    margin-right: 3px;
+                                    font-size: 20px;
+                                }
+                                &.btn-zan{
+                                    margin-right: 10px;
+                                    i{
+                                        color: #2f76ea;
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+                &:nth-child(3n){
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

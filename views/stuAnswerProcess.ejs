@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <link rel="stylesheet" href="/style/stuAnswerProcess.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <!--[if !IE]> -->
+  <script type="text/javascript" src="/js/tool/jquery.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]>
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+  <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <script type="text/javascript" src="/js/tool/layer/layer.js"></script>
+</head>
+
+<body>
+  <%- include("share/header") %>
+    <div class="main-wrapper">
+      <div class="main-box">
+        <%- include("share/menu")%>
+        <div class="content-box">
+          <div class="desc">我的答案</div>
+          <form action="" method="post">
+              <div class="main">
+                  <div class="p1 pbox clearfix">
+                      <select name="" id="">
+                          <option value="">选择</option>
+                          <option value="1">选择1</option>
+                          <option value="2">选择2</option>
+                          <option value="3">选择3</option>
+                      </select>
+                      <i class="iconfont icon-arrLeft-fill"></i>
+                  </div>
+                  <div class="arrdown arrdown1"></div>
+                  <div class="p2 pbox">
+                      <select name="" id="">
+                          <option value="">选择</option>
+                          <option value="1">选择1</option>
+                          <option value="2">选择2</option>
+                          <option value="3">选择3</option>
+                      </select>
+                      <i class="iconfont icon-arrLeft-fill"></i>
+                  </div>
+                  <div class="arrdown arrdown2"></div>
+                  <div class="p3 pbox">
+                      <select name="" id="">
+                          <option value="">选择</option>
+                          <option value="1">选择1</option>
+                          <option value="2">选择2</option>
+                          <option value="3">选择3</option>
+                      </select>
+                      <i class="iconfont icon-arrLeft-fill"></i>
+                  </div>
+                  <div class="arrdown arrdown3"></div>
+                  <div class="p4 pbox">
+                      <select name="" id="">
+                          <option value="">选择</option>
+                          <option value="1">选择1</option>
+                          <option value="2">选择2</option>
+                          <option value="3">选择3</option>
+                      </select>
+                      <i class="iconfont icon-arrLeft-fill"></i>
+                  </div>
+                  <div class="filed filed1">
+                      <select name="" id="">
+                          <option value="">选择</option>
+                          <option value="1">选择1</option>
+                          <option value="2">选择2</option>
+                          <option value="3">选择3</option>
+                      </select>
+                      <i class="iconfont icon-arrLeft-fill"></i>
+                  </div>
+                  <img class="bg-al" src="./images/icon/arrleft.png" alt="">
+                  <div class="filed filed2">
+                      <select name="" id="">
+                          <option value="">选择</option>
+                          <option value="1">选择1</option>
+                          <option value="2">选择2</option>
+                          <option value="3">选择3</option>
+                      </select>
+                      <i class="iconfont icon-arrLeft-fill"></i>
+                  </div>
+                  <img class="bg-ar" src="./images/icon/arrright.png" alt="">
+              </div>
+          </form>
+      </div>
+      <div class="answer-box">
+          <%for(var i=0;i<6;i++){%>
+              <%if(i<=4){%>
+                <span><%= i+1 %>、消毒（<i class="right">正确</i>）</span>
+              <%}else{%>
+                <span><%= i+1 %>、消毒（<i class="error">错误</i>）</span>
+              <%}%>
+          <%}%>
+          <p class="score">得分：<span>100分</span></p>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

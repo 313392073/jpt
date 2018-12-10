@@ -1,0 +1,140 @@
+@import "share/header.less";
+@import "share/menu.less";
+@import "ctool/iconfont.css";
+@import "ctool/common.css";
+.main-wrapper{
+    width: 100%;
+    min-width: 1415px;
+    margin: 35px auto;
+    .main-box{
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        .content-box{
+            width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            .list{
+                width: 100%;
+                margin-bottom: 20px;
+                &>h3{
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #333333;
+                    span{
+                        display: inline-block;
+                        vertical-align: middle;
+                        height: 15px;
+                        width: 4px;
+                        background-color:#00b2b8;
+                        margin-right: 5px;
+                        position: relative;
+                        top: -2px;
+                    }
+                }
+                table{
+                    width: 100%;
+                    margin: 15px 0;
+                    thead{
+                        background-color: #00b2b8;
+                        color: #ffffff;
+                        tr{
+                            height: 32px;
+                            line-height: 32px;
+                            font-size: 16px;
+                            th{
+                                font-weight: normal;
+                            }
+                        }
+                    }
+                    tbody{
+                        tr{
+                            height: 50px;
+                            line-height: 50px;
+                            color: #333333;
+                            border: 1px solid #ebebeb;
+                            border-top: none;
+                            td{
+                                text-align: center;
+                                font-size: 16px;
+                                &.score{
+                                    color: #0064d2;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .detail-wrapper{
+                width: 100%;
+                overflow: hidden;
+                margin: 40px auto;
+                h3{
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #333333;
+                    margin-bottom: 15px;
+                    span{
+                        display: inline-block;
+                        vertical-align: middle;
+                        height: 15px;
+                        width: 4px;
+                        background-color:#00b2b8;
+                        margin-right: 5px;
+                        position: relative;
+                        top: -2px;
+                    }
+                }
+                .detail-list1{
+                    float: left;
+                    width: 355px;
+                    margin-right: 70px;
+                    table{
+                        width: 100%;
+                        margin: 15px 0;
+                        thead{
+                            tr{
+                                line-height: 30px;
+                                height: 30px;
+                                color: #333333;
+                                font-size: 14px;
+                                th{
+                                    font-weight: normal;
+                                }
+                            }
+                        }
+                        tbody{
+                            tr{
+                                line-height: 30px;
+                                height: 30px;
+                                color: #333333;
+                                td{
+                                    text-align: center;
+                                    font-size: 14px;
+                                }
+                                &:nth-child(odd){
+                                    background-color: #f2fbfb;
+                                }
+                            }
+                        }
+                    }
+                }
+                .detail-list2{
+                    float: left;
+                    width: 290px;
+                    margin-right: 70px;
+                }
+                .detail-list3{
+                    float: left;
+                    width: 415px;
+                    .report{
+                        border-top: 1px solid #ededed;
+                        padding-top: 15px;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

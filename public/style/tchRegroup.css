@@ -192,100 +192,170 @@
   margin: 0 auto;
   position: relative;
 }
-.main-wrapper .main-box .content-box {
+.main-wrapper .main-box .lf {
+  float: left;
+}
+.main-wrapper .main-box button {
+  outline: none;
+  border: none;
+}
+.main-wrapper .main-box .rt {
+  float: right;
+}
+.main-wrapper .main-box .dis {
+  display: inline-block;
+}
+.main-wrapper .main-box input::-webkit-input-placeholder {
+  color: #a3dbdd;
+}
+.main-wrapper .main-box input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #a3dbdd;
+}
+.main-wrapper .main-box input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #a3dbdd;
+}
+.main-wrapper .main-box input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #a3dbdd;
+}
+.main-wrapper .main-box .group,
+.main-wrapper .main-box .data-statistics {
   width: 1200px;
   margin: 0 auto;
-  position: relative;
+  margin-top: 35px;
+  display: flex;
 }
-.main-wrapper .main-box .content-box .total-box {
-  width: 100%;
-  height: 330px;
-  background-color: #f7f7f7;
-  padding: 35px 20px;
+.main-wrapper .main-box .achievement,
+.main-wrapper .main-box .video-review {
+  margin-top: 35px;
+  width: 1200px;
+  margin: 0 auto;
 }
-.main-wrapper .main-box .content-box .total-box .desc {
-  width: 15%;
-  float: left;
-  font-size: 16px;
-  color: #333333;
+.main-wrapper .main-box .video-review {
+  overflow: hidden;
 }
-.main-wrapper .main-box .content-box .total-box .redus-left {
-  float: left;
-  width: 35%;
+.main-wrapper .main-box .group .group-left {
+  width: 196px;
+  background-color: #f2fbfb;
+  margin-right: 43px;
+}
+.main-wrapper .main-box .group .group-left table {
+  border: none;
+}
+.main-wrapper .main-box .group .group-left table thead tr th {
+  font-weight: normal;
+}
+.main-wrapper .main-box .group .group-left table thead tr th,
+.main-wrapper .main-box .group .group-left table tbody tr td {
+  width: 98px;
   text-align: center;
+  line-height: 50px;
+  border: none;
 }
-.main-wrapper .main-box .content-box .total-box .redus-left .echart1 {
-  width: 100%;
-  height: 200px;
+.main-wrapper .main-box .group .group-right {
+  flex: 1;
 }
-.main-wrapper .main-box .content-box .total-box .redus-left p {
-  font-size: 20px;
-  font-weight: bold;
-  color: #2ec7c9;
-  margin-top: 30px;
+.main-wrapper .main-box .group .group-right .every-list span {
+  line-height: 60px;
 }
-.main-wrapper .main-box .content-box .total-box .redus-right {
-  float: left;
-  width: 35%;
-  text-align: center;
+.main-wrapper .main-box .group .group-right .every-list .team-members {
+  height: 155px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 24px 18px 0 18px;
 }
-.main-wrapper .main-box .content-box .total-box .redus-right .echart2 {
-  width: 100%;
-  height: 200px;
+.main-wrapper .main-box .group .group-right .every-list .team-members span {
+  display: inline-block;
+  padding: 0 8px 0 10px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #b2b2b2;
+  border-radius: 5px;
+  margin-right: 20px;
+  cursor: pointer;
 }
-.main-wrapper .main-box .content-box .total-box .redus-right p {
-  font-size: 20px;
-  font-weight: bold;
-  color: #d87a80;
-  margin-top: 30px;
+.main-wrapper .main-box .group .group-right .every-list .team-members span > b {
+  display: inline-block;
+  float: right;
+  width: 19px;
+  height: 19px;
+  background: url(../images/delete.png) no-repeat;
+  margin-top: 5px;
+  margin-left: 6px;
 }
-.main-wrapper .main-box .content-box .per-achive {
-  width: 100%;
+.main-wrapper .main-box .group .group-right .every-list .group-title {
+  height: 60px;
+}
+.main-wrapper .main-box .group .group-right .every-list .group-title select {
+  width: 90px;
+  height: 30px;
+  border: 1px solid #00b2b8;
+}
+.main-wrapper .main-box .group .group-right .every-list .group-title button {
+  width: 54px;
+  height: 30px;
+  background-color: #00b2b8;
+  color: #fff;
+  cursor: pointer;
+}
+.main-wrapper .main-box .group .group-right .every-list .group-title .rt {
   margin-top: 15px;
 }
-.main-wrapper .main-box .content-box .per-achive .per-title {
-  font-size: 14px;
-  color: #333333;
-  line-height: 30px;
-}
-.main-wrapper .main-box .content-box .per-achive .per-title span {
-  display: inline-block;
-  width: 5px;
-  height: 15px;
-  background-color: #00b2b8;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box {
-  width: 100%;
-  position: relative;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box table {
-  width: 100%;
-  margin: 35px 0;
-  border: 1px solid #dddddd;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box table thead tr {
-  height: 35px;
-  line-height: 35px;
-  background-color: #00b2b8;
-  color: #ffffff;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr {
-  line-height: 45px;
-  height: 45px;
-  color: #5b5c5c;
-  background-color: #f7fdfd;
-  border-bottom: 1px solid #ffffff;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr td {
+.main-wrapper .main-box .group .group-right .submit-btn {
+  position: absolute;
   text-align: center;
-  font-weight: bold;
-  font-size: 16px;
+  width: 105px;
+  height: 42px;
+  line-height: 42px;
+  background-color: #00b2b8;
+  color: #fff;
+  margin: 40px 0 50px 427px;
+  cursor: pointer;
 }
-.main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr td.td-error {
-  color: #c64747;
+.main-wrapper .main-box .operate-arrow {
+  position: relative;
+  display: inline-block;
+  width: 10px;
+  height: 13px;
+  top: 2px;
+  left: 4px;
+  background: url(../images/arrow.png) no-repeat;
+  margin-top: 3px;
 }
-.main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr:last-child {
-  border: none;
+.main-wrapper .main-box .score {
+  cursor: pointer;
+}
+.main-wrapper .main-box .data-statistics {
+  height: 476px;
+  background-color: #eeeff3;
+}
+.main-wrapper .main-box .diagram {
+  width: 550px;
+  margin: 20px;
+  height: 100%;
+}
+.main-wrapper .main-box .data-statistics .diagram .btn-1 {
+  width: 90px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 1px 1px #cbcccf;
+}
+.main-wrapper .main-box .bottom-3 {
+  width: 19px;
+  height: 41px;
+  background: url(../images/bottom-3.png) no-repeat;
+  margin: 8px 0;
+  margin-left: 35px;
+}
+.main-wrapper .main-box .bottom-4 {
+  width: 19px;
+  height: 55px;
+  background: url(../images/bottom-4.png) no-repeat;
+  margin: 8px 0;
+  margin-left: 35px;
 }

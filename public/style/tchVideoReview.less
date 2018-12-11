@@ -1,0 +1,75 @@
+@import "share/header.less";
+@import "share/menu.less";
+@import "ctool/iconfont.css";
+@import "ctool/common.css";
+.main-wrapper{
+    width: 100%;
+    min-width: 1415px;
+    margin: 35px auto;
+    .main-box{
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        .item-box{
+            width: 100%;
+            .item{
+                width: 245px;
+                float: left;
+                border-bottom: 1px solid #dddddd;
+                color: #333333;
+                font-size: 16px;
+                margin-right: 70px;
+                margin-bottom: 25px;
+                &:nth-child(4n){
+                    margin-right: 0;
+                }
+                &>p{
+                    line-height: 30px;
+                    height: 30px;
+                    &.item-comment{
+                        line-height: 45px;
+                        height: 45px;
+                    }
+                }
+                
+                .list{
+                    overflow: hidden;
+                    margin-bottom: 30px;
+                    .header-icon{
+                        width: 60px;
+                        float: left;
+                    }
+                    .comments-main{
+                        float: left;
+                        width: calc(~"100% - 60px");
+                        font-size: 14px;
+                        line-height: 18px;
+                        span{
+                            color: #00b2b8;
+                        }
+                        p{
+                            color: #a9a9a9;
+                        }
+                    }
+                    .item-btns{
+                        a{
+                            color: #333333;
+                            i{
+                                margin-right: 3px;
+                                font-size: 20px;
+                            }
+                            &.btn-zan{
+                                margin-right: 10px;
+                                i{
+                                    color: #2f76ea;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+       
+    }
+}

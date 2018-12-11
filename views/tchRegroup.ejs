@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <link rel="stylesheet" href="/style/tchRegroup.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <!--[if !IE]> -->
+  <script type="text/javascript" src="/js/tool/jquery.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]>
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+  <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <script type="text/javascript" src="/js/tool/layer/layer.js"></script>
+</head>
+
+<body>
+  <%- include("share/header") %>
+    <div class="main-wrapper">
+      <div class="main-box">
+        <%- include("share/menu")%>
+        <div class="group">
+                <div class="group-left">
+                    <table border="1" style="border-collapse:collapse;" id="hTable" sortCol="-1">
+                        <thead>
+                        <tr>
+                            <th>学生</th>
+                            <th class="score">得分<b class="operate-arrow"></b></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>陶腾龙</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>李博文</td>
+                            <td>89</td>
+                        </tr>
+                        <tr>
+                            <td>范世杰</td>
+                            <td>99</td>
+                        </tr>
+        
+                        <tr>
+                            <td>张三</td>
+                            <td>77</td>
+                        </tr>
+                        <tr>
+                            <td>李四</td>
+                            <td>89</td>
+                        </tr>
+                        <tr>
+                            <td>王麻子</td>
+                            <td>66</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="group-right">
+                    <div class="every-list">
+                        <div class="group-title">
+                            <span>选择第一小组名单：</span>
+                            <div class="rt">
+                                <select name="" id="" class="lf">
+                                    <option value="1">李文博</option>
+                                    <option value="1">李四</option>
+                                    <option value="1">小妮子</option>
+                                </select>
+                                <button class="lf  add-meber">选择</button>
+                            </div>
+                        </div>
+                        <div class="team-members">
+                        </div>
+                    </div>
+                    <div class="every-list">
+                        <div class="group-title">
+                            <span>选择第二小组名单：</span>
+                            <div class="rt">
+                                <select name="" id="" class="lf">
+                                    <option value="1">陶腾龙</option>
+                                    <option value="1">李博文</option>
+                                    <option value="1">小妮子</option>
+                                </select>
+                                <button class="lf add-meber">选择</button>
+                            </div>
+                        </div>
+                        <div class="team-members">
+                        </div>
+                    </div>
+                    <div class="every-list">
+                        <div class="group-title">
+                            <span>选择第三小组名单：</span>
+                            <div class="rt">
+                                <select name="" id="" class="lf">
+                                    <option value="1">张三</option>
+                                    <option value="1">范世杰</option>
+                                    <option value="1">小妮子</option>
+                                </select>
+                                <button class="lf add-meber" >选择</button>
+                            </div>
+                        </div>
+                        <div class="team-members">
+                        </div>
+                    </div>
+                    <button type="button" class="submit-btn">确认</button>
+                </div>
+            </div>
+      </div>
+    </div>
+    <script src="/js/sort.js"></script>
+    <script>
+        $(function(){
+            $("#hTable").sortTable();
+            $('.group-right .every-list').each(function(){
+                $(this).children('.team-members').on('click','span',function(){
+                    $(this).remove();
+                })
+            });
+            $('.group-right .every-list').each(function(){
+                $(this).find('.add-meber').click(function(){
+                    var seleName=$(this).prev('select').find('option:selected').text();
+                    $(this).parents('.group-title').next('.team-members').append('<span>'+seleName+'<b></b></span>');
+                })
+            });
+            //点击确认提交表单
+            $('.submit-btn').click(function(){
+                //提交表单
+            })
+        });
+    
+    </script>
+</body>
+
+</html>

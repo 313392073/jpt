@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= title %>
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" href="/style/tchCorrectRate.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <!--[if !IE]> -->
+    <script type="text/javascript" src="/js/tool/jquery.js"></script>
+    <!-- <![endif]-->
+    <!--[if IE]>
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+    <script type="text/javascript" src="/js/tool/layer/layer.js"></script>
+</head>
+
+<body>
+    <%- include("share/header") %>
+        <div class="main-wrapper">
+            <div class="main-box">
+                <%- include("share/menu")%>
+                    <div class="content-box">
+                        <div class="total-box clearfix">
+                            <p class="desc">学习正确率统计</p>
+                            <div class="echart-box clearfix">
+                                <%for(var i=0;i<8;i++){%>
+                                <div class="redus-left">
+                                    <div class="echart1 echart" id="echart<%= i+1%>"></div>
+                                    <p>第<%= i+1%>题</p>
+                                </div>
+                                <%}%>
+                            </div>
+                        </div>
+                        <div class="per-achive">
+                            <p class="per-title">
+                                <span></span>个人成绩</p>
+                            <div class="detail-box">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th> 第一题 </th>
+                                            <th> 第二题 </th>
+                                            <th> 第三题 </th>
+                                            <th> 第一题</th>
+                                            <th> 第二题 </th>
+                                            <th> 第三题 </th>
+                                            <th> 第三题 </th>
+                                            <th> 第一题</th>
+                                            <th> 第二题 </th>
+                                            <th> 第三题 </th>
+                                            <th>得分</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%for(var i=0;i<5;i++) {%>
+                                            <tr>
+                                                <td>王天成</td>
+                                                <td>√</td>
+                                                <td>√</td>
+                                                <td>√</td>
+                                                <td>√</td>
+                                                <td class="td-error">×</td>
+                                                <td>√</td>
+                                                <td>√</td>
+                                                <td class="td-error">×</td>
+                                                <td>√</td>
+                                                <td class="td-error">×</td>
+                                                <td class="score">40</td>
+                                            </tr>
+                                            <%}%>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <script src="/js/tool/echarts.min.js"></script>
+        <script type="text/javascript">
+            var data1 = [
+                { value: 8, name: '默认数据' },
+                { value: 92, name: '生化特性' }
+            ]
+            var data2 = [
+                { value: 83, name: '默认数据' },
+                { value: 17, name: '国际理解' }
+            ]
+            getInit('echart1', ['#cccccc', '#2ec7c9'], '生化特性', getData(data1));
+            getInit('echart2', ['#cccccc', '#b6a2de'], '国际理解', getData(data2));
+            getInit('echart3', ['#cccccc', '#5ab1ef'], '国际理解', getData(data1));
+            getInit('echart4', ['#cccccc', '#ffb980'], '国际理解', getData(data1));
+            getInit('echart5', ['#cccccc', '#8d98b3'], '国际理解', getData(data1));
+            getInit('echart6', ['#cccccc', '#e5cf0d'], '国际理解', getData(data1));
+            getInit('echart7', ['#cccccc', '#97b552'], '国际理解', getData(data1));
+            getInit('echart8', ['#cccccc', '#95706d'], '国际理解', getData(data1));
+            function getInit(obj, color, titile, datas) {
+                console.log(datas)
+                var myChart = echarts.init(document.getElementById(obj));
+                var option = {
+                    color: color,
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        show: false,
+                        orient: 'vertical',
+                        left: 'left',
+                        data: datas.name
+                    },
+                    series: [
+                        {
+                            name: titile,
+                            type: 'pie',
+                            radius: '50%',
+                            center: ['50%', '50%'],
+                            data: datas.nowData,
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.6)'
+                                }
+                            }
+                        }
+                    ]
+                };
+
+
+                myChart.setOption(option);
+            }
+            function getData(datas) {
+                let names = [];
+                let nowData = [];
+                var datas = datas;
+                // var datas = [
+                //     { value: 8, name: '默认数据' },
+                //     { value: 92, name: '生化特性' }
+                // ]
+                datas.forEach(function (item, index) {
+                    names.push(item.name);
+                    nowData.push(item)
+                })
+                return {
+                    names: names,
+                    nowData: nowData
+                }
+            }
+
+
+
+        // var myChart = echarts.init(document.getElementById('echart1'));
+        // var option = {
+        //     color:['#cccccc','#2ec7c9'],
+        //     tooltip: {
+        //         trigger: 'item',
+        //         formatter: "{a} <br/>{b} : {c} ({d}%)"
+        //     },
+        //     legend: {
+        //         show: false,
+        //         orient: 'vertical',
+        //         left: 'left',
+        //         data: data.name
+        //     },
+        //     series: [
+        //         {
+        //             name: '生化特性',
+        //             type: 'pie',
+        //             radius: '50%',
+        //             center: ['50%', '50%'],
+        //             data: data.nowData,
+        //             itemStyle: {
+        //                 emphasis: {
+        //                     shadowBlur: 10,
+        //                     shadowOffsetX: 0,
+        //                     shadowColor: 'rgba(0, 0, 0, 0.6)'
+        //                 }
+        //             }
+        //         }
+        //     ]
+        // };
+
+        // function getData() {
+        //     let names = [];
+        //     let nowData = [];
+        //     var datas = [
+        //         { value: 8, name: '默认数据' },
+        //         { value: 92, name: '生化特性' }
+        //     ]
+        //     datas.forEach(function (item, index) {
+        //         names.push(item.name);
+        //         nowData.push(item)
+        //     })
+        //     return {
+        //         names: names,
+        //         nowData: nowData
+        //     }
+        // }
+        // myChart.setOption(option);
+        </script>
+</body>
+
+</html>

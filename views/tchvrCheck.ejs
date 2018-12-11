@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <link rel="stylesheet" href="/style/tchvrCheck.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <!--[if !IE]> -->
+  <script type="text/javascript" src="/js/tool/jquery.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]>
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+  <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <script type="text/javascript" src="/js/tool/layer/layer.js"></script>
+</head>
+
+<body>
+  <%- include("share/header") %>
+    <div class="main-wrapper">
+      <div class="main-box">
+        <%- include("share/menu")%>
+        <div class="step-box">
+            <p class="step1-title step-title">消毒</p>
+            <p class="step1-vline vtline"></p>
+            <p class="step1-hline htline"></p>
+            <p class="step1-hlline hlline"></p>
+            <p class="step1-hrline hrline"></p>
+            <p class="step1-ltext step-text">穿戴消毒</p>
+            <p class="step1-rtext step-text">台面消毒</p>
+
+            <p class="step2-title step-title">样品处理</p>
+            <p class="step2-vline vtline"></p>
+            <p class="step2-hline htline"></p>
+            <p class="step2-hlline hlline"></p>
+            <p class="step2-hrline hrline"></p>
+            <p class="step2-ltext step-text">样品过火</p>
+            <p class="step2-lctext step-text">称量</p>
+            <p class="step2-rctext step-text">调PH</p>
+            <p class="step2-rtext step-text">稀释</p>
+
+            <p class="step3-title step-title">增菌</p>
+            <p class="step3-vline vtline"></p>
+            <p class="step3-hline htline"></p>
+            <p class="step3-hlline hlline"></p>
+            <p class="step3-hrline hrline"></p>
+            <p class="step3-ltext step-text">放入7.5%氯化钠肉汤</p>
+            <p class="step3-rtext step-text">放入培养箱</p>
+
+            <p class="step4-title step-title">分离</p>
+            <p class="step4-hlline hlline"></p>
+            <p class="step4-ltext step-text">BP平板分离</p>
+
+            <p class="step5-title step-title">初步鉴定 <br>(典型菌落判断)</p>
+            <p class="step5-vline vtline"></p>
+            <p class="step5-hline htline"></p>
+            <p class="step5-hlline hlline"></p>
+            <p class="step5-hrline hrline"></p>
+            <p class="step5-ltext step-text">血平板分离</p>
+            <p class="step5-lctext step-text">标记典型菌落</p>
+            <p class="step5-rtext step-text">脑心浸出液接种</p>
+
+            <p class="step6-title step-title">确证鉴定1（革兰氏染色）</p>
+            <p class="step6-vline vtline"></p>
+            <p class="step6-hline htline"></p>
+            <p class="step6-hlline hlline"></p>
+            <p class="step6-hrline hrline"></p>
+            <p class="step6-ltext step-text">涂片</p>
+            <p class="step6-lctext step-text">结晶紫初染</p>
+            <p class="step6-rctext step-text">碘液媒染</p>
+            <p class="step6-rctext1 step-text">酒精脱色</p>
+            <p class="step6-rctext2 step-text">番红复染</p>
+            <p class="step6-rtext step-text">观察结果</p>
+
+            <p class="step7-title step-title">确证鉴定2（血浆凝固酶试验）</p>
+            <p class="step7-vline vtline"></p>
+            <p class="step7-hline htline"></p>
+            <p class="step7-hlline hlline"></p>
+            <p class="step7-hrline hrline"></p>
+            <p class="step7-ltext step-text">配置兔血浆生理盐水</p>
+            <p class="step7-lctext step-text">接种金黄色葡萄球菌</p>
+            <p class="step7-rctext step-text">接种表皮菌</p>
+            <p class="step7-rtext step-text">判断培养结果</p>
+        </div>
+        <table>
+                <thead>
+                    <tr>
+                        <th>正确率</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                        <th>100%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(var i=0;i<8;i++){%>
+                    <tr>
+                        <td>王天成</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>×</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>×</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>×</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                        <td>√</td>
+                    </tr>
+                    <%}%>
+                </tbody>
+            </table>
+      </div>
+    </div>
+</body>
+
+</html>

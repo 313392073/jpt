@@ -199,7 +199,7 @@
 }
 .main-wrapper .main-box .content-box .total-box {
   width: 100%;
-  height: 330px;
+  height: 520px;
   background-color: #f7f7f7;
   padding: 35px 20px;
 }
@@ -209,31 +209,34 @@
   font-size: 16px;
   color: #333333;
 }
-.main-wrapper .main-box .content-box .total-box .redus-left {
+.main-wrapper .main-box .content-box .total-box .echart-box {
   float: left;
-  width: 35%;
+  width: 85%;
+}
+.main-wrapper .main-box .content-box .total-box .echart-box .redus-left {
+  float: left;
+  width: 25%;
   text-align: center;
 }
-.main-wrapper .main-box .content-box .total-box .redus-left .echart1 {
+.main-wrapper .main-box .content-box .total-box .echart-box .redus-left .echart {
   width: 100%;
   height: 200px;
 }
-.main-wrapper .main-box .content-box .total-box .redus-left p {
-  font-size: 20px;
+.main-wrapper .main-box .content-box .total-box .echart-box .redus-left p {
+  font-size: 16px;
   font-weight: bold;
   color: #2ec7c9;
-  margin-top: 30px;
 }
-.main-wrapper .main-box .content-box .total-box .redus-right {
+.main-wrapper .main-box .content-box .total-box .echart-box .redus-right {
   float: left;
   width: 35%;
   text-align: center;
 }
-.main-wrapper .main-box .content-box .total-box .redus-right .echart2 {
+.main-wrapper .main-box .content-box .total-box .echart-box .redus-right .echart2 {
   width: 100%;
   height: 200px;
 }
-.main-wrapper .main-box .content-box .total-box .redus-right p {
+.main-wrapper .main-box .content-box .total-box .echart-box .redus-right p {
   font-size: 20px;
   font-weight: bold;
   color: #d87a80;
@@ -284,7 +287,10 @@
   font-size: 16px;
 }
 .main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr td.td-error {
-  color: #c64747;
+  color: #c23030;
+}
+.main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr td.score {
+  color: #0064d2;
 }
 .main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr:last-child {
   border: none;

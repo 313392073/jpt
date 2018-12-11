@@ -197,95 +197,59 @@
   margin: 0 auto;
   position: relative;
 }
-.main-wrapper .main-box .content-box .total-box {
+.main-wrapper .main-box .content-box .process-box {
   width: 100%;
-  height: 330px;
-  background-color: #f7f7f7;
-  padding: 35px 20px;
+  min-height: 400px;
+  background-color: #eeeff3;
 }
-.main-wrapper .main-box .content-box .total-box .desc {
-  width: 15%;
+.main-wrapper .main-box .content-box .list-box {
+  width: 100%;
+  margin: 15px auto 0;
+}
+.main-wrapper .main-box .content-box .list-box .list {
+  margin: 10px auto;
+  color: #333333;
+}
+.main-wrapper .main-box .content-box .list-box .list .list-title {
+  background-color: #f2fbfb;
+  height: 80px;
+}
+.main-wrapper .main-box .content-box .list-box .list .list-title p {
   float: left;
+  width: 50%;
+  line-height: 80px;
   font-size: 16px;
   color: #333333;
+  padding-left: 20px;
 }
-.main-wrapper .main-box .content-box .total-box .redus-left {
-  float: left;
-  width: 35%;
-  text-align: center;
-}
-.main-wrapper .main-box .content-box .total-box .redus-left .echart1 {
-  width: 100%;
-  height: 200px;
-}
-.main-wrapper .main-box .content-box .total-box .redus-left p {
+.main-wrapper .main-box .content-box .list-box .list .list-title p strong {
   font-size: 20px;
-  font-weight: bold;
-  color: #2ec7c9;
-  margin-top: 30px;
 }
-.main-wrapper .main-box .content-box .total-box .redus-right {
-  float: left;
-  width: 35%;
-  text-align: center;
-}
-.main-wrapper .main-box .content-box .total-box .redus-right .echart2 {
-  width: 100%;
-  height: 200px;
-}
-.main-wrapper .main-box .content-box .total-box .redus-right p {
+.main-wrapper .main-box .content-box .list-box .list .list-title p.allright {
+  padding-right: 20px;
+  text-align: right;
   font-size: 20px;
-  font-weight: bold;
-  color: #d87a80;
-  margin-top: 30px;
+  color: #00b2b8;
 }
-.main-wrapper .main-box .content-box .per-achive {
+.main-wrapper .main-box .content-box .list-box .list .list-right {
+  padding-left: 20px;
   width: 100%;
-  margin-top: 15px;
-}
-.main-wrapper .main-box .content-box .per-achive .per-title {
-  font-size: 14px;
-  color: #333333;
   line-height: 30px;
+  margin: 20px auto;
+  font-size: 18px;
 }
-.main-wrapper .main-box .content-box .per-achive .per-title span {
-  display: inline-block;
-  width: 5px;
-  height: 15px;
-  background-color: #00b2b8;
-  margin-right: 8px;
-  vertical-align: middle;
+.main-wrapper .main-box .content-box .list-box .list .list-right strong {
+  font-size: 20px;
+  color: #00b2b8;
 }
-.main-wrapper .main-box .content-box .per-achive .detail-box {
+.main-wrapper .main-box .content-box .list-box .list .list-wrong {
+  padding-left: 20px;
   width: 100%;
-  position: relative;
+  line-height: 30px;
+  margin: 20px auto;
+  font-size: 18px;
 }
-.main-wrapper .main-box .content-box .per-achive .detail-box table {
-  width: 100%;
-  margin: 35px 0;
-  border: 1px solid #dddddd;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box table thead tr {
-  height: 35px;
-  line-height: 35px;
-  background-color: #00b2b8;
-  color: #ffffff;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr {
-  line-height: 45px;
-  height: 45px;
-  color: #5b5c5c;
-  background-color: #f7fdfd;
-  border-bottom: 1px solid #ffffff;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr td {
-  text-align: center;
-  font-weight: bold;
-  font-size: 16px;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr td.td-error {
-  color: #c64747;
-}
-.main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr:last-child {
-  border: none;
+.main-wrapper .main-box .content-box .list-box .list .list-wrong strong {
+  font-size: 20px;
+  color: #de2828;
 }

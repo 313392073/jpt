@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <link rel="stylesheet" href="/style/tchVerifyProcess.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <!--[if !IE]> -->
+  <script type="text/javascript" src="/js/tool/jquery.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]>
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+  <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <script type="text/javascript" src="/js/tool/layer/layer.js"></script>
+</head>
+
+<body>
+  <%- include("share/header") %>
+    <div class="main-wrapper">
+      <div class="main-box">
+        <%- include("share/menu")%>
+        <div class="content-box">
+            <div class="process-box"></div>
+            <div class="list-box">
+                <%for(var k=0 ; k < 4 ; k++) {%>
+                <div class="list">
+                    <div class="list-title clearfix">
+                        <p><strong><%= k+1%> .</strong> 正确答案： <span>消毒</span></p>
+                        <p class="allright">全班正确率100%</p>
+                    </div>
+                    <div class="list-right">答对学生（<strong>12</strong>）: <%for(var i=0;i<11;i++){%><span>王天成，</span> <%}%></div>
+                    <div class="list-wrong">答错学生（<strong>0</strong>）: <%for(var i=0;i<11;i++){%><span>王天成，</span> <%}%></div>
+                </div>
+                <%}%>
+            </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

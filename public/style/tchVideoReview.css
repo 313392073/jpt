@@ -215,6 +215,20 @@
   line-height: 45px;
   height: 45px;
 }
+.main-wrapper .main-box .item-box .item > p a {
+  color: #333333;
+}
+.main-wrapper .main-box .item-box .item > p a i {
+  margin-right: 3px;
+  font-size: 20px;
+  color: #333333;
+}
+.main-wrapper .main-box .item-box .item > p a.btn-zan {
+  margin-right: 10px;
+}
+.main-wrapper .main-box .item-box .item > p a.btn-zan i {
+  color: #2f76ea;
+}
 .main-wrapper .main-box .item-box .item .list {
   overflow: hidden;
   margin-bottom: 30px;
@@ -234,17 +248,4 @@
 }
 .main-wrapper .main-box .item-box .item .list .comments-main p {
   color: #a9a9a9;
-}
-.main-wrapper .main-box .item-box .item .list .item-btns a {
-  color: #333333;
-}
-.main-wrapper .main-box .item-box .item .list .item-btns a i {
-  margin-right: 3px;
-  font-size: 20px;
-}
-.main-wrapper .main-box .item-box .item .list .item-btns a.btn-zan {
-  margin-right: 10px;
-}
-.main-wrapper .main-box .item-box .item .list .item-btns a.btn-zan i {
-  color: #2f76ea;
 }

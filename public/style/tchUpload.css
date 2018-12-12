@@ -219,6 +219,8 @@
   border-radius: 50%;
   background-color: #ffffff;
   margin-right: 40px;
+  font-size: 16px;
+  font-weight: bold;
 }
 .main-wrapper .main-box .content-box .step-box .step1 i {
   position: absolute;
@@ -233,17 +235,34 @@
 .main-wrapper .main-box .content-box .step-box .step1 i.sj1 {
   z-index: 5;
   right: -25px;
-  border-left: 20px solid #ffffff;
+  top: -5px;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-left: 25px solid #ffffff;
 }
 .main-wrapper .main-box .content-box .step-box .step2 {
   float: left;
   width: 385px;
   height: 40px;
+  line-height: 40px;
   background-color: #eeeeee;
   position: relative;
 }
+.main-wrapper .main-box .content-box .step-box .step2 span {
+  display: inline-block;
+  color: #ffffff;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 50%;
+  background-color: #cdcdcd;
+  margin-right: 40px;
+  font-size: 16px;
+  font-weight: bold;
+}
 .main-wrapper .main-box .content-box .step-box .step2 i {
   position: absolute;
+  z-index: 6;
   right: -20px;
   width: 0;
   height: 0;
@@ -252,10 +271,48 @@
   border-left: 20px solid #eeeeee;
 }
 .main-wrapper .main-box .content-box .step-box .step2 i.sj1 {
-  left: 0;
+  z-index: 5;
+  right: -25px;
+  top: -5px;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-left: 25px solid #ffffff;
 }
 .main-wrapper .main-box .content-box .step-box .step3 {
   float: left;
   width: 405px;
+  height: 40px;
+  line-height: 40px;
   background-color: #eeeeee;
+}
+.main-wrapper .main-box .content-box .data-box {
+  width: 645px;
+  margin: 85px auto;
+  font-size: 16px;
+  color: #333333;
+}
+.main-wrapper .main-box .content-box .data-box .list {
+  margin-bottom: 30px;
+}
+.main-wrapper .main-box .content-box .data-box .list label {
+  color: #333333;
+}
+.main-wrapper .main-box .content-box .data-box .list label span {
+  color: #ff6709;
+  margin-right: 5px;
+}
+.main-wrapper .main-box .content-box .data-box .list .drag-box {
+  border: 2px dashed #eacaa5;
+  width: 530px;
+  height: 150px;
+  margin: 10px auto;
+  background-color: #fffae3;
+}
+.main-wrapper .main-box .content-box .data-box .list .video-title {
+  line-height: 45px;
+  height: 45px;
+  width: 530px;
+  border: 1px solid #dddddd;
+  outline: none;
+  padding: 0 10px;
 }

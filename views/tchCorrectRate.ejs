@@ -103,7 +103,6 @@
             getInit('echart7', ['#cccccc', '#97b552'], '国际理解', getData(data1));
             getInit('echart8', ['#cccccc', '#95706d'], '国际理解', getData(data1));
             function getInit(obj, color, titile, datas) {
-                console.log(datas)
                 var myChart = echarts.init(document.getElementById(obj));
                 var option = {
                     color: color,
@@ -121,7 +120,7 @@
                         {
                             name: titile,
                             type: 'pie',
-                            radius: '50%',
+                            radius: '90%',
                             center: ['50%', '50%'],
                             data: datas.nowData,
                             itemStyle: {
@@ -130,7 +129,14 @@
                                     shadowOffsetX: 0,
                                     shadowColor: 'rgba(0, 0, 0, 0.6)'
                                 }
-                            }
+                            },
+                            label:{
+                                show:true,
+                                position:'inside',
+                                align:'bottom'
+                            },
+                            hoverOffset:0,
+                            hoverAnimation:false
                         }
                     ]
                 };

@@ -22,7 +22,6 @@
                     width: 395px;
                     height: 40px;
                     line-height: 40px;
-                    // margin-right: 5px;
                     background-color: #00b2b8;
                     position: relative;
                     color: #ffffff;
@@ -35,6 +34,8 @@
                         border-radius: 50%;
                         background-color: #ffffff;
                         margin-right: 40px;
+                        font-size: 16px;
+                        font-weight: bold;
                     }
                     i{
                         position: absolute;
@@ -48,7 +49,10 @@
                         &.sj1{
                             z-index: 5;
                             right: -25px;
-                            border-left:20px solid #ffffff;
+                            top: -5px;
+                            border-top: 25px solid transparent;
+                            border-bottom: 25px solid transparent;
+                            border-left: 25px solid #ffffff;
                         }
                     }
                 }
@@ -56,10 +60,24 @@
                     float: left;
                     width: 385px;
                     height: 40px;
+                    line-height: 40px;
                     background-color: #eeeeee;
                     position: relative;
+                    span{
+                        display: inline-block;
+                        color: #ffffff;
+                        width: 25px;
+                        height: 25px;
+                        line-height: 25px;
+                        border-radius: 50%;
+                        background-color: #cdcdcd;
+                        margin-right: 40px;
+                        font-size: 16px;
+                        font-weight: bold;
+                    }
                     i{
                         position: absolute;
+                        z-index: 6;
                         right: -20px;
                         width:0;
                         height:0;
@@ -67,7 +85,12 @@
                         border-bottom:20px solid transparent;
                         border-left:20px solid #eeeeee;
                         &.sj1{
-                            left: 0;
+                            z-index: 5;
+                            right: -25px;
+                            top: -5px;
+                            border-top: 25px solid transparent;
+                            border-bottom: 25px solid transparent;
+                            border-left: 25px solid #ffffff;
                         }
                     }
                 }
@@ -75,6 +98,40 @@
                     float: left;
                     width: 405px;
                     background-color: #eeeeee;
+                    height: 40px;
+                    line-height: 40px;
+                    background-color: #eeeeee;
+                }
+            }
+            .data-box{
+                width: 645px;
+                margin: 85px auto;
+                font-size: 16px;
+                color: #333333;
+                .list{
+                    margin-bottom: 30px;
+                    label{
+                        color: #333333;
+                        span{
+                            color: #ff6709;
+                            margin-right: 5px;
+                        }
+                    }
+                    .drag-box{
+                        border: 2px dashed #eacaa5;
+                        width: 530px;
+                        height: 150px;
+                        margin: 10px auto;
+                        background-color: #fffae3;
+                    }
+                    .video-title{
+                        line-height: 45px;
+                        height: 45px;
+                        width: 530px;
+                        border: 1px solid #dddddd;
+                        outline: none;
+                        padding: 0 10px;
+                    }
                 }
             }
         }

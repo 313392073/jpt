@@ -151,6 +151,63 @@
                     p{
                         margin: 15px auto 0;
                     }
+                    .choose{
+                        display: inline-block;
+                        margin-left: 1rem;
+    
+                        vertical-align: middle;
+    
+                        font-size: 16px;
+    
+                        cursor: pointer;
+    
+                        &:last-child{
+    
+                            margin-left: 1.8rem;
+    
+                        }
+    
+                        input[type="radio"] {
+    
+                            appearance: none;
+    
+                            -webkit-appearance: none;
+    
+                            outline: none;
+    
+                            display: none
+    
+                        }
+    
+                        span{
+    
+                            border-radius: 50%;
+    
+                            margin-right: 0.1rem;
+    
+                            vertical-align: middle;
+    
+                        }
+    
+                        input[type="radio"]+span {
+    
+                            width: 1rem;
+    
+                            height: 1rem;
+    
+                            display: inline-block;
+    
+                            background-color: transparent;
+    
+                            border: 1px solid #ffffff;
+    
+                        }
+                        input[type="radio"]:checked+span {
+    
+                            background-color: #ffffff;
+    
+                        }
+                    }
                     &.active{
                         background-color: #00b2b8;
                         color: #ffffff;

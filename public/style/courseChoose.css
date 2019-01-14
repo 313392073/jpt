@@ -155,6 +155,37 @@
 .main-wrapper .main-box .form-wrapper .list .item p {
   margin: 15px auto 0;
 }
+.main-wrapper .main-box .form-wrapper .list .item .choose {
+  display: inline-block;
+  margin-left: 1rem;
+  vertical-align: middle;
+  font-size: 16px;
+  cursor: pointer;
+}
+.main-wrapper .main-box .form-wrapper .list .item .choose:last-child {
+  margin-left: 1.8rem;
+}
+.main-wrapper .main-box .form-wrapper .list .item .choose input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  display: none;
+}
+.main-wrapper .main-box .form-wrapper .list .item .choose span {
+  border-radius: 50%;
+  margin-right: 0.1rem;
+  vertical-align: middle;
+}
+.main-wrapper .main-box .form-wrapper .list .item .choose input[type="radio"] + span {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+}
+.main-wrapper .main-box .form-wrapper .list .item .choose input[type="radio"]:checked + span {
+  background-color: #ffffff;
+}
 .main-wrapper .main-box .form-wrapper .list .item.active {
   background-color: #00b2b8;
   color: #ffffff;

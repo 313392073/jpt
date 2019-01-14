@@ -154,6 +154,38 @@
   border-radius: 2px;
   position: relative;
 }
+.main-wrapper .main-box .list .item .choose {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 18px;
+  cursor: pointer;
+}
+.main-wrapper .main-box .list .item .choose:last-child {
+  margin-left: 30px;
+}
+.main-wrapper .main-box .list .item .choose input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  display: none;
+}
+.main-wrapper .main-box .list .item .choose span {
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.main-wrapper .main-box .list .item .choose input[type="radio"] + span {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background: url('../images/uncheck.png');
+  background-size: cover;
+  border: 1px solid #ffffff;
+}
+.main-wrapper .main-box .list .item .choose input[type="radio"]:checked + span {
+  background: url('../images/checked.png');
+  background-size: cover;
+}
 .main-wrapper .main-box .list .item select {
   position: absolute;
   left: 0;

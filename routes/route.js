@@ -4,4 +4,5 @@ require('./route/index')(router);
 require('./route/user')(router);
 require('./route/teacher')(router);
 require('./route/student')(router);
+require('./route/login')(router);
 module.exports = router;

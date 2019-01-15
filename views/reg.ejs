@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <link rel="stylesheet" href="/style/reg.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <!--[if !IE]> -->
+  <script type="text/javascript" src="/js/tool/jquery.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]>
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+  <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <script type="text/javascript" src="/js/tool/layer/layer.js"></script>
+</head>
+
+<body>
+  <div class="header-wrapper">
+    <div class="header-box clearfix">
+      <div class="header-logo" style="width: 100%;text-align: center;">
+        <a href="#">
+          <img src="./images/logo.png" alt="logo">食品微生物 一 金黄色葡萄球菌检验
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="nav-wrapper">
+    <div class="nav-box clearfix">
+      <div class="now-pos"></div>
+      <div class="back-home">
+        <a href="">
+          <i class="iconfont icon-home"></i>返回首页</a>
+      </div>
+    </div>
+  </div>
+  <div class="main-wrapper">
+    <div class="main-box">
+        <div class="header-pic clearfix">
+            <label>上传头像：</label>
+            <div class="pic-item">
+                <img src="./images/default.png" id="imgs" alt="图片加载中">
+                <input type="file" class="upload_pic" id="uploadPhoto" style="display: none"/>
+            </div>
+        </div>
+        <div class="list clearfix">
+          <label>用户名</label>
+          <div class="item">
+            <input type="text" class="input_text" id="account" placeholder="请输入您的用户名">
+          </div>
+        </div>
+        <div class="list clearfix">
+            <label>密码</label>
+            <div class="item">
+                <input type="text" id="pwd" class="input_text" placeholder="请输入您的密码">
+            </div>
+        </div>
+        <div class="list clearfix">
+            <label>邮箱</label>
+            <div class="item">
+                <input type="text" id="email" class="input_text" placeholder="请输入您的邮箱">
+            </div>
+        </div>
+        <div class="list clearfix">
+            <label>性别：</label>
+            <div class="item identity-box">
+                <label class="choose">
+                <input type="radio" name="identity" value="0">
+                <span></span>
+                男
+                </label>
+                <label class="choose">
+                <input type="radio" name="identity" value="1">
+                <span></span>
+                女
+                </label>
+            </div>
+        </div>
+        <div class="btn-box">
+          <input type="submit" class="sbtn" value="立即注册">
+        </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/js/reg.js"></script>
+</body>
+</html>

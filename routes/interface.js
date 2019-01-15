@@ -10,10 +10,6 @@ const publicPath = require('./config/base')['publicPath'];
  */
 function urlReq(methods,url,param,req,done) {
     var paramd = param ? param : {};
-    paramd['t'] = new Date().getTime();
-
-    var named = req.session.UserId ? req.session.UserId : 'Berry.Guest';
-    var repwd = req.session.UserAccount ? req.session.UserAccount :'Berry.Guest';
     var requestd = '';
     if (methods == 'post') {
         requestd = request.post(publicPath+url)
@@ -21,23 +17,22 @@ function urlReq(methods,url,param,req,done) {
         requestd = request.get(publicPath+url)
     }
 
-    requestd
-        .set({
-            "Authorization": req.session['token'],
-            "Expect": named+','+repwd
-        })
+    if(!req.session.token){
+        done('Unauthorized',null)
+    }else{
+        requestd
         .timeout({
             response: 40000,
             deadline: 60000,
         })
         .send(paramd)
         .then(function(res) {
-            if (res['body'].Status != 2000) {
+            if (res['body']['code'] == 200 && res['body']['success'] == 1) {
                 console.log(res['body'],url,paramd);
                 done(err,res['body']);
                 return;
             }else{
-                done(null,res['body']['Data']);
+                done(null,res['body']);
             }
         })
         .catch(function (err) {
@@ -46,51 +41,95 @@ function urlReq(methods,url,param,req,done) {
                 done(err.message,'');
                 return;
             }
-            if (!req.session['token']) {
-                getToken(req,function () {
-                    urlReq(methods,url,param,req,done);
-                })
-            } else {
-                done(null,null);
-            }
+            done(null,null)
         })
+    }
 }
 
-//获取全局的token
-function getToken(req,done) {
-    var userId = req.session.UserId ? req.session.UserId:'Berry.Guest';
-    var userAccount = req.session.UserAccount ? req.session.UserAccount:'Berry.Guest';
+//获取batch 
+function getBatch(req,done){
     request
-        .post(publicPath + "/api/JWT/CreateToken")
+    .get(publicPath+'/v1/api/course/batch?token='+req.session.token)
+    .timeout({
+        response: 8000,
+        deadline: 60000,
+    })
+    .then(function(res){
+        if (res['body']['code'] == 200 && res['body']['success'] == 1) {
+            done(null,res['body']);
+        }else{
+            done('error',res['body']);
+        }
+    })
+    .catch(function(err){
+        console.log('错误'+err)
+    })
+}
+
+module.exports = {
+    urlReq:urlReq,
+    getBatch:getBatch,
+    getMajorCourse:function(req,done) { //获取学校
+        request
+        .get(publicPath+'/v1/api/user/regist_info?userType='+req.body.userType*1+'&majorId='+req.body.majorId*1)
         .timeout({
             response: 8000,
             deadline: 60000,
         })
-        .send({
-            "KeyValue": KeyValue,
-            "UserId": userId,
-            "UserAccount": userAccount,
-            "t": new Date().getTime()
-        })
-        .then(function (res) {
-            if (JSON.parse(res['body'])['Status'] !== 2000) {
-                console.log(res['body']);
-                return;
+        .then(function(res) {
+            if (res['body']['code'] == 200 && res['body']['success'] == 1) {
+                done(null,res['body']);
             }else{
-                req.session['token'] = JSON.parse(res['body'])['Data'];
-                done();
+                done('error',res['body']);
             }
         })
         .catch(function (err) {
-            getToken(req, done);
+            console.log('错误'+err)
+        }) 
+    },
+    subReg:function(req,params,done){
+        request
+        .post(publicPath+'/v1/api/user/regist')
+        .timeout({
+            response: 8000,
+            deadline: 60000,
         })
-}
-
-
-module.exports = {
-    getToken:getToken,
-    urlReq:urlReq,
-    test:function(req,param,done){
-        // urlReq('post', '/api/Dish/GetDisSearch', param, req, done)
+        .send(params)
+        .then(function(res) {
+            if (res['body']['code'] == 200 && res['body']['success'] == 1) {
+                done(null,res['body']);
+            }else{
+                done('error',res['body']);
+            }
+        })
+        .catch(function (err) {
+            console.log('错误'+err)
+        }) 
+    },
+    subLogin:function(req,params,done){
+        request
+        .get(publicPath+'/v1/api/user/login')
+        .timeout({
+            response: 8000,
+            deadline: 60000,
+        })
+        .send(params)
+        .then(function(res) {
+            if (res['body']['code'] == 200 && res['body']['success'] == 1) {
+                req.session['token'] = res['body']['obj']['token'];
+                done(null,res['body']);
+            }else{
+                done('error',res['body']);
+            }
+        })
+        .catch(function (err) {
+            console.log('错误'+err)
+        }) 
+    },
+    /**
+     * methods,url,param,req,done 
+     * */
+    getStubeforeClass:function(req,params,done){
+        urlReq('GET','/v1/api/course/list',params,req,done)
     }
 }

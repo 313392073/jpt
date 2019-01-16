@@ -45,107 +45,32 @@
             </ul>
           </div>
           <div class="content-box">
-            <form action="" method="post">
+            <form action="/subAnswer" method="post">
+              <% if(courseList.length > 0) {%>
+              <% for(var i=0;i<courseList.length;i++) {%>
               <div class="list">
                 <div class="requestion-box clearfix">
-                  <div class="requestion">1.【多选】摄入金黄色葡萄球菌会造成哪些伤害（
-                    <i class="answer A">A</i>
-                    <i class="answer B">B</i>
-                    <i class="answer C">C</i>
-                    <i class="answer D">D</i>）</div>
+                  <div class="requestion"> <%= JSON.parse(courseList[i]['course_item'])['q']%> （
+                    <% var cnum = JSON.parse(courseList[i]['course_item'])['c'] %>
+                    <% for(var k=0;k<cnum.length;++k) {%>
+                        <i class="answer <%= i%>_<%= cnum[k]%>"><%= makeOrder(k)%></i>
+                    <%}%>）
+                  </div>
                   <div class="check-answer awrong">
                     <span>
                       <i class="iconfont icon-cuowu"></i>正确</span>
                   </div>
                 </div>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="B">
-                  <span></span>B.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="C">
-                  <span></span>C.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="D">
-                  <span></span>D.呕吐</label>
+                
+                <% for(var k=0;k<cnum.length;++k) {%>
+                    <label class="item">
+                      <input type="checkbox" value="<%= i%>_<%= cnum[k]%>">
+                      <span></span><%= makeOrder(k)%>.<%= cnum[k]%>
+                    </label>
+                <%}%>
               </div>
-              <div class="list">
-                <div class="requestion-box clearfix">
-                  <div class="requestion">1.【多选】摄入金黄色葡萄球菌会造成哪些伤害（
-                    <i class="answer A">A</i>
-                    <i class="answer B">B</i>
-                    <i class="answer C">C</i>
-                    <i class="answer D">D</i>）</div>
-                  <div class="check-answer aright">
-                    <span>
-                      <i class="iconfont icon-zhengque"></i>正确</span>
-                  </div>
-                </div>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-              </div>
-              <div class="list">
-                <div class="requestion-box clearfix">
-                  <div class="requestion">1.【多选】摄入金黄色葡萄球菌会造成哪些伤害（
-                    <i class="answer A">A</i>
-                    <i class="answer B">B</i>
-                    <i class="answer C">C</i>
-                    <i class="answer D">D</i>）</div>
-                  <div class="check-answer aright">
-                    <span>
-                      <i class="iconfont icon-zhengque"></i>正确</span>
-                  </div>
-                </div>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-              </div>
-              <div class="list">
-                <div class="requestion-box clearfix">
-                  <div class="requestion">1.【多选】摄入金黄色葡萄球菌会造成哪些伤害（
-                    <i class="answer A">A</i>
-                    <i class="answer B">B</i>
-                    <i class="answer C">C</i>
-                    <i class="answer D">D</i>）</div>
-                  <div class="check-answer aright">
-                    <span>
-                      <i class="iconfont icon-zhengque"></i>正确</span>
-                  </div>
-                </div>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" value="A">
-                  <span></span>A.呕吐</label>
-                <label class="item">
-                  <input type="checkbox" checked value="A">
-                  <span></span>A.呕吐</label>
-              </div>
+              <%}%>
+              <%}%>
               <div class="btn-box">
                 <input type="submit" class="sbtn" value="提交">
               </div>
@@ -161,7 +86,20 @@
         } else {
           $(this).siblings('.requestion-box').find('.' + answerd).hide()
         }
+      })
 
+      $(".sbtn").on("click",function() {
+        var arr = [];
+        $(".item input[type='checkbox']:checked").each(function (index,item){
+          arr.push($(item).val())
+        })
+        var obj = {
+            
+        }
+        arr.forEach(function(item,index) {
+          
+        })
+        // console.log($(".item input[type='checkbox']:checked").val())
       })
     </script>
 </body>

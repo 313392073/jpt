@@ -26,13 +26,14 @@ function readFile(){
         formData.append("token", "");
 		console.log(formData)
         $.ajax({
-            url: "http://122.114.246.191:82/v1/api/comm/uploadfile",
+            url: "http://118.31.8.72:85/v1/api/comm/uploadfile",
             type: 'POST',
             cache: false,
             data: formData,
             processData: false,
             contentType: false,
             success: function (result) {
+                console.log(result)
 				$('#imgs').attr('src',result.obj);
             },
             error: function (err) {
@@ -67,9 +68,19 @@ $(".sbtn").on("click",function(){
                 data:{userLoginname:account,userPassword:pwd,headImage:headImage,userType:userType,classId:classId,sex:sex,email:email},
                 success:function(res){
                     if(res.code == 200 && res.success == 1) {
-                        window.location.href = ''
+                        layer.alert(res.msg,{
+                            title:'温馨提示',
+                            time: 2000,
+                            yes:function(index){
+                                layer.close(index);
+                                window.location.href = '/login.html'
+                            }
+                        })
+                        console.log(res)
                     }else{
-                        layer.alert('网络错误，请稍后再试')
+                        layer.alert(res.msg,{
+                            title:'温馨提示'
+                        })
                     }
                 }
             })

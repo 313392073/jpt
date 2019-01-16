@@ -15,13 +15,12 @@ module.exports = function(router){
                     userType:req.body.userType*1,
                     majorId:req.body.majorId*1
                 }
-                api.getMajorCourse(req,done)
+                api.getMajorCourse(req,params,done)
             }
         },function(err,result) {
             res.send(result['res1'])
         })
     })
-
      //学生选课程
      router.get('/coursechoose.html',function(req,res){
         res.render('courseChoose',{

@@ -19,7 +19,6 @@ module.exports = function(router) {
                     sex:req.body.sex*1,
                     email:req.body.email
                 }
-                // console.log(params)
                 api.subReg(req,params,done)
             }
         },function(err,result) {
@@ -41,6 +40,16 @@ module.exports = function(router) {
                     userPassword:req.body.userPassword,
                 }
                 api.subLogin(req,params,done)
+            }
+        },function(err,result) {
+            res.send(result['res1'])
+        })
+    })
+
+    router.get('/loginout.html',function(){
+        async.auto({
+            res1:function(done) {
+                api.loginOut(req,done)
             }
         },function(err,result) {
             res.send(result['res1'])

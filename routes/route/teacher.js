@@ -1,4 +1,23 @@
+const api = require('../interface');
+const async = require('async');
 module.exports = function(router){
+    //老师出题
+    router.get('/teagiveproblem',function(req,res) {
+        async.auto({
+            res1:function(done) {
+                let obj = {
+                    token:req.session.token,
+                    course:'',
+                    exams:req.body['exams']
+                }
+                api.teaGiveProblem(req,obj,done)
+            }
+        },function(err,result) {
+            res.send(result['res1'])
+        })
+    })
+
+
     // 老师课前
     router.get('/tchbeforeclass.html',function(req,res){
         res.render('tchBeforeClass',{

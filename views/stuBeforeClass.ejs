@@ -26,6 +26,7 @@
   <%- include("share/header") %>
     <div class="main-wrapper">
       <div class="main-box">
+        <input type="hidden" name="batch" id="batch" value="<%= batch%>">
         <%- include("share/menu")%>
           <div class="left-sidebar">
             <h3>课前习题</h3>
@@ -45,7 +46,7 @@
             </ul>
           </div>
           <div class="content-box">
-            <form action="/subAnswer" method="post">
+            <!-- <form action="/subAnswer" method="post"> -->
               <% if(courseList.length > 0) {%>
               <% for(var i=0;i<courseList.length;i++) {%>
               <div class="list">
@@ -56,6 +57,7 @@
                         <i class="answer <%= i%>_<%= cnum[k]%>"><%= makeOrder(k)%></i>
                     <%}%>）
                   </div>
+                  <input type="hidden" class="answer-hidden" value="<%= JSON.stringify(courseList[i])%>"/>
                   <div class="check-answer awrong">
                     <span>
                       <i class="iconfont icon-cuowu"></i>正确</span>
@@ -74,11 +76,30 @@
               <div class="btn-box">
                 <input type="submit" class="sbtn" value="提交">
               </div>
-            </form>
+            <!-- </form> -->
           </div>
       </div>
     </div>
     <script type="text/javascript">
+      var batch = $.trim($("#batch").val())
+      var check = [];
+      $(".answer-hidden").each(function(index,item) {
+        check.push($.trim($(item).val()))
+      })
+
+      let initObj = {};
+      for(var i=0;i<check.length;i++){
+        initObj[i] = {}
+        initObj[i]['answer'] = [];
+        initObj[i]['classBatch'] = JSON.stringify(batch);
+        initObj[i]['id'] = '';
+        initObj[i]['courseItemId'] = 0;
+        initObj[i]['isRight'] = 0;
+        initObj[i]['score'] = '0';
+        initObj[i]['userLoginname'] = JSON.stringify(JSON.parse(JSON.parse(localStorage.getItem('userInfo'))['user'])['userLoginname']);
+      }
+      
+
       $(".item").on("click", function () {
         var answerd = $.trim($(this).find('input[type="checkbox"]').val());
         if ($(this).find('input[type="checkbox"]').prop('checked')) {
@@ -88,19 +109,78 @@
         }
       })
 
+
       $(".sbtn").on("click",function() {
-        var arr = [];
+        
+        var answerArr = [];
         $(".item input[type='checkbox']:checked").each(function (index,item){
-          arr.push($(item).val())
+          answerArr.push($(item).val())
         })
-        var obj = {
-            
+
+        for(var i=0;i<answerArr.length;++i) {
+          if(answerArr[i]) {
+            if(!contains(initObj[answerArr[i].split('_')[0]]['answer'],answerArr[i].split('_')[1])) {
+              initObj[answerArr[i].split('_')[0]]['answer'].push(answerArr[i].split('_')[1])
+            }
+          }
         }
-        arr.forEach(function(item,index) {
-          
+
+        for(var i=0;i<check.length;++i) {
+          initObj[i]['courseItemId'] = JSON.parse(check[i])['course_item_id'];
+          initObj[i]['id'] = JSON.parse(check[i])['course_id'];
+          if(JSON.stringify(initObj[i]['answer']) == JSON.stringify(JSON.parse(JSON.parse(check[i])['answer'])['a'])) {
+            initObj[i]['answer'] = JSON.stringify(initObj[i]['answer']);
+            initObj[i]['isRight'] = 1;
+            initObj[i]['score'] = JSON.stringify(JSON.parse(check[i])['item_score']);
+          }
+        }
+        var dataArr = [];
+        for(var attr in initObj) {
+          dataArr.push(initObj[attr])
+        }
+        console.log(dataArr)
+        $.ajax({
+          type:'post',
+          url:'/subAnswer',
+          dataType:'json',
+          data:{exams:dataArr},
+          success:function(res) {
+            if(res.code == 200 && res.success == 1) {
+                layer.alert(res.msg,{
+                    title:'温馨提示',
+                    yes:function(){
+                      window.location.reload()
+                    }
+                })
+            }else{
+              layer.alert(res.msg,{
+                  title:'温馨提示',
+                  yes:function(){
+                    window.location.reload()
+                  }
+              })
+            }
+          },
+          error:function(err) {
+            layer.alert('网络错误，请稍后再试',{
+                title:'温馨提示',
+                yes:function(){
+                  window.location.reload()
+                }
+            })
+          }
         })
-        // console.log($(".item input[type='checkbox']:checked").val())
       })
+
+      function contains(arr, obj) {  
+          var i = arr.length;  
+          while (i--) {  
+              if (arr[i] === obj) {  
+                  return true;  
+              }  
+          }  
+          return false;  
+      }
     </script>
 </body>
 

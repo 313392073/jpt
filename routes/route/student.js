@@ -17,14 +17,17 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
-            console.log(result['res2']['obj'])
+            // console.log(req.session.token)
+            // console.log(result['res1']['obj'])
+            // console.log(result['res2']['obj'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{
                 res.render('stuBeforeClass',{
                     title:'学生课前习题',
                     courseList:result['res2']['obj'],
-                    makeOrder:base.makeOrder
+                    makeOrder:base.makeOrder,
+                    batch:result['res1']['obj']
                 })
             }
         })
@@ -59,25 +62,6 @@ module.exports = function(router){
     })
 
 
-
-    // [
-    //     {
-    //       "answer": "string",
-    //       "classBatch": "string",
-    //       "courseItemId": 0,
-    //       "createTime": "2019-01-16T02:14:56.105Z",
-    //       "id": 0,
-    //       "isRight": 0,
-    //       "score": "string",
-    //       "tips": 0,
-    //       "tips2": 0,
-    //       "useTime": 0,
-    //       "userLoginname": "string"
-    //     }
-    //   ]
-
-
-
     //提交答案
     router.post('/subAnswer',function(req,res) {
         async.auto({
@@ -85,7 +69,6 @@ module.exports = function(router){
                 api.getBatch(req,done)
             },
             res2:['res1',function(done,rest) {
-                console.log(res.body)
                 let obj = {
                     batch:rest['res1']['obj'],
                     token:req.session.token,
@@ -93,9 +76,15 @@ module.exports = function(router){
                 }
                 api.subAnswer(req,obj,done)
             }]
+        },function(err,result) {
+            console.log(result['res2'])
+            res.send(result['res2'])
         })
     })
     
+    router.get('/test',function(req,res) {
+        res.render('test')
+    })
 
     // router.get('/test',function(req,res) {
     //     async.auto({

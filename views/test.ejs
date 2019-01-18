@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .div_bor{
+            border:1px solid #274b8b ;
+            padding: 5px 5px 10px 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="div_bor">
+    <p>这是题目</p>
+    <p><input type="checkbox" value="A"> A.选项1</p>
+    <p><input type="checkbox" value="B"> B.选项2</p>
+    <p><input type="checkbox" value="C"> C.选项3</p>
+    <p><input type="checkbox" value="D"> D.选项4</p>
+    <p><input type="checkbox" value="E"> E.选项5</p>
+    <p><button style="float: right" onclick="fn()">确定</button></p>
+</div>
+<script>
+    var rule = ['A','C','D'];//答案
+    var boxs = document.getElementsByTagName('input');
+    var check = [];
+    var score = 0;
+    function fn(){
+        check=[];
+        score = 0; 
+        for(var i=0;i<boxs.length;i++){
+            if(boxs[i].checked){
+                check.push(boxs[i].value);
+            }
+        }
+ 
+        for(var j=0;j<check.length;j++){
+            if(rule.indexOf(check[j]) !=-1){
+                score++;
+            }else{
+                score--;
+            }
+        }
+        alert(Math.ceil(100/rule.length*score)+'分'); // 分数规则,自己定吧
+    }
+ 
+</script>
+</body>
+</html>

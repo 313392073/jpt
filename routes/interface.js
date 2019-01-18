@@ -11,12 +11,11 @@ const publicPath = require('./config/base')['publicPath'];
 function urlReq(methods,url,param,req,done) {
     var paramd = param ? param : {};
     var requestd = '';
-    if (methods == 'post') {
+    if (methods.toLowerCase() == 'post') {
         requestd = request.post(publicPath+url)
     } else {
         requestd = request.get(publicPath+url)
     }
-
     if(!req.session.token){
         done('Unauthorized',null)
     }else{
@@ -198,10 +197,7 @@ module.exports = {
         urlReq('GET','/v1/api/course/list',params,req,done)
     },
     subAnswer:function(req,params,done) { //提交答案
-        urlReq('GET','/v1/api/course/submit',params,req,done)
-    },
-    subAnswer:function(req,params,done) { //提交答案
-        urlReq('GET','/v1/api/course/submit',params,req,done)
+        urlReq('POST','/v1/api/course/submit',params,req,done)
     },
     teaGiveProblem:function(req,params,done) { //老师出题
         urlReq('GET','/v1/api/courseitem/submit',params,req,done)

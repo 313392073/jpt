@@ -271,3 +271,15 @@
 .main-wrapper .main-box .btn-box .sbtn:hover {
   opacity: 0.9;
 }
+.main-wrapper .main-box .btn-box .reg-now {
+  text-align: center;
+  line-height: 40px;
+}
+.main-wrapper .main-box .btn-box .reg-now a {
+  font-weight: bold;
+  font-size: 14px;
+  color: #00b2b8;
+}
+.main-wrapper .main-box .btn-box .reg-now a:hover {
+  color: #333333;
+}

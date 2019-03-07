@@ -204,190 +204,38 @@
 }
 .main-wrapper .main-box .content-box .main {
   width: 100%;
-  height: 520px;
+  min-height: 520px;
   background-color: #eeeff3;
   position: relative;
 }
-.main-wrapper .main-box .content-box .main .pbox {
-  position: absolute;
-  width: 150px;
-  height: 45px;
-  line-height: 45px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  text-align: center;
-  overflow: hidden;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+.main-wrapper .main-box .content-box .main .main-item {
+  height: 100px;
+  margin-bottom: 10px;
 }
-.main-wrapper .main-box .content-box .main .pbox select {
-  display: block;
-  min-width: 100%;
-  padding-right: 30px;
-  padding-left: 10px;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  border: none;
-  outline: none;
-}
-.main-wrapper .main-box .content-box .main .pbox select::-ms-expand {
-  display: none;
-}
-.main-wrapper .main-box .content-box .main .pbox i {
-  position: absolute;
-  right: 5px;
-  top: 0;
-  color: #a0a3a8;
-  font-size: 26px;
-}
-.main-wrapper .main-box .content-box .main .pbox.p1 {
-  top: 35px;
-  left: 450px;
-}
-.main-wrapper .main-box .content-box .main .pbox.p2 {
-  top: 140px;
-  left: 450px;
-}
-.main-wrapper .main-box .content-box .main .pbox.p3 {
-  top: 243px;
-  left: 450px;
-}
-.main-wrapper .main-box .content-box .main .pbox.p4 {
-  top: 340px;
-  left: 450px;
-}
-.main-wrapper .main-box .content-box .main .arrdown {
-  position: absolute;
-  width: 25px;
-  height: 55px;
-  background: url("../images/icon/arrdowm.png") no-repeat center;
-  background-size: contain;
-}
-.main-wrapper .main-box .content-box .main .arrdown.arrdown1 {
-  left: 515px;
-  top: 80px;
-}
-.main-wrapper .main-box .content-box .main .arrdown.arrdown2 {
-  left: 515px;
-  top: 185px;
-}
-.main-wrapper .main-box .content-box .main .arrdown.arrdown3 {
-  left: 515px;
-  top: 285px;
-}
-.main-wrapper .main-box .content-box .main .bg-hr {
-  position: absolute;
-  left: 425px;
-  top: 120px;
-}
-.main-wrapper .main-box .content-box .main .bg-al {
-  position: absolute;
-  left: 395px;
-  top: 350px;
-}
-.main-wrapper .main-box .content-box .main .bg-ar {
-  position: absolute;
-  left: 610px;
-  top: 350px;
-}
-.main-wrapper .main-box .content-box .main .bg-hl {
-  position: absolute;
-  left: 610px;
-  top: 220px;
-}
-.main-wrapper .main-box .content-box .main .bg-hl.bg-hl2 {
-  left: 900px;
-  top: 325px;
-}
-.main-wrapper .main-box .content-box .main .bg-hd {
-  position: absolute;
-  top: 420px;
-  left: 340px;
-}
-.main-wrapper .main-box .content-box .main .con {
-  position: absolute;
-  width: 385px;
-  height: 125px;
-  border-radius: 6px;
-}
-.main-wrapper .main-box .content-box .main .con textarea {
-  width: 100%;
+.main-wrapper .main-box .content-box .main .main-item .item-content {
+  position: relative;
+  width: 200px;
   height: 100%;
-  line-height: 30px;
-  color: #00b2b8;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  outline: none;
-  padding-left: 8px;
-  padding-right: 8px;
+  margin: 0 auto;
 }
-.main-wrapper .main-box .content-box .main .con.con1 {
-  top: 440px;
-  left: 130px;
-}
-.main-wrapper .main-box .content-box .main .con.con2 {
-  top: 440px;
-  left: 550px;
-}
-.main-wrapper .main-box .content-box .main .filed {
+.main-wrapper .main-box .content-box .main .main-item .item-content .default-value {
   position: absolute;
-  width: 195px;
-  height: 45px;
-  line-height: 45px;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  outline: none;
-  background-color: #ffffff;
-  border-radius: 8px;
+  top: 24px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
   text-align: center;
-  overflow: hidden;
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 }
-.main-wrapper .main-box .content-box .main .filed select {
-  display: block;
-  min-width: 100%;
-  padding-right: 30px;
-  padding-left: 10px;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  border: none;
-  outline: none;
-}
-.main-wrapper .main-box .content-box .main .filed select::-ms-expand {
-  display: none;
-}
-.main-wrapper .main-box .content-box .main .filed i {
+.main-wrapper .main-box .content-box .main .main-item .item-content .item-bg {
   position: absolute;
-  right: 5px;
-  top: 0;
-  color: #a0a3a8;
-}
-.main-wrapper .main-box .content-box .main .filed.filed1 {
-  left: 180px;
-  top: 340px;
-}
-.main-wrapper .main-box .content-box .main .filed.filed2 {
-  left: 670px;
-  top: 340px;
-}
-.main-wrapper .main-box .content-box .main .filed.filedr1 {
-  left: 630px;
-  top: 220px;
-}
-.main-wrapper .main-box .content-box .main .filed.filedr2 {
-  left: 630px;
-  top: 280px;
-}
-.main-wrapper .main-box .content-box .main .filed.filedrr1 {
-  top: 320px;
-  left: 930px;
-}
-.main-wrapper .main-box .content-box .main .filed.filedrr2 {
-  left: 930px;
-  top: 380px;
+  left: 50%;
+  margin-left: -10px;
+  bottom: -25px;
+  width: 19px;
+  height: 41px;
+  background: url("../images/bottom-3.png") no-repeat center;
 }
 .main-wrapper .main-box .content-box .btn-box {
   margin: 35px auto;

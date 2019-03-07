@@ -42,6 +42,59 @@
                             border-radius:4px;
                             text-align: center;
                         }
+                        .item-left{
+                            position: absolute;
+                            width: 180px;
+                            height: 80px;
+                            left: -220px;
+                            top: 8px;
+                            &>div{
+                                height: 35px;
+                                margin-bottom: 10px;
+                                input{
+                                    height: 35px;
+                                    line-height: 35px;
+                                    border: 1px solid #dddddd;
+                                    border-radius: 4px;
+                                    padding: 0 8px;
+                                }
+                            }
+                            .item-leftbg{
+                                position: absolute;
+                                right: -30px;
+                                top: 0;
+                                width: 12px;
+                                height: 70px;
+                                background: url("../images/left-bracket.png") no-repeat center;
+                                background-size: contain;
+                            }
+                        }
+                        .item-right{
+                            position: absolute;
+                            width: 180px;
+                            right: -220px;
+                            top: 8px;
+                            &>div{
+                                height: 35px;
+                                margin-bottom: 10px;
+                                input{
+                                    padding: 0 8px;
+                                    height: 35px;
+                                    line-height: 35px;
+                                    border: 1px solid #dddddd;
+                                    border-radius: 4px;
+                                }
+                            }
+                            .item-rightbg{
+                                position: absolute;
+                                left: -25px;
+                                top: 0;
+                                width: 12px;
+                                height: 70px;
+                                background: url("../images/right-bracket.png") no-repeat center;
+                                background-size: contain;
+                            }
+                        }
                         .item-bg{
                             position: absolute;
                             left: 50%;

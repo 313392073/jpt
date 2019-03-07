@@ -145,6 +145,7 @@
           dataType:'json',
           data:{exams:dataArr},
           success:function(res) {
+            console.log(dataArr)
             if(res.code == 200 && res.success == 1) {
                 layer.alert(res.msg,{
                     title:'温馨提示',

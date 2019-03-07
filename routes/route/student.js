@@ -17,9 +17,7 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
-            // console.log(req.session.token)
-            // console.log(result['res1']['obj'])
-            // console.log(result['res2']['obj'])
+            console.log(result['res2']['obj'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{
@@ -42,24 +40,30 @@ module.exports = function(router){
             },
             res2:['res1',function (done, rest){
                 let obj = {
-                    batch:rest['res1']['obj'],
+                    batch:rest['res1']?rest['res1']['obj']:'',
                     type:1,
                     token:req.session.token
                 }
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
-            console.log(result['res2']['obj'])
+            // console.log(result['res2']['obj'])
+
+            console.log(JSON.parse(req.session.user['user'])['userLoginname'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{
                 res.render('stuCheckProcess',{
                     title:'学生检验流程',
-                    courseList:result['res2']['obj']
+                    userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                    token:req.session.token?req.session.token:'',
+                    batch:result['res1']?result['res1']['obj']:'',
+                    dataList:result['res2']['obj']
                 })
             }
         })
     })
+
 
 
     //提交答案
@@ -81,6 +85,21 @@ module.exports = function(router){
             res.send(result['res2'])
         })
     })
+
+    /**
+     {
+         <input type="hidden" id="userLoginname" value="<%= userLoginname%>">
+                  <input type="hidden" id="classBatch" value="<%= classBatch%>">
+                  <input type="hidden" id="token" value="<%= token%>">
+        "answer": "string",
+        "classBatch": "string",
+        "courseItemId": 0,
+        "isRight": 0,
+        "score": "string",
+        "useTime": 0,
+        "userLoginname": "string"
+    }
+     */
     
     router.get('/test',function(req,res) {
         res.render('test')

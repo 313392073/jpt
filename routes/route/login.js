@@ -42,6 +42,9 @@ module.exports = function(router) {
                 api.subLogin(req,params,done)
             }
         },function(err,result) {
+            if(result['res1']['success'] == 1 && result['res1']['code'] == 200) {
+                req.session.user = result['res1']['obj']
+            }
             res.send(result['res1'])
         })
     })

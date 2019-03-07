@@ -29,78 +29,36 @@
         <%- include("share/menu")%>
         <div class="content-box">
           <div class="desc">请选择检验流程中空白部分的答案</div>
-          <form action="" method="post">
+          <!-- <form action="" method="post"> -->
               <div class="main">
-                  <div class="p1 pbox clearfix">
-                      <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <div class="arrdown arrdown1"></div>
-                  <div class="p2 pbox">
-                      <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <div class="arrdown arrdown2"></div>
-                  <div class="p3 pbox">
-                      <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <div class="arrdown arrdown3"></div>
-                  <div class="p4 pbox">
-                      <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <div class="filed filed1">
-                      <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <img class="bg-al" src="./images/icon/arrleft.png" alt="">
-                  <div class="filed filed2">
-                      <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <img class="bg-ar" src="./images/icon/arrright.png" alt="">
-              </div>
+                  <input type="hidden" id="userLoginname" value="<%= userLoginname%>">
+                  <input type="hidden" id="classBatch" value="<%= batch%>">
+                <% if(dataList.length > 0) {%>
+                  <% for(var k=0;k<dataList.length;k++) {%>
+                  <div class="main-item">
+                    <div class="item-content">
+                        <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
+                            <option value="0">请选择</option>
+                            <% for(var i=0;i<dataList.length;i++) {%>
+                                <option value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
+                            <%}%>
+                        </select>
+                        <p class="item-bg"></p>
+                    </div>
+                    </div>
+                    <%}%>
+                    <%}%>
+                </div>
               <div class="btn-box">
                   <input type="submit" class="sbtn" value="提交">
               </div>
-          </form>
+          <!-- </form> -->
 
       </div>
       </div>
     </div>
     <!-- 提交成功tips -->
-    <div class="tips-wrapper">
+    <div class="tips-wrapper" style="display: none">
       <div class="tips-box">
           <a class="iconfont icon-guanbi1 icon-closed"></a>
           <div class="tips-icon"><i class="iconfont icon-chenggong"></i></div>
@@ -110,6 +68,44 @@
   <script type="text/javascript">
     $(".icon-closed").on("click",function(){
         $(".tips-wrapper").addClass('hides')
+    })
+
+    $(".sbtn").on("click",function() {
+        var userLoginname = $.trim($('#userLoginname').val())
+        var classBatch = $.trim($('#classBatch').val())
+        var arr = []
+        $(".default-value").each(function(index,item) {
+            var rightanswer = $.trim($(item).data('tag'))
+            var courseItemId = $.trim($(item).data('courseitemid'))
+            var itemScore = $.trim($(item).data('itemscore'))
+            var nowAnswer = $.trim($(item).val())
+            var obj = {
+                answer:nowAnswer,
+                classBatch:classBatch,
+                courseItemId:courseItemId,
+                isRight:0,
+                score:0,
+                useTime:0,
+                userLoginname:userLoginname
+            }
+            if(rightanswer == nowAnswer) {
+                obj['score'] = itemScore*1,
+                isRight = 1
+            }
+            arr.push(obj) 
+        })
+        $.ajax({
+            type:'post',
+            url:'/subAnswer',
+            dataType:'json',
+            data:{exams:arr},
+            success:function(res) {
+                console.log(res)
+            },
+            error:function(error) {
+                console.log(error)
+            }
+        })
     })
 
 </script>

@@ -44,6 +44,8 @@ module.exports = function(router) {
         },function(err,result) {
             if(result['res1']['success'] == 1 && result['res1']['code'] == 200) {
                 req.session.user = result['res1']['obj']
+                req.session.token = result['res1']['obj']?result['res1']['obj']['token']:''
+                req.session.batch = result['res1']['obj']?result['res1']['obj']['batch']:''
             }
             res.send(result['res1'])
         })

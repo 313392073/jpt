@@ -94,11 +94,12 @@
             }
             arr.push(obj) 
         })
+        console.log(JSON.stringify(arr))
         $.ajax({
             type:'post',
             url:'/subAnswer',
             dataType:'json',
-            data:{exams:arr},
+            data:{exams:JSON.stringify(arr)},
             success:function(res) {
                 console.log(res)
             },

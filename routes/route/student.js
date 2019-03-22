@@ -6,6 +6,7 @@ module.exports = function(router){
     router.get('/stubeforeclass.html',function(req,res){
         async.auto({
             res1:function(done){
+                console.log(req.session)
                 api.getBatch(req,done)
             },
             res2:['res1',function (done, rest){
@@ -17,7 +18,7 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
-            console.log(result['res2']['obj'])
+            // console.log(result['res2']['obj'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{
@@ -44,7 +45,8 @@ module.exports = function(router){
                     type:1,
                     token:req.session.token
                 }
-                api.getStubeforeClass(req,obj,done)
+                console.log(req.body)
+                // api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
             // console.log(result['res2']['obj'])
@@ -73,11 +75,36 @@ module.exports = function(router){
                 api.getBatch(req,done)
             },
             res2:['res1',function(done,rest) {
+                let obj1 = [ { answer: "[ '腹泻', '腹痛' ]",
+                    classBatch: "u4iwarmtep",
+                    id: 4,
+                    courseItemId: 34,
+                    isRight: 0,
+                    score: '0',
+                    userLoginname:"漆静01"},
+                { answer: "[ '设备', '试剂' ]",
+                    classBatch: "u4iwarmtep",
+                    id: 4,
+                    courseItemId: 35,
+                    isRight: 0,
+                    score: '0',
+                    userLoginname:"漆静01"},
+                { answer: "[ '样品检验区域和对照组检验区域应分离或二次消毒', '样品检验器具应和对照器具分开' ]",
+                    classBatch: "u4iwarmtep",
+                    id: 4,
+                    courseItemId: 36,
+                    isRight: 0,
+                    score: '0',
+                    userLoginname:"漆静01"} ]
+
                 let obj = {
                     batch:rest['res1']['obj'],
                     token:req.session.token,
-                    exams:req.body['exams']
+                    exams:obj1
                 }
+            
+                console.log(JSON.parse(req.body['exams']))
+                console.log(obj)
                 api.subAnswer(req,obj,done)
             }]
         },function(err,result) {
@@ -85,22 +112,49 @@ module.exports = function(router){
             res.send(result['res2'])
         })
     })
-
-    /**
-     {
-         <input type="hidden" id="userLoginname" value="<%= userLoginname%>">
-                  <input type="hidden" id="classBatch" value="<%= classBatch%>">
-                  <input type="hidden" id="token" value="<%= token%>">
-        "answer": "string",
-        "classBatch": "string",
-        "courseItemId": 0,
-        "isRight": 0,
-        "score": "string",
-        "useTime": 0,
-        "userLoginname": "string"
-    }
-     */
     
+
+    router.post('/subAnswers',function(req,res) {
+        let obj1 = [ { answer: "[ '腹泻', '腹痛' ]",
+            classBatch: "u4iwarmtep",
+            id: 4,
+            courseItemId: 34,
+            isRight: 0,
+            score: '0',
+            userLoginname:"漆静01"},
+        { answer: "[ '设备', '试剂' ]",
+            classBatch: "u4iwarmtep",
+            id: 4,
+            courseItemId: 35,
+            isRight: 0,
+            score: '0',
+            userLoginname:"漆静01"},
+        { answer: "[ '样品检验区域和对照组检验区域应分离或二次消毒', '样品检验器具应和对照器具分开' ]",
+            classBatch: "u4iwarmtep",
+            id: 4,
+            courseItemId: 36,
+            isRight: 0,
+            score: '0',
+            userLoginname:"漆静01"} ]
+        async.auto({
+            res1:function(done){
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+                let params = {
+                    batch:rest['res1']['obj'],
+                    token:req.session.token,
+                    exams:obj1
+                }
+                console.log(req.body)
+                api.urlReq('POST','/v1/api/course/submit',params,req,done)
+            }]
+        },function(err,result) {
+            console.log(result['res1'])
+            res.send(result['res1'])
+        })
+    })
+
     router.get('/test',function(req,res) {
         res.render('test')
     })

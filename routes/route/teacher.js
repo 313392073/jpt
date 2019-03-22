@@ -18,6 +18,35 @@ module.exports = function(router){
     })
 
 
+     // VR实验-老师端
+     router.get('/tchvr.html',function(req,res){
+         async.auto({
+             res1:function(done) {
+                 console.log(req.session)
+                 api.getBatch(req,done)
+             },
+             res2:['res1',function(done,rest) {
+                let params = {
+                    token:req.session.token,
+                    batch:rest['res1']?rest['res1']['obj']:''
+                }
+                api.teaVr(req,params,done)
+             }]
+         },function(error,result) {
+             console.log(1111)
+             console.log(result)
+             console.log(result['res2'])
+            // res.render('tchVR',{
+            //     title:'老师VR实验'
+            // })
+         })
+        
+    })
+
+
+
+
+
     // 老师课前
     router.get('/tchbeforeclass.html',function(req,res){
         res.render('tchBeforeClass',{
@@ -54,12 +83,7 @@ module.exports = function(router){
         })
     })
 
-     // VR实验-老师端
-     router.get('/tchvr.html',function(req,res){
-        res.render('tchVR',{
-            title:'老师VR实验'
-        })
-    })
+    
 
     
     // 老师文件上传

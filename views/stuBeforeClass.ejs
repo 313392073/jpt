@@ -111,7 +111,6 @@
 
 
       $(".sbtn").on("click",function() {
-        
         var answerArr = [];
         $(".item input[type='checkbox']:checked").each(function (index,item){
           answerArr.push($(item).val())
@@ -131,7 +130,7 @@
           if(JSON.stringify(initObj[i]['answer']) == JSON.stringify(JSON.parse(JSON.parse(check[i])['answer'])['a'])) {
             initObj[i]['answer'] = JSON.stringify(initObj[i]['answer']);
             initObj[i]['isRight'] = 1;
-            initObj[i]['score'] = JSON.stringify(JSON.parse(check[i])['item_score']);
+            initObj[i]['score'] = JSON.parse(check[i])['item_score'];
           }
         }
         var dataArr = [];
@@ -141,9 +140,9 @@
         console.log(dataArr)
         $.ajax({
           type:'post',
-          url:'/subAnswer',
+          url:'/subAnswers',
           dataType:'json',
-          data:{exams:dataArr},
+          data:{exams:JSON.stringify(dataArr)},
           success:function(res) {
             console.log(dataArr)
             if(res.code == 200 && res.success == 1) {

@@ -197,9 +197,13 @@ module.exports = {
         urlReq('GET','/v1/api/course/list',params,req,done)
     },
     subAnswer:function(req,params,done) { //提交答案
+        console.log(params)
         urlReq('POST','/v1/api/course/submit',params,req,done)
+    },
+    teaVr:function(req,params,res) { //老师端统计页面
+        urlReq('GET','/v1/api/tea/vr',params,done)
     },
     teaGiveProblem:function(req,params,done) { //老师出题
         urlReq('GET','/v1/api/courseitem/submit',params,req,done)
-    }
+    },
 }

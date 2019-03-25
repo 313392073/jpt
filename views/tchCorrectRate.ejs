@@ -31,10 +31,11 @@
                         <div class="total-box clearfix">
                             <p class="desc">学习正确率统计</p>
                             <div class="echart-box clearfix">
-                                <%for(var i=0;i<8;i++){%>
+                                <% var arr = Object.keys(trData?trData['course_right_lv']:{})%>
+                                <%for(var i=0;i<arr.length;i++){%>
                                 <div class="redus-left">
-                                    <div class="echart1 echart" id="echart<%= i+1%>"></div>
-                                    <p>第<%= i+1%>题</p>
+                                    <div class="echart1 echart" id="echart<%= arr[i]%>"></div>
+                                    <p>第<%= arr[i]%>题</p>
                                 </div>
                                 <%}%>
                             </div>
@@ -61,22 +62,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%for(var i=0;i<5;i++) {%>
-                                            <tr>
-                                                <td>王天成</td>
-                                                <td>√</td>
-                                                <td>√</td>
-                                                <td>√</td>
-                                                <td>√</td>
-                                                <td class="td-error">×</td>
-                                                <td>√</td>
-                                                <td>√</td>
-                                                <td class="td-error">×</td>
-                                                <td>√</td>
-                                                <td class="td-error">×</td>
-                                                <td class="score">40</td>
-                                            </tr>
-                                            <%}%>
+                                        <% var dataDetail = trData?trData['course_right_detail']:''%>
+                                        <%for(var i=0;i<dataDetail.length;i++) {%>
+                                        <tr>
+                                            <td><%= dataDetail[i]['userName']%></td>
+                                            <td><%= dataDetail[i]['1']%></td>
+                                            <td><%= dataDetail[i]['2']%></td>
+                                            <td><%= dataDetail[i]['3']%></td>
+                                            <td class="score"><%= dataDetail[i]['sumscore']%></td>
+                                        </tr>
+                                        <%}%>
                                     </tbody>
                                 </table>
                             </div>

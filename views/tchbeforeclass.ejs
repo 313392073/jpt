@@ -73,15 +73,13 @@
     </div>
     <script src="/js/tool/echarts.min.js"></script>
     <script type="text/javascript">
-        var 
         var data1 = [
-                    { value: 100, name: '默认数据' },
+                    { value: "<%= trData['course_right_lv']['1']%>", name: '默认数据' },
                     { value: 100, name: '生化特性' }
                 ]
         var data2 = [
-            { value: 100, name: '默认数据' },
-            { value: 100, name: '国际理解' },
-            { value: 100, name: '国际理解11' }
+            { value: "<%= trData['course_right_lv']['2']%>", name: '默认数据' },
+            { value: 100, name: '国际理解' }
         ]
         getInit('echart1',['#cccccc','#2ec7c9'],'生化特性',getData(data1));
         getInit('echart2',['#cccccc','#d87a80','#f90'],'国际理解',getData(data2));

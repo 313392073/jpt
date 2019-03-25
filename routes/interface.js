@@ -200,10 +200,37 @@ module.exports = {
         console.log(params)
         urlReq('POST','/v1/api/course/submit',params,req,done)
     },
-    teaVr:function(req,params,res) { //老师端统计页面
-        urlReq('GET','/v1/api/tea/vr',params,done)
+    teaVr:function(req,params,done) { //老师端统计页面
+        urlReq('GET','/v1/api/tea/vr/score',params,req,done)
+    },
+    teaScore:function(req,params,done) { //老师端班级个人成绩
+        urlReq('GET','/v1/api/tea/class/score',params,req,done)
+    },
+    teaClassList:function(req,params,done) { //老师端课前习题
+        urlReq('GET','/v1/api/tea/course/list',params,req,done)
+    },
+    teaGroupData:function(req,params,done) { //老师端小组数据
+        urlReq('GET','/v1/api/tea/group/score',params,req,done)
     },
     teaGiveProblem:function(req,params,done) { //老师出题
-        urlReq('GET','/v1/api/courseitem/submit',params,req,done)
+        urlReq('POST','/v1/api/courseitem/submit',params,req,done)
     },
+    teaGroupRepart:function(req,params,done) { //老师获取分配小组
+        urlReq('POST','/v1/api/tea/group/repart',params,req,done)
+    },
+    teaSubmitGroup:function(req,params,done) { //老师分配小组提交
+        urlReq('POST','/v1/api/tea/group/repartDiscuss/confirm',params,req,done)
+    },
+    stuSum:function(req,params,done) { //学生总结
+        urlReq('GET','/v1/api/stu/sum',params,req,done)
+    },
+    stuVr:function(req,params,done) { //学生VR
+        urlReq('GET','/v1/api/stu/sum',params,req,done)
+    },
+    stuVrList:function(req,params,done) { //学生讨论
+        urlReq('GET','/v1/api/stu/vr/list',params,req,done)
+    },
+    getUploadList:function(req,params,done) {
+        urlReq('GET','/v1/api/comm/uploadlist',params,req,done)
+    }
 }

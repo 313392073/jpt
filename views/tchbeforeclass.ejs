@@ -49,31 +49,19 @@
                                     <th> 第一题 </th>
                                     <th> 第二题 </th>
                                     <th> 第三题 </th>
-                                    <th> 第一题</th>
-                                    <th> 第二题 </th>
-                                    <th> 第三题 </th>
-                                    <th> 第三题 </th>
-                                    <th> 第一题</th>
-                                    <th> 第二题 </th>
-                                    <th> 第三题 </th>
                                     <th>得分</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <%for(var i=0;i<5;i++) {%>
+                               
+                                <% var dataDetail = trData?trData['course_right_detail']:''%>
+                                <%for(var i=0;i<dataDetail.length;i++) {%>
                                 <tr>
-                                    <td>王天成</td>
-                                    <td>√</td>
-                                    <td>√</td>
-                                    <td>√</td>
-                                    <td>√</td>
-                                    <td class="td-error">×</td>
-                                    <td>√</td>
-                                    <td>√</td>
-                                    <td class="td-error">×</td>
-                                    <td>√</td>
-                                    <td class="td-error">×</td>
-                                    <td class="score">40</td>
+                                    <td><%= dataDetail[i]['userName']%></td>
+                                    <td><%= dataDetail[i]['1']%></td>
+                                    <td><%= dataDetail[i]['2']%></td>
+                                    <td><%= dataDetail[i]['3']%></td>
+                                    <td class="score"><%= dataDetail[i]['sumscore']%></td>
                                 </tr>
                                 <%}%>
                             </tbody>
@@ -85,18 +73,19 @@
     </div>
     <script src="/js/tool/echarts.min.js"></script>
     <script type="text/javascript">
+        var 
         var data1 = [
-                    { value: 8, name: '默认数据' },
-                    { value: 92, name: '生化特性' }
+                    { value: 100, name: '默认数据' },
+                    { value: 100, name: '生化特性' }
                 ]
         var data2 = [
-            { value: 83, name: '默认数据' },
-            { value: 17, name: '国际理解' }
+            { value: 100, name: '默认数据' },
+            { value: 100, name: '国际理解' },
+            { value: 100, name: '国际理解11' }
         ]
         getInit('echart1',['#cccccc','#2ec7c9'],'生化特性',getData(data1));
-        getInit('echart2',['#cccccc','#d87a80'],'国际理解',getData(data2));
+        getInit('echart2',['#cccccc','#d87a80','#f90'],'国际理解',getData(data2));
         function getInit(obj,color,titile,datas){
-            console.log(datas)
             var myChart = echarts.init(document.getElementById(obj));
             var option = {
                 color:color,

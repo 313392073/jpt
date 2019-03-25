@@ -22,7 +22,6 @@ module.exports = function(router){
      router.get('/tchvr.html',function(req,res){
          async.auto({
              res1:function(done) {
-                 console.log(req.session)
                  api.getBatch(req,done)
              },
              res2:['res1',function(done,rest) {
@@ -33,26 +32,117 @@ module.exports = function(router){
                 api.teaVr(req,params,done)
              }]
          },function(error,result) {
-             console.log(1111)
-             console.log(result)
              console.log(result['res2'])
-            // res.render('tchVR',{
-            //     title:'老师VR实验'
-            // })
+            res.render('tchVR',{
+                title:'老师VR实验'
+            })
          })
         
     })
 
 
-
-
+     // 班级个人成绩-老师端
+     router.get('/score.html',function(req,res){
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+               let params = {
+                   token:req.session.token,
+                   batch:rest['res1']?rest['res1']['obj']:''
+               }
+               api.teaScore(req,params,done)
+            }]
+        },function(error,result) {
+           res.render('tchVR',{
+               title:'个人成绩',
+               trData:result['res2']?result['res2']['obj']:[]
+           })
+        })
+   })
 
     // 老师课前
     router.get('/tchbeforeclass.html',function(req,res){
-        res.render('tchBeforeClass',{
-            title:'老师课前'
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+               let params = {
+                   token:req.session.token,
+                   batch:rest['res1']?rest['res1']['obj']:''
+               }
+               api.teaClassList(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2']['obj'])
+           res.render('tchBeforeClass',{
+               title:'老师课前',
+               trData:result['res2']?result['res2']['obj']:[]
+           })
         })
     })
+     // 老师小组数据
+     router.get('/tchpaneldata.html',function(req,res){
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+               let params = {
+                   token:req.session.token,
+                   batch:rest['res1']?rest['res1']['obj']:''
+               }
+               api.teaGroupData(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2'])
+           res.render('tchPanelData',{
+               title:'老师小组数据',
+               trData:result['res2']?result['res2']['obj']:[]
+           })
+        })
+    })
+
+    
+     // 老师重新分组
+     router.get('/tchregroup.html',function(req,res){
+         async.auto({
+             res1:function(done) {
+                let params = {
+                    token:req.session.token
+                 }
+                api.teaGroupRepart(req,params,done)
+             }
+         },function(error,result) {
+            console.log(result['res2'])
+            res.render('tchRegroup',{
+                title:'老师重新分组',
+                trData:result['res1']?result['res1']['obj']:[]
+            })
+         })
+    })
+
+    router.post('/teaSubmitGroup',function(req,res) {
+        async.auto({
+            res1:function(done) {
+                let params = {
+                    token:req.session.token,
+                    sysGroupVOList:[]
+                }
+                api.teaSubmitGroup(req,params,done)
+            }
+        },function(error,result) {
+            console.log(result)
+        })
+    })
+
+
+    router.get('/getUploadList',function(req,res) {
+        
+    })
+
 
     // 老师课前习题正确率
     router.get('/tchcorrectrate.html',function(req,res){
@@ -82,9 +172,6 @@ module.exports = function(router){
             title:'老师完善流程'
         })
     })
-
-    
-
     
     // 老师文件上传
     router.get('/tchupload.html',function(req,res){
@@ -93,19 +180,8 @@ module.exports = function(router){
         })
     })
 
-     // 老师重新分组
-     router.get('/tchregroup.html',function(req,res){
-        res.render('tchRegroup',{
-            title:'老师重新分组'
-        })
-    })
 
-    // 老师小组数据
-    router.get('/tchpaneldata.html',function(req,res){
-        res.render('tchPanelData',{
-            title:'老师小组数据'
-        })
-    })
+   
 
     // 老师VR考核
     router.get('/tchvrcheck.html',function(req,res){

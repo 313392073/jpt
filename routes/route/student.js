@@ -170,9 +170,71 @@ module.exports = function(router){
     // })
 
 
+     //学生总结
+     router.get('/stusummarize.html',function(req,res){
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+               let params = {
+                   token:req.session.token,
+                   batch:rest['res1']?rest['res1']['obj']:''
+               }
+               api.stuSum(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2'])
+           res.render('stuSummarize',{
+               title:'学生总结',
+               trData:result['res2']?result['res2']['obj']:[]
+           })
+        })
+    })
 
+     //学生检验流程(VR)的答案
+     router.get('/stuanswerprocess.html',function(req,res){
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+               let params = {
+                   token:req.session.token,
+                   batch:rest['res1']?rest['res1']['obj']:''
+               }
+               api.stuVr(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2'])
+           res.render('stuAnswerProcess',{
+               title:'学生检验流程的答案',
+               trData:result['res2']?result['res2']['obj']:[]
+           })
+        })
+    })
 
-
+      //学生讨论
+    router.get('/studiscuss.html',function(req,res){
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+               let params = {
+                   token:req.session.token,
+                   batch:rest['res1']?rest['res1']['obj']:''
+               }
+               api.stuVrList(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2'])
+           res.render('stuDiscuss',{
+               title:'学生讨论',
+               trData:result['res2']?result['res2']['obj']:[]
+           })
+        })
+    })
 
 
 
@@ -213,12 +275,7 @@ module.exports = function(router){
 
     
     
-    //学生检验流程的答案
-    router.get('/stuanswerprocess.html',function(req,res){
-        res.render('stuAnswerProcess',{
-            title:'学生检验流程的答案'
-        })
-    })
+   
 
     //学生VR实验
     router.get('/stuvr.html',function(req,res){
@@ -234,12 +291,7 @@ module.exports = function(router){
         })
     })
 
-    //学生讨论
-    router.get('/studiscuss.html',function(req,res){
-        res.render('stuDiscuss',{
-            title:'学生讨论'
-        })
-    })
+  
 
     //学生视频
     router.get('/stuvideo.html',function(req,res){
@@ -247,10 +299,5 @@ module.exports = function(router){
             title:'学生视频'
         })
     })
-     //学生总结
-     router.get('/stusummarize.html',function(req,res){
-        res.render('stuSummarize',{
-            title:'学生总结'
-        })
-    })
+    
 }

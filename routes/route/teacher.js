@@ -83,6 +83,30 @@ module.exports = function(router){
            })
         })
     })
+
+    // 老师课前习题正确率
+    router.get('/tchcorrectrate.html',function(req,res){
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+               let params = {
+                   token:req.session.token,
+                   batch:rest['res1']?rest['res1']['obj']:''
+               }
+               api.teaClassList(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2']['obj'])
+           res.render('tchCorrectRate',{
+               title:'老师课前习题正确率',
+               trData:result['res2']?result['res2']['obj']:[]
+           })
+        })
+    })
+
+
      // 老师小组数据
      router.get('/tchpaneldata.html',function(req,res){
         async.auto({
@@ -144,12 +168,7 @@ module.exports = function(router){
     })
 
 
-    // 老师课前习题正确率
-    router.get('/tchcorrectrate.html',function(req,res){
-        res.render('tchCorrectRate',{
-            title:'老师课前习题正确率'
-        })
-    })
+    
 
 
     // 老师检验流程测试结果

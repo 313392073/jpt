@@ -107,6 +107,90 @@ module.exports = function(router){
     })
 
 
+    // 老师检验流程测试结果
+    router.get('/tchverifyprocess.html',function(req,res){
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+                let params = {
+                    token:req.session.token,
+                    type:1*1,
+                    batch:rest['res1']?rest['res1']['obj']:''
+                }
+                api.getStubeforeClass(req,params,done);
+            }],
+            res3:['res1',function(done,rest) {
+                let params = {
+                    token:req.session.token,
+                    batch:rest['res1']?rest['res1']['obj']:''
+                }
+                api.teaVr(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result)
+            res.render('tchVerifyProcess',{
+                title:'老师检验流程测试结果',
+                step:result['res2']?result['res2']['obj']:[],
+                trData:result['res3']?result['res3']:{}
+            })
+        })
+    })
+
+
+      // 老师课后
+    router.get('/tchafterclass.html',function(req,res){
+        // async.auto({
+        //     res1:function(done) {
+        //         api.getBatch(req,done)
+        //     },
+        //     res2:['res1',function(done,rest) {
+        //         let params = {
+        //             token:req.session.token,
+        //             batch:rest['res2']?rest['res2']['obj']:''
+        //         }
+        //         api.teaVr(req,params,done)
+        //     }]
+        // },function(error,result) {
+        //     console.log(result)
+        //     res.render('tchAfterClass',{
+        //         title:'老师课后'
+        //     })
+        // })
+
+        res.render('tchAfterClass',{
+            title:'老师课后'
+        })
+    })
+
+
+     // 完善流程-老师端
+     router.get('/tchimproveprocess.html',function(req,res){
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+                var params = {
+                    token:req.session.token,
+                    batch:rest['res1']?rest['res1']['obj']:''
+                }
+                api.teaScore(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2'])
+            res.render('tchImproveProcess',{
+                title:'老师完善流程',
+                trData:result['res2']?result['res2']['obj']:[]
+            })
+        })
+    })
+
+
+
+
+
      // 老师小组数据
      router.get('/tchpaneldata.html',function(req,res){
         async.auto({
@@ -134,16 +218,20 @@ module.exports = function(router){
      router.get('/tchregroup.html',function(req,res){
          async.auto({
              res1:function(done) {
+                api.getBatch(req,done)
+             },
+             res2:['res1',function(done,rest) {
                 let params = {
-                    token:req.session.token
+                    token:req.session.token,
+                    batch:rest['res1']?rest['res1']['obj']:''
                  }
                 api.teaGroupRepart(req,params,done)
-             }
+             }]
          },function(error,result) {
-            console.log(result['res2'])
+            console.log(result['res2']['obj'])
             res.render('tchRegroup',{
                 title:'老师重新分组',
-                trData:result['res1']?result['res1']['obj']:[]
+                trData:result['res2']?result['res2']['obj']['right']:[]
             })
          })
     })
@@ -171,12 +259,7 @@ module.exports = function(router){
     
 
 
-    // 老师检验流程测试结果
-    router.get('/tchverifyprocess.html',function(req,res){
-        res.render('tchVerifyProcess',{
-            title:'老师检验流程测试结果'
-        })
-    })
+    
 
      // 老师3D(检验流程测试结果)
     router.get('/tch3d.html',function(req,res){
@@ -185,12 +268,7 @@ module.exports = function(router){
         })
     })
 
-    // 完善流程-老师端
-    router.get('/tchimproveprocess.html',function(req,res){
-        res.render('tchImproveProcess',{
-            title:'老师完善流程'
-        })
-    })
+   
     
     // 老师文件上传
     router.get('/tchupload.html',function(req,res){
@@ -225,13 +303,5 @@ module.exports = function(router){
         })
     })
 
-     // 老师课后
-     router.get('/tchafterclass.html',function(req,res){
-        res.render('tchAfterClass',{
-            title:'老师课后'
-        })
-    })
-
-    
-
+   
 }

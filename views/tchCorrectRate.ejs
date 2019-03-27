@@ -30,6 +30,7 @@
                     <div class="content-box">
                         <div class="total-box clearfix">
                             <p class="desc">学习正确率统计</p>
+                            <input type="hidden" id="hideData" value="<%= JSON.stringify(trData?trData['course_right_lv']:{})%>">
                             <div class="echart-box clearfix">
                                 <% var arr = Object.keys(trData?trData['course_right_lv']:{})%>
                                 <%for(var i=0;i<arr.length;i++){%>
@@ -46,24 +47,18 @@
                             <div class="detail-box">
                                 <table>
                                     <thead>
+                                        <% var trArr =  Object.keys(trData?trData['course_right_lv']:{})%>
                                         <tr>
                                             <th>姓名</th>
-                                            <th> 第一题 </th>
-                                            <th> 第二题 </th>
-                                            <th> 第三题 </th>
-                                            <th> 第一题</th>
-                                            <th> 第二题 </th>
-                                            <th> 第三题 </th>
-                                            <th> 第三题 </th>
-                                            <th> 第一题</th>
-                                            <th> 第二题 </th>
-                                            <th> 第三题 </th>
+                                            <% for(var i=0;i<trArr.length;i++) {%>
+                                                <th>第<%= trArr[i] %>题</th>
+                                            <%}%>
                                             <th>得分</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <% var dataDetail = trData?trData['course_right_detail']:''%>
-                                        <%for(var i=0;i<dataDetail.length;i++) {%>
+                                            <%for(var i=0;i<dataDetail.length;i++) {%>
                                         <tr>
                                             <td><%= dataDetail[i]['userName']%></td>
                                             <td><%= dataDetail[i]['1']%></td>
@@ -81,22 +76,15 @@
         </div>
         <script src="/js/tool/echarts.min.js"></script>
         <script type="text/javascript">
-            var data1 = [
-                { value: 8, name: '默认数据' },
-                { value: 92, name: '生化特性' }
-            ]
-            var data2 = [
-                { value: 83, name: '默认数据' },
-                { value: 17, name: '国际理解' }
-            ]
-            getInit('echart1', ['#cccccc', '#2ec7c9'], '生化特性', getData(data1));
-            getInit('echart2', ['#cccccc', '#b6a2de'], '国际理解', getData(data2));
-            getInit('echart3', ['#cccccc', '#5ab1ef'], '国际理解', getData(data1));
-            getInit('echart4', ['#cccccc', '#ffb980'], '国际理解', getData(data1));
-            getInit('echart5', ['#cccccc', '#8d98b3'], '国际理解', getData(data1));
-            getInit('echart6', ['#cccccc', '#e5cf0d'], '国际理解', getData(data1));
-            getInit('echart7', ['#cccccc', '#97b552'], '国际理解', getData(data1));
-            getInit('echart8', ['#cccccc', '#95706d'], '国际理解', getData(data1));
+            var colors = ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#8d98b3','#e5cf0d','#97b552','#95706d']
+            var obj = JSON.parse($("#hideData").val());
+            Object.keys(obj).forEach(function(item,index) {
+                var datas = [
+                    { value: (100 - obj[item]*1)*1, name: '总占比例' },
+                    { value: obj[item], name: '国际理解' }
+                ]
+                getInit('echart'+(index+1)*1, ['#cccccc', colors[index]], '生化特性', getData(datas));
+            })
             function getInit(obj, color, titile, datas) {
                 var myChart = echarts.init(document.getElementById(obj));
                 var option = {

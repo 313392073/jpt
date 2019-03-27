@@ -30,6 +30,7 @@
         <div class="content-box">
                 <div class="total-box clearfix">
                     <p class="desc">学习正确率统计</p>
+                    <input type="hidden" id="hideData" value="<%= JSON.stringify(trData?trData['coursetype_right_lv']:{})%>">
                     <div class="redus-left">
                         <div class="echart1" id="echart1"></div>
                         <p>生化特性</p>
@@ -46,9 +47,10 @@
                             <thead>
                                 <tr>
                                     <th>姓名</th>
-                                    <th> 第一题 </th>
-                                    <th> 第二题 </th>
-                                    <th> 第三题 </th>
+                                    <% var arr = Object.keys(trData?trData['course_right_lv']:{})%>
+                                    <%for(var i=0;i<arr.length;i++){%>
+                                    <th>第<%= arr[i]%>题</th>
+                                    <%}%>
                                     <th>得分</th>
                                 </tr>
                             </thead>
@@ -73,21 +75,19 @@
     </div>
     <script src="/js/tool/echarts.min.js"></script>
     <script type="text/javascript">
-<<<<<<< HEAD
-        var initData1 = "<%= trData['']%>";
-        var initData2 = 1;
-=======
->>>>>>> 34683bb81b9b4e32f2b30ce173b6a333c7a53782
-        var data1 = [
-                    { value: "<%= trData['course_right_lv']['1']%>", name: '默认数据' },
-                    { value: 100, name: '生化特性' }
-                ]
-        var data2 = [
-            { value: "<%= trData['course_right_lv']['2']%>", name: '默认数据' },
-            { value: 100, name: '国际理解' }
-        ]
-        getInit('echart1',['#cccccc','#2ec7c9'],'生化特性',getData(data1));
-        getInit('echart2',['#cccccc','#d87a80','#f90'],'国际理解',getData(data2));
+        var obj = JSON.parse($("#hideData").val());
+        var colors = ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#8d98b3','#e5cf0d','#97b552','#95706d']
+        // var data1 = [
+        //             { value: "<%= trData['course_right_lv']['1']%>", name: '默认数据' },
+        //             { value: 100, name: '生化特性' }
+        //         ]
+        Object.keys(obj).forEach(function(item,index) {
+            var datas = [
+                { value: (100 - obj[item]*1)*1, name: '总占比例' },
+                { value: obj[item], name: '正确率' }
+            ]
+            getInit('echart'+(index+1)*1, ['#cccccc', colors[index]], '第'+index+'题', getData(datas));
+        })
         function getInit(obj,color,titile,datas){
             var myChart = echarts.init(document.getElementById(obj));
             var option = {
@@ -135,10 +135,6 @@
                 let names = [];
                 let nowData = [];
                 var datas = datas;
-                // var datas = [
-                //     { value: 8, name: '默认数据' },
-                //     { value: 92, name: '生化特性' }
-                // ]
                 datas.forEach(function (item, index) {
                     names.push(item.name);
                     nowData.push(item)

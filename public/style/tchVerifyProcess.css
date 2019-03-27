@@ -201,6 +201,20 @@
   width: 100%;
   min-height: 400px;
   background-color: #eeeff3;
+  padding-top: 15px;
+}
+.main-wrapper .main-box .content-box .process-box .step-item {
+  margin-top: 10px;
+  text-align: center;
+}
+.main-wrapper .main-box .content-box .process-box .step-item input {
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #dddddd;
+  outline: none;
+  text-align: center;
+  padding: 2px 15px;
+  border-radius: 6px;
 }
 .main-wrapper .main-box .content-box .list-box {
   width: 100%;

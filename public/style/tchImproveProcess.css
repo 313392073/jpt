@@ -305,7 +305,7 @@
   cursor: pointer;
 }
 .main-wrapper .main-box .content-box .data-statistics {
-  height: 476px;
+  height: 530px;
   background-color: #eeeff3;
 }
 .main-wrapper .main-box .content-box .diagram {
@@ -323,18 +323,16 @@
   box-shadow: 1px 1px #cbcccf;
 }
 .main-wrapper .main-box .content-box .bottom-3 {
-  width: 19px;
-  height: 41px;
-  background: url(../images/bottom-3.png) no-repeat;
-  margin: 8px 0;
-  margin-left: 35px;
+  width: 32px;
+  height: 32px;
+  background: url(../images/arrdown.png) no-repeat;
+  margin-left: 32px;
 }
 .main-wrapper .main-box .content-box .bottom-4 {
-  width: 19px;
-  height: 55px;
-  background: url(../images/bottom-4.png) no-repeat;
-  margin: 8px 0;
-  margin-left: 35px;
+  width: 32px;
+  height: 32px;
+  background: url(../images/arrdown.png) no-repeat;
+  margin-left: 32px;
 }
 .main-wrapper .main-box .content-box .main {
   position: relative;
@@ -400,6 +398,24 @@
 }
 .main-wrapper .main-box .content-box .qid-list .qid:first-child {
   margin-bottom: 16px;
+}
+.main-wrapper .main-box .content-box .arrright {
+  position: absolute;
+  top: 5px;
+  left: 95px;
+}
+.main-wrapper .main-box .content-box .qids {
+  position: absolute;
+  left: 125px;
+  top: 0px;
+  width: 100px;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  background-color: #fff;
+  color: #00b2b8;
+  border-radius: 5px;
+  box-shadow: inset 1px 4px #e9e8e8;
 }
 .main-wrapper .main-box .content-box .special .qid-list {
   position: absolute;

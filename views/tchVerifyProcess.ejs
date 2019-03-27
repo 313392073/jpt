@@ -28,7 +28,13 @@
       <div class="main-box">
         <%- include("share/menu")%>
         <div class="content-box">
-            <div class="process-box"></div>
+            <div class="process-box">
+              <%for(var i=0;i<step.length;i++) {%>
+              <div class="step-item">
+                <input type="text" value="<%= step[i]['course_item']%>" readonly>
+              </div>
+              <%}%>
+            </div>
             <div class="list-box">
                 <%for(var k=0 ; k < 4 ; k++) {%>
                 <div class="list">

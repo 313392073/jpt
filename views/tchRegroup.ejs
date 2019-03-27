@@ -37,31 +37,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>陶腾龙</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>李博文</td>
-                            <td>89</td>
-                        </tr>
-                        <tr>
-                            <td>范世杰</td>
-                            <td>99</td>
-                        </tr>
-        
-                        <tr>
-                            <td>张三</td>
-                            <td>77</td>
-                        </tr>
-                        <tr>
-                            <td>李四</td>
-                            <td>89</td>
-                        </tr>
-                        <tr>
-                            <td>王麻子</td>
-                            <td>66</td>
-                        </tr>
+                            <% for(var i=0;i<trData['left'].length;i++) {%>
+                                <tr>
+                                    <td><%= trData['left'][i]['user_name']%></td>
+                                    <td><%= trData['left'][i]['score']%></td>
+                                </tr>
+                            <%}%>
                         </tbody>
                     </table>
                 </div>
@@ -71,9 +52,9 @@
                             <span>选择第一小组名单：</span>
                             <div class="rt">
                                 <select name="" id="" class="lf">
-                                    <option value="1">李文博</option>
-                                    <option value="1">李四</option>
-                                    <option value="1">小妮子</option>
+                                    <% for(var i=0;i<trData['right'].length;i++) {%>
+                                        <option value="<%= trData[i]['sysClassId']%>"><%= trData[i]['userName']%></option>
+                                    <%}%>
                                 </select>
                                 <button class="lf  add-meber">选择</button>
                             </div>
@@ -86,9 +67,9 @@
                             <span>选择第二小组名单：</span>
                             <div class="rt">
                                 <select name="" id="" class="lf">
-                                    <option value="1">陶腾龙</option>
-                                    <option value="1">李博文</option>
-                                    <option value="1">小妮子</option>
+                                    <% for(var i=0;i<trData.length;i++) {%>
+                                        <option value="<%= trData[i]['sysClassId']%>"><%= trData[i]['userName']%></option>
+                                    <%}%>
                                 </select>
                                 <button class="lf add-meber">选择</button>
                             </div>
@@ -101,9 +82,9 @@
                             <span>选择第三小组名单：</span>
                             <div class="rt">
                                 <select name="" id="" class="lf">
-                                    <option value="1">张三</option>
-                                    <option value="1">范世杰</option>
-                                    <option value="1">小妮子</option>
+                                    <% for(var i=0;i<trData.length;i++) {%>
+                                        <option value="<%= trData[i]['sysClassId']%>"><%= trData[i]['userName']%></option>
+                                    <%}%>
                                 </select>
                                 <button class="lf add-meber" >选择</button>
                             </div>

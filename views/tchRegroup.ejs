@@ -52,11 +52,11 @@
                             <span>选择第一小组名单：</span>
                             <div class="rt">
                                 <select name="" id="" class="lf">
-                                    <% for(var i=0;i<trData['right'].length;i++) {%>
-                                        <option value="<%= trData[i]['sysClassId']%>"><%= trData[i]['userName']%></option>
+                                   <%for(var i=0;i<trData['right'].length;i++) {%>
+                                    <option sysid="<%= trData['right'][i]['sysClassId']%>"><%= trData['right'][i]['userName']%></option>
                                     <%}%>
                                 </select>
-                                <button class="lf  add-meber">选择</button>
+                                <button class="lf  add-meber" id="1">选择</button>
                             </div>
                         </div>
                         <div class="team-members">
@@ -67,11 +67,11 @@
                             <span>选择第二小组名单：</span>
                             <div class="rt">
                                 <select name="" id="" class="lf">
-                                    <% for(var i=0;i<trData.length;i++) {%>
-                                        <option value="<%= trData[i]['sysClassId']%>"><%= trData[i]['userName']%></option>
+                                    <% for(var i=0;i<trData['right'].length;i++) {%>
+                                        <option sysid="<%= trData['right'][i]['sysClassId']%>"><%= trData['right'][i]['userName']%></option>
                                     <%}%>
                                 </select>
-                                <button class="lf add-meber">选择</button>
+                                <button class="lf add-meber" id="2">选择</button>
                             </div>
                         </div>
                         <div class="team-members">
@@ -82,11 +82,11 @@
                             <span>选择第三小组名单：</span>
                             <div class="rt">
                                 <select name="" id="" class="lf">
-                                    <% for(var i=0;i<trData.length;i++) {%>
-                                        <option value="<%= trData[i]['sysClassId']%>"><%= trData[i]['userName']%></option>
+                                    <% for(var i=0;i<trData['right'].length;i++) {%>
+                                        <option sysid="<%= trData['right'][i]['sysClassId']%>"><%= trData['right'][i]['userName']%></option>
                                     <%}%>
                                 </select>
-                                <button class="lf add-meber" >选择</button>
+                                <button class="lf add-meber" id="3">选择</button>
                             </div>
                         </div>
                         <div class="team-members">
@@ -106,9 +106,26 @@
                     $(this).remove();
                 })
             });
+            var dataArr = []
             $('.group-right .every-list').each(function(){
                 $(this).find('.add-meber').click(function(){
+                    var sysGroupId = $.trim($(this).attr('id')) 
                     var seleName=$(this).prev('select').find('option:selected').text();
+                    var sysId=$(this).prev('select').find('option:selected').attr('sysid');
+
+                    var obj = {
+                        sysClassId:seleName,
+                        sysGroupId:sysGroupId,
+                        userLoginname:seleName
+                    }
+                    if(dataArr.indexOf(obj) < 0) {
+                        dataArr.push(obj)
+                    }else{
+                        alert(1111)
+                    }
+                    console.log(dataArr)
+                    console.log(dataArr.indexOf(obj))
+                    console.log(dataArr.indexOf(obj) == -1)
                     $(this).parents('.group-title').next('.team-members').append('<span>'+seleName+'<b></b></span>');
                 })
             });

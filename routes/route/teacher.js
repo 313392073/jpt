@@ -231,7 +231,7 @@ module.exports = function(router){
             console.log(result['res2']['obj'])
             res.render('tchRegroup',{
                 title:'老师重新分组',
-                trData:result['res2']?result['res2']['obj']['right']:[]
+                trData:result['res2']?result['res2']['obj']:[]
             })
          })
     })

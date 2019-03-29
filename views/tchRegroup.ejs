@@ -103,6 +103,21 @@
             $("#hTable").sortTable();
             $('.group-right .every-list').each(function(){
                 $(this).children('.team-members').on('click','span',function(){
+                    var sysGroupId = $.trim($(this).data('sysclassid')) 
+                    var seleName=$.trim($(this).text());
+                    var sysClassId=$.trim($(this).data('sysgroupid'));
+                    var obj = {
+                        sysClassId:seleName,
+                        sysGroupId:sysGroupId,
+                        userLoginname:sysClassId
+                    }
+                    console.log(obj)
+                    for(var i=0;i<dataArr.length;i++) {
+                        if(dataArr[i]['sysClassId'] == obj['sysClassId'] && dataArr[i]['sysGroupId'] == obj['sysGroupId'] && dataArr[i]['userLoginname'] == obj['userLoginname']) {
+                            dataArr = dataArr.splice(i,1)
+                        }
+                    }
+                    console.log(dataArr)
                     $(this).remove();
                 })
             });
@@ -112,21 +127,30 @@
                     var sysGroupId = $.trim($(this).attr('id')) 
                     var seleName=$(this).prev('select').find('option:selected').text();
                     var sysId=$(this).prev('select').find('option:selected').attr('sysid');
-
                     var obj = {
-                        sysClassId:seleName,
+                        sysClassId:sysId,
                         sysGroupId:sysGroupId,
                         userLoginname:seleName
                     }
-                    if(dataArr.indexOf(obj) < 0) {
-                        dataArr.push(obj)
+                    var str = ''
+                    if(dataArr.length > 0) {
+                        for(var i=0;i<dataArr.length;i++) {
+                            str += "<span data-sysclassid="+dataArr[i]['sysClassId']+" data-sysgroupid="+dataArr[i]['sysGroupId']+">"+dataArr[i]['userLoginname']+"<b></b></span>"
+                            if(dataArr[i]['sysClassId'] != obj['sysClassId'] && dataArr[i]['sysGroupId'] != obj['sysGroupId'] && dataArr[i]['userLoginname'] != obj['userLoginname']) {
+                                dataArr.push(obj)
+                                str += "<span data-sysclassid="+obj['sysClassId']+" data-sysgroupid="+obj['sysGroupId']+">"+obj['userLoginname']+"<b></b></span>"
+                            }else{
+                                layer.alert('该组员已被分配',{
+                                    title:'温馨提示'
+                                })
+                                return;
+                            }
+                        }
                     }else{
-                        alert(1111)
+                        dataArr.push(obj)
+                        str += "<span data-sysclassid="+obj['sysClassId']+" data-sysgroupid="+obj['sysGroupId']+">"+obj['userLoginname']+"<b></b></span>"
                     }
-                    console.log(dataArr)
-                    console.log(dataArr.indexOf(obj))
-                    console.log(dataArr.indexOf(obj) == -1)
-                    $(this).parents('.group-title').next('.team-members').append('<span>'+seleName+'<b></b></span>');
+                    $(this).parents('.group-title').next('.team-members').append(str);
                 })
             });
             //点击确认提交表单
@@ -134,7 +158,6 @@
                 //提交表单
             })
         });
-    
     </script>
 </body>
 

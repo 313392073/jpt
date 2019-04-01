@@ -26,38 +26,40 @@
             <div class="main-box">
                 <%- include("share/menu")%>
                     <div class="content-box">
+                        <input type="hidden" value="<%= token%>" id="tokend">
+                        <input type="hidden" value="<%= batch%>" id="batch">
                         <table>
                             <thead>
                                 <tr>
                                     <th> 姓名 </th>
-                                    <th> 消毒数据 </th>
-                                    <th> 称量数据 </th>
-                                    <th> 增菌数据 </th>
-                                    <th> 革兰氏染色数据 </th>
+                                    <th> 称重 </th>
+                                    <th> 增菌 </th>
+                                    <th> 消毒 </th>
                                     <th> 血浆凝固酶试验 </th>
+                                    <th> 革兰氏染色 </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <%for(var i=0;i<6;i++){%>
+                                <%for(var i=0;i<trData['recordlist'].length;i++){%>
                                 <tr>
-                                    <td>李博文</td>
-                                    <td>10</td>
-                                    <td>20</td>
-                                    <td>20</td>
-                                    <td>20</td>
-                                    <td>20</td>
+                                    <td><%= trData['recordlist'][i]['user_name']%></td>
+                                    <td><%= trData['recordlist'][i]['称重']%></td>
+                                    <td><%= trData['recordlist'][i]['增菌']%></td>
+                                    <td><%= trData['recordlist'][i]['消毒']%></td>
+                                    <td><%= trData['recordlist'][i]['血浆凝固酶试验']%></td>
+                                    <td><%= trData['recordlist'][i]['革兰氏染色']%></td>
                                 </tr>
                                 <%}%>
                             </tbody>
                         </table>
                         <div class="comments">
-                            <p class="file-report">评论<span>（ 5 ）</span></p>
+                            <p class="file-report">评论<span><%= trData['comments'].length%></span></p>
                             <div class="com-box">
                                 <div class="header-icon">
-                                    <img src="./images/icon/header.png" alt="">
+                                    <img src="./images/icon/header.png" alt="头像">
                                 </div>
                                 <div class="comments-main">
-                                    <textarea name="" id="" cols="30" rows="3" placeholder="我要评论..."></textarea>
+                                    <textarea name="commented" id="commented" cols="30" rows="3" placeholder="我要评论..."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -65,14 +67,14 @@
                             <button class="sbtn">发布评论</button>
                         </div>
                         <div class="comments-list">
-                            <%for(var i=0;i<4;i++){%>
+                            <%for(var i=0;i<trData['comments'].length;i++){%>
                             <div class="list">
                                 <div class="header-icon">
-                                    <img src="./images/icon/header.png" alt="">
+                                    <img src="<%= trData['comments'][i]['userHeadImage']%>" alt="<%= trData['comments'][i]['userLoginname']%>">
                                 </div>
                                 <div class="comments-main">
-                                    <span>姓名</span>
-                                    <p>点评问题及亮点 <a href="javascript:void(0)"><i class="iconfont icon-dianzan"></i>6</a></p>
+                                    <span><%= trData['comments'][i]['userLoginname']%></span>
+                                    <p><%= trData['comments'][i]['comment']%> <a href="javascript:void(0)"><i class="iconfont icon-dianzan"></i><%= trData['comments'][i]['likesUserNum']%></a></p>
                                 </div>
                             </div>
                             <%}%>
@@ -80,6 +82,47 @@
                     </div>
             </div>
         </div>
+        <script type="text/javascript">
+            $(".sbtn").on("click",function() {
+                var tokend = $.trim($("#tokend").val())
+                var batch = $.trim($("#batch").val())
+                var commented = $.trim($("#commented").val())
+                if(commented == '' || commented == null) {
+                    layer.alert('请输入评论内容',{
+                        title:'温馨提示'
+                    })
+                }else{
+                    let obj = {
+                        "comment":commented
+                    }
+                    $.ajax({
+                        type:'POST',
+                        url:'http://118.31.8.72:85/v1/api/stu/vrrecord/submit?token='+tokend+"&batch="+batch,
+                        dataType:'json',
+                        contentType: "application/json",
+                        data:JSON.stringify(obj),
+                        success:function(res) {
+                           if(res.success == 1 && res.code == 200) {
+                                layer.alert(res.msg,{
+                                    title:'温馨提示',
+                                    yes:function(){
+                                        window.location.reload()
+                                    }
+                                })
+                           }else{
+                                layer.alert(res.msg,{
+                                    title:'温馨提示',
+                                    yes:function(){
+                                        window.location.reload()
+                                    }
+                                })
+                           }
+                            
+                        }
+                    })
+                }
+            })
+        </script>
 </body>
 
 </html>

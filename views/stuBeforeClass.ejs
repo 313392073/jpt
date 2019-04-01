@@ -30,6 +30,8 @@
         <%- include("share/menu")%>
           <div class="left-sidebar">
             <h3>课前习题</h3>
+            <input type="hidden" value="<%= token%>" id="tokend">
+            <input type="hidden" value="<%= batch%>" id="batch">
             <div class="student-front">
               <img src="./images/student-front.png" alt="student">
             </div>
@@ -91,12 +93,12 @@
       for(var i=0;i<check.length;i++){
         initObj[i] = {}
         initObj[i]['answer'] = [];
-        initObj[i]['classBatch'] = JSON.stringify(batch);
+        initObj[i]['classBatch'] = batch;
         initObj[i]['id'] = '';
         initObj[i]['courseItemId'] = 0;
         initObj[i]['isRight'] = 0;
         initObj[i]['score'] = '0';
-        initObj[i]['userLoginname'] = JSON.stringify(JSON.parse(JSON.parse(localStorage.getItem('userInfo'))['user'])['userLoginname']);
+        initObj[i]['userLoginname'] = JSON.parse(JSON.parse(localStorage.getItem('userInfo'))['user'])['userLoginname'];
       }
       
 
@@ -115,15 +117,18 @@
         $(".item input[type='checkbox']:checked").each(function (index,item){
           answerArr.push($(item).val())
         })
-
+        
         for(var i=0;i<answerArr.length;++i) {
           if(answerArr[i]) {
             if(!contains(initObj[answerArr[i].split('_')[0]]['answer'],answerArr[i].split('_')[1])) {
               initObj[answerArr[i].split('_')[0]]['answer'].push(answerArr[i].split('_')[1])
+              JSON.stringify(initObj[answerArr[i].split('_')[0]]['answer'])
             }
           }
         }
-
+        Object.keys(initObj).forEach(function(item,index) {
+          initObj[item]['answer'] = JSON.stringify(initObj[item]['answer'])
+        })
         for(var i=0;i<check.length;++i) {
           initObj[i]['courseItemId'] = JSON.parse(check[i])['course_item_id'];
           initObj[i]['id'] = JSON.parse(check[i])['course_id'];
@@ -137,14 +142,16 @@
         for(var attr in initObj) {
           dataArr.push(initObj[attr])
         }
-        console.log(dataArr)
+        console.log(JSON.stringify(dataArr))
+        var tokend = $.trim($("#tokend").val())
+        var batch = $.trim($("#batch").val())
         $.ajax({
           type:'post',
-          url:'/subAnswers',
+          url:'http://118.31.8.72:85/v1/api/course/submit?token='+tokend+"&batch="+batch,
           dataType:'json',
-          data:{exams:JSON.stringify(dataArr)},
+          contentType: "application/json",
+          data:JSON.stringify(dataArr),
           success:function(res) {
-            console.log(dataArr)
             if(res.code == 200 && res.success == 1) {
                 layer.alert(res.msg,{
                     title:'温馨提示',

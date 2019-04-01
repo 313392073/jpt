@@ -28,22 +28,22 @@
       <div class="main-box">
         <%- include("share/menu")%>
         <div class="item-box clearfix">
-            <%for(var i=0;i<8;i++) {%>
+            <%for(var i=0;i<trData.length;i++) {%>
             <div class="item">
-                <p class="item-title">王天成 上传的视频</p>
+                <p class="item-title"><%= trData[i]['user_name']%></p>
                 <p class="item-btns">
-                    <a href="javscript:void(0)" class="btn-zan"><i class="iconfont icon-dianzan"></i>12</a>
-                    <a href="javscript:void(0)"><i class="iconfont icon-xiaoxi"></i>12</a>
+                    <a href="javscript:void(0)" class="btn-zan"><i class="iconfont icon-dianzan"></i><%= trData[i]['likes_user_num']%></a>
+                    <a href="javscript:void(0)"><i class="iconfont icon-xiaoxi"></i><%= trData[i]['look_num']%></a>
                 </p>
                 <p class="item-comment">评论区</p>
-                <%for(var k=0;k<4;k++) {%>
+                <%for(var k=0;k<trData[i]['comments'].length;k++) {%>
                 <div class="list">
                     <div class="header-icon">
-                        <img src="./images/icon/header.png" alt="">
+                        <img src="<%= trData[i]['comments'][k]['userHeadImage']%>" alt="<%= trData[i]['comments'][k]['likesUserLoginname']%>">
                     </div>
                     <div class="comments-main">
-                        <span>姓名</span>
-                        <p>点评问题及亮点 </p>
+                        <span><%= trData[i]['comments'][k]['likesUserLoginname']%></span>
+                        <p><%= trData[i]['comments'][k]['comment']%> </p>
                     </div>
                 </div>
                 <%}%>

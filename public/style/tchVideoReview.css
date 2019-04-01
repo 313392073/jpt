@@ -236,6 +236,10 @@
 .main-wrapper .main-box .item-box .item .list .header-icon {
   width: 60px;
   float: left;
+  text-align: center;
+}
+.main-wrapper .main-box .item-box .item .list .header-icon img {
+  max-width: 40px;
 }
 .main-wrapper .main-box .item-box .item .list .comments-main {
   float: left;

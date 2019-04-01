@@ -2,7 +2,6 @@ $("#imgs").on("click",function(){
     $("#uploadPhoto").click();
 })
 var input1 = document.getElementById("uploadPhoto");
-
 if(typeof FileReader==='undefined'){
 	//result.innerHTML = "抱歉，你的浏览器不支持 FileReader";
 	input1.setAttribute('disabled','disabled');

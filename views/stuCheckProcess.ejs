@@ -31,6 +31,8 @@
           <div class="desc">请选择检验流程中空白部分的答案</div>
           <!-- <form action="" method="post"> -->
               <div class="main">
+                  <input type="hidden" value="<%= token%>" id="tokend">
+                  <input type="hidden" value="<%= batch%>" id="batch">
                   <input type="hidden" id="userLoginname" value="<%= userLoginname%>">
                   <input type="hidden" id="classBatch" value="<%= batch%>">
                 <% if(dataList.length > 0) {%>
@@ -43,7 +45,9 @@
                                 <option value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
                             <%}%>
                         </select>
-                        <p class="item-bg"></p>
+                        <%if(k < dataList.length-1) {%>
+                          <p class="item-bg"></p>
+                        <%}%>
                     </div>
                     </div>
                     <%}%>
@@ -71,6 +75,8 @@
     })
 
     $(".sbtn").on("click",function() {
+        var tokend = $.trim($("#tokend").val())
+        var batch = $.trim($("#batch").val())
         var userLoginname = $.trim($('#userLoginname').val())
         var classBatch = $.trim($('#classBatch').val())
         var arr = []
@@ -95,16 +101,37 @@
             arr.push(obj) 
         })
         console.log(JSON.stringify(arr))
+        
         $.ajax({
             type:'post',
-            url:'/subAnswer',
+            url:'http://118.31.8.72:85/v1/api/course/submit?token='+tokend+"&batch="+batch,
             dataType:'json',
-            data:{exams:JSON.stringify(arr)},
+            contentType: "application/json",
+            data:JSON.stringify(arr),
             success:function(res) {
-                console.log(res)
+              if(res.code == 200 && res.success == 1) {
+                    layer.alert(res.msg,{
+                        title:'温馨提示',
+                        yes:function(){
+                        window.location.reload()
+                        }
+                    })
+                }else{
+                layer.alert(res.msg,{
+                    title:'温馨提示',
+                    yes:function(){
+                        window.location.reload()
+                    }
+                })
+                }
             },
-            error:function(error) {
-                console.log(error)
+            error:function(err) {
+                layer.alert('网络错误，请稍后再试',{
+                    title:'温馨提示',
+                    yes:function(){
+                    window.location.reload()
+                    }
+                })
             }
         })
     })

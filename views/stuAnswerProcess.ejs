@@ -33,59 +33,53 @@
               <div class="main">
                   <div class="p1 pbox clearfix">
                       <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
+                          <% for(var i=0;i<trData.length;i++) {%>
+                           <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
+                          <%}%>
                       </select>
                       <i class="iconfont icon-arrLeft-fill"></i>
                   </div>
                   <div class="arrdown arrdown1"></div>
                   <div class="p2 pbox">
                       <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
+                            <% for(var i=0;i<trData.length;i++) {%>
+                            <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
+                            <%}%>
                       </select>
                       <i class="iconfont icon-arrLeft-fill"></i>
                   </div>
                   <div class="arrdown arrdown2"></div>
                   <div class="p3 pbox">
                       <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
+                        <% for(var i=0;i<trData.length;i++) {%>
+                        <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
+                        <%}%>
                       </select>
                       <i class="iconfont icon-arrLeft-fill"></i>
                   </div>
                   <div class="arrdown arrdown3"></div>
                   <div class="p4 pbox">
                       <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
+                            <% for(var i=0;i<trData.length;i++) {%>
+                            <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
+                            <%}%>
                       </select>
                       <i class="iconfont icon-arrLeft-fill"></i>
                   </div>
                   <div class="filed filed1">
                       <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
+                            <% for(var i=0;i<trData.length;i++) {%>
+                            <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
+                            <%}%>
                       </select>
                       <i class="iconfont icon-arrLeft-fill"></i>
                   </div>
                   <img class="bg-al" src="./images/icon/arrleft.png" alt="">
                   <div class="filed filed2">
                       <select name="" id="">
-                          <option value="">选择</option>
-                          <option value="1">选择1</option>
-                          <option value="2">选择2</option>
-                          <option value="3">选择3</option>
+                            <% for(var i=0;i<trData.length;i++) {%>
+                            <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
+                            <%}%>
                       </select>
                       <i class="iconfont icon-arrLeft-fill"></i>
                   </div>
@@ -94,14 +88,16 @@
           </form>
       </div>
       <div class="answer-box">
-          <%for(var i=0;i<6;i++){%>
-              <%if(i<=4){%>
-                <span><%= i+1 %>、消毒（<i class="right">正确</i>）</span>
+          <% var num = 0%>
+          <%for(var i=0;i<trData.length;i++){%>
+              <% num+= trData[i]['score']?trData[i]['score']*1:0%>
+              <%if(trData[i]['score'] > 0){%>
+                <span><%= i+1 %>、<%= trData[i]['course_item']%>（<i class="right">正确</i>）</span>
               <%}else{%>
-                <span><%= i+1 %>、消毒（<i class="error">错误</i>）</span>
+                <span><%= i+1 %>、<%= trData[i]['course_item']%>（<i class="error">错误</i>）</span>
               <%}%>
           <%}%>
-          <p class="score">得分：<span>100分</span></p>
+          <p class="score">得分：<span><%= num%>分</span></p>
         </div>
       </div>
     </div>

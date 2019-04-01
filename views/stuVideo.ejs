@@ -28,14 +28,14 @@
       <div class="main-box">
         <%- include("share/menu")%>
         <div class="content-box clearfix">
-            <%for(var i=0;i<8;i++){%>
+            <%for(var i=0;i<trData.length;i++){%>
             <div class="list">
-                <video src="/img/01.mp4" controls="controls"></video>
+                <video src="<%= trData[i]['upload_net_url']%>" controls="controls"></video>
                 <div class="desc clearfix">
-                    <p class="desc-detail">朱世军 上传的视频</p>
+                    <p class="desc-detail"><%= trData[i]['user_name']%></p>
                     <p class="desc-btns">
-                        <a href="javscript:void(0)" class="btn-zan"><i class="iconfont icon-dianzan"></i>12</a>
-                        <a href="javscript:void(0)"><i class="iconfont icon-xiaoxi"></i>12</a>
+                        <a href="javscript:void(0)" class="btn-zan"><i class="iconfont icon-dianzan"></i><%= trData[i]['likes_user_num']%></a>
+                        <a href="javscript:void(0)"><i class="iconfont icon-xiaoxi"></i><%= trData[i]['look_num']%></a>
                     </p>
                 </div>
             </div>

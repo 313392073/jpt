@@ -39,51 +39,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>消毒</td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>称量</td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>增菌</td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>革兰氏染色</td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>血浆凝固酶试验</td>
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="text">
-                            </td>
-                        </tr>
+                        <%for(var i=0;i<trData.length;i++) {%>
+                            <tr>
+                                <td><%= trData[i]['course_item']%></td>
+                                <td>
+                                    <input type="text" readonly value="<%= trData[i]['handled_answer']%>"/>
+                                </td>
+                                <td>
+                                    <%if(trData[i]['if_handle'] != 0) {%>
+                                        <input type="text" value="已完成" readonly>
+                                    <%} else {%>
+                                        <input type="text" value="未完成" readonly>
+                                    <%}%>
+                                </td>
+                            </tr>
+                        <%}%>
                     </tbody>
                 </table>
                 <div class="btn-box">

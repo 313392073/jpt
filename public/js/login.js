@@ -9,7 +9,7 @@ $(".sbtn").on("click",function(){
         success:function(res){
             if(res.code == 200 && res.success == 1) {
                 localStorage.setItem('userInfo',JSON.stringify(res.obj))
-                window.location.href = '/tchregroup.html'
+                window.location.href = '/tchverifyprocess.html'
             }else{
                 layer.alert(res.msg,{
                     title:'温馨提示'

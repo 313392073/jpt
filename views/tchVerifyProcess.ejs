@@ -42,8 +42,18 @@
                         <p><strong><%= k+1%> .</strong> 正确答案： <span>消毒</span></p>
                         <p class="allright">全班正确率100%</p>
                     </div>
-                    <div class="list-right">答对学生（<strong>12</strong>）: <%for(var i=0;i<11;i++){%><span>王天成，</span> <%}%></div>
-                    <div class="list-wrong">答错学生（<strong>0</strong>）: <%for(var i=0;i<11;i++){%><span>王天成，</span> <%}%></div>
+                    <!-- <%for(var attr of trData) {%>
+                      <%if(attr.substr(attr.length-1,1) == r) {%>
+                        <div class="list-right">
+                            答对学生（<strong>12</strong>）：
+                            : <%for(var i=0;i<trData[''];i++){%><span>王天成，</span> <%}%>
+                            
+                          </div>
+                          <% } else { %>
+                            <div class="list-wrong">答错学生（<strong>0</strong>）: <%for(var i=0;i<11;i++){%><span>王天成，</span> <%}%></div>
+                          <%}%>
+                    <%}%> -->
+                    
                 </div>
                 <%}%>
             </div>

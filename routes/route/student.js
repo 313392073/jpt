@@ -6,7 +6,6 @@ module.exports = function(router){
     router.get('/stubeforeclass.html',function(req,res){
         async.auto({
             res1:function(done){
-                console.log(req.session)
                 api.getBatch(req,done)
             },
             res2:['res1',function (done, rest){
@@ -18,7 +17,6 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
-            // console.log(result['res2']['obj'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{
@@ -26,11 +24,13 @@ module.exports = function(router){
                     title:'学生课前习题',
                     courseList:result['res2']['obj'],
                     makeOrder:base.makeOrder,
-                    batch:result['res1']['obj']
+                    batch:result['res1']?result['res1']['obj']:'',
+                    token:req.session.token
                 })
             }
         })
     })
+
 
 
     //学生检验流程
@@ -46,12 +46,9 @@ module.exports = function(router){
                     token:req.session.token
                 }
                 console.log(req.body)
-                // api.getStubeforeClass(req,obj,done)
+                api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
-            // console.log(result['res2']['obj'])
-
-            console.log(JSON.parse(req.session.user['user'])['userLoginname'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{
@@ -67,108 +64,27 @@ module.exports = function(router){
     })
 
 
-
-    //提交答案
-    router.post('/subAnswer',function(req,res) {
+    //学生检验流程(VR)的答案学生端统计
+    router.get('/stuanswerprocess.html',function(req,res){
         async.auto({
             res1:function(done) {
                 api.getBatch(req,done)
             },
             res2:['res1',function(done,rest) {
-                let obj1 = [ { answer: "[ '腹泻', '腹痛' ]",
-                    classBatch: "u4iwarmtep",
-                    id: 4,
-                    courseItemId: 34,
-                    isRight: 0,
-                    score: '0',
-                    userLoginname:"漆静01"},
-                { answer: "[ '设备', '试剂' ]",
-                    classBatch: "u4iwarmtep",
-                    id: 4,
-                    courseItemId: 35,
-                    isRight: 0,
-                    score: '0',
-                    userLoginname:"漆静01"},
-                { answer: "[ '样品检验区域和对照组检验区域应分离或二次消毒', '样品检验器具应和对照器具分开' ]",
-                    classBatch: "u4iwarmtep",
-                    id: 4,
-                    courseItemId: 36,
-                    isRight: 0,
-                    score: '0',
-                    userLoginname:"漆静01"} ]
-
-                let obj = {
-                    batch:rest['res1']['obj'],
-                    token:req.session.token,
-                    exams:obj1
-                }
-            
-                console.log(JSON.parse(req.body['exams']))
-                console.log(obj)
-                api.subAnswer(req,obj,done)
-            }]
-        },function(err,result) {
-            console.log(result['res2'])
-            res.send(result['res2'])
-        })
-    })
-    
-
-    router.post('/subAnswers',function(req,res) {
-        let obj1 = [ { answer: "[ '腹泻', '腹痛' ]",
-            classBatch: "u4iwarmtep",
-            id: 4,
-            courseItemId: 34,
-            isRight: 0,
-            score: '0',
-            userLoginname:"漆静01"},
-        { answer: "[ '设备', '试剂' ]",
-            classBatch: "u4iwarmtep",
-            id: 4,
-            courseItemId: 35,
-            isRight: 0,
-            score: '0',
-            userLoginname:"漆静01"},
-        { answer: "[ '样品检验区域和对照组检验区域应分离或二次消毒', '样品检验器具应和对照器具分开' ]",
-            classBatch: "u4iwarmtep",
-            id: 4,
-            courseItemId: 36,
-            isRight: 0,
-            score: '0',
-            userLoginname:"漆静01"} ]
-        async.auto({
-            res1:function(done){
-                api.getBatch(req,done)
-            },
-            res2:['res1',function(done,rest) {
                 let params = {
-                    batch:rest['res1']['obj'],
                     token:req.session.token,
-                    exams:obj1
+                    batch:rest['res1']?rest['res1']['obj']:''
                 }
-                console.log(req.body)
-                api.urlReq('POST','/v1/api/course/submit',params,req,done)
+               api.stuVr(req,params,done)
             }]
-        },function(err,result) {
-            console.log(result['res1'])
-            res.send(result['res1'])
+        },function(error,result) {
+            console.log(result['res2']['obj'])
+            res.render('stuAnswerProcess',{
+                title:'学生检验流程的答案',
+                trData:result['res2']?result['res2']['obj']:[]
+            })
         })
     })
-
-    router.get('/test',function(req,res) {
-        res.render('test')
-    })
-
-    // router.get('/test',function(req,res) {
-    //     async.auto({
-    //         res1:function(done){
-    //             api.getMajorCourse(req,done)
-    //         }
-    //     },function(err,result) {
-    //         res.send(result['res1'])
-    //     })
-    // })
-
 
      //学生总结
      router.get('/stusummarize.html',function(req,res){
@@ -181,38 +97,32 @@ module.exports = function(router){
                    token:req.session.token,
                    batch:rest['res1']?rest['res1']['obj']:''
                }
+               console.log(params)
                api.stuSum(req,params,done)
             }]
         },function(error,result) {
             console.log(result['res2'])
            res.render('stuSummarize',{
                title:'学生总结',
-               trData:result['res2']?result['res2']['obj']:[]
+            //    trData:result['res2']?result['res2']['obj']:[]
            })
         })
     })
 
-     //学生检验流程(VR)的答案
-     router.get('/stuanswerprocess.html',function(req,res){
+    // 老师文件上传
+    router.get('/stuupload.html',function(req,res){
         async.auto({
-            res1:function(done) {
-                api.getBatch(req,done)
-            },
-            res2:['res1',function(done,rest) {
-               let params = {
-                   token:req.session.token,
-                   batch:rest['res1']?rest['res1']['obj']:''
-               }
-               api.stuVr(req,params,done)
-            }]
+           res1:function(done) {
+               api.getBatch(req,done)
+            }
         },function(error,result) {
-            console.log(result['res2'])
-           res.render('stuAnswerProcess',{
-               title:'学生检验流程的答案',
-               trData:result['res2']?result['res2']['obj']:[]
+           res.render('stuUpload',{
+               title:'学生视频上传',
+               batch:result['res1']?result['res1']['obj']:'',
+               token:req.session.token
            })
         })
-    })
+   })
 
       //学生讨论
     router.get('/studiscuss.html',function(req,res){
@@ -228,61 +138,77 @@ module.exports = function(router){
                api.stuVrList(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
            res.render('stuDiscuss',{
                title:'学生讨论',
-               trData:result['res2']?result['res2']['obj']:[]
+               trData:result['res2']?result['res2']['obj']:[],
+               batch:result['res1']?result['res1']['obj']:'',
+               token:req.session.token
            })
         })
     })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // 学生课前
-    router.get('/stuaftercalss.html',function(req,res){
-        res.render('stuAfterClass',{
-            title:'学生课后'
-        })
-    })
-
-    
-
-    
-    
-   
-
     //学生VR实验
     router.get('/stuvr.html',function(req,res){
-        res.render('stuVR',{
-            title:'学生VR实验'
+        async.auto({
+            res1:function(done){
+                api.getBatch(req,done)
+            },
+            res2:['res1',function (done, rest){
+                let obj = {
+                    batch:rest['res1']['obj'],
+                    type:2,
+                    token:req.session.token
+                }
+                api.getStubeforeClass(req,obj,done)
+            }]
+        },function(error,result) {
+            res.render('stuVR',{
+                title:'学生VR实验',
+                trData:result['res2']?result['res2']['obj']:[]
+            })
         })
     })
+
+
+     //学生视频
+     router.get('/stuvideo.html',function(req,res){
+        async.auto({
+            res1:function(done){
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+                let params={
+                    batch:rest['res1']?rest['res1']['obj']:'',
+                    token:req.session.token
+                }
+                api.getUploadList(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2'])
+            res.render('stuVideo',{
+                title:'学生视频',
+                trData:result['res2']?result['res2']['obj']:[]
+            })
+        })
+    })
+    
+
+    // 学生课后
+    router.get('/stuaftercalss.html',function(req,res){
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+        },function(error,result) {
+            res.render('stuAfterClass',{
+                title:'学生课后',
+                batch:result['res1']?result['res1']['obj']:'',
+                token:req.session.token
+            })
+        })
+    })
+
 
     //学生完善流程
     router.get('/stuimproveprocess.html',function(req,res){
@@ -290,14 +216,6 @@ module.exports = function(router){
             title:'学生完善流程'
         })
     })
-
-  
-
-    //学生视频
-    router.get('/stuvideo.html',function(req,res){
-        res.render('stuVideo',{
-            title:'学生视频'
-        })
-    })
+   
     
 }

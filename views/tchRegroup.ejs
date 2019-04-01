@@ -26,6 +26,7 @@
   <%- include("share/header") %>
     <div class="main-wrapper">
       <div class="main-box">
+          <input type="hidden" value="<%= token%>" id="tokend">
         <%- include("share/menu")%>
         <div class="group">
                 <div class="group-left">
@@ -103,21 +104,19 @@
             $("#hTable").sortTable();
             $('.group-right .every-list').each(function(){
                 $(this).children('.team-members').on('click','span',function(){
-                    var sysGroupId = $.trim($(this).data('sysclassid')) 
+                    var sysGroupId = $.trim($(this).data('sysgroupid')) 
                     var seleName=$.trim($(this).text());
-                    var sysClassId=$.trim($(this).data('sysgroupid'));
+                    var sysClassId=$.trim($(this).data('sysclassid'));
                     var obj = {
-                        sysClassId:seleName,
+                        sysClassId:sysClassId,
                         sysGroupId:sysGroupId,
-                        userLoginname:sysClassId
+                        userLoginname:seleName
                     }
-                    console.log(obj)
                     for(var i=0;i<dataArr.length;i++) {
                         if(dataArr[i]['sysClassId'] == obj['sysClassId'] && dataArr[i]['sysGroupId'] == obj['sysGroupId'] && dataArr[i]['userLoginname'] == obj['userLoginname']) {
-                            dataArr = dataArr.splice(i,1)
+                             dataArr.splice(i,1)
                         }
                     }
-                    console.log(dataArr)
                     $(this).remove();
                 })
             });
@@ -128,9 +127,9 @@
                     var seleName=$(this).prev('select').find('option:selected').text();
                     var sysId=$(this).prev('select').find('option:selected').attr('sysid');
                     var obj = {
-                        sysClassId:sysId,
-                        sysGroupId:sysGroupId,
-                        userLoginname:seleName
+                        "sysClassId":sysId*1,
+                        "sysGroupId":sysGroupId*1,
+                        "userLoginname":seleName
                     }
                     var str = ''
                     if(dataArr.length > 0) {
@@ -153,9 +152,27 @@
                     $(this).parents('.group-title').next('.team-members').append(str);
                 })
             });
+            var tokend = $.trim($("#tokend").val())
             //点击确认提交表单
             $('.submit-btn').click(function(){
-                //提交表单
+                $.ajax({
+                    type:'post',
+                    url:'http://118.31.8.72:85/v1/api/tea/group/repartDiscuss/confirm?token='+tokend,
+                    dataType:'json',
+                    contentType: "application/json",
+                    data:JSON.stringify(dataArr),
+                    success:function(res) {
+                      if(res.success == 1 && res.code == 200) {
+                        layer.alert(res.msg,{
+                            title:'温馨提示'
+                        })
+                      }else{
+                        layer.alert('网络错误，请稍后再试',{
+                            title:'温馨提示'
+                        })
+                      }  
+                    }
+                })
             })
         });
     </script>

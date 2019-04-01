@@ -212,6 +212,9 @@ module.exports = {
     teaGroupData:function(req,params,done) { //老师端小组数据
         urlReq('GET','/v1/api/tea/group/score',params,req,done)
     },
+    teaVideoComment:function(req,params,done) { //老师端视频点评
+        urlReq('GET','/v1/api/tea/video/comment',params,req,done)
+    },
     teaGiveProblem:function(req,params,done) { //老师出题
         urlReq('POST','/v1/api/courseitem/submit',params,req,done)
     },
@@ -221,14 +224,20 @@ module.exports = {
     teaSubmitGroup:function(req,params,done) { //老师分配小组提交
         urlReq('POST','/v1/api/tea/group/repartDiscuss/confirm',params,req,done)
     },
+    teaAfterReport:function(req,params,done) { //老师课后报告
+        urlReq('GET','/v1/api/tea/afterclass/report',params,req,done)
+    },
     stuSum:function(req,params,done) { //学生总结
         urlReq('GET','/v1/api/stu/sum',params,req,done)
     },
     stuVr:function(req,params,done) { //学生VR
-        urlReq('GET','/v1/api/stu/sum',params,req,done)
+        urlReq('GET','/v1/api/stu/vr',params,req,done)
     },
     stuVrList:function(req,params,done) { //学生讨论
         urlReq('GET','/v1/api/stu/vr/list',params,req,done)
+    },
+    stuSubmitComment:function(req,params,done) { //提交讨论
+        urlReq('POST','/v1/api/stu/vrrecord/submit',params,req,done)
     },
     getUploadList:function(req,params,done) {
         urlReq('GET','/v1/api/comm/uploadlist',params,req,done)

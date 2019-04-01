@@ -222,8 +222,6 @@
 .main-wrapper .main-box .content-box .comments .com-box .comments-main {
   float: left;
   width: 1140px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
 }
 .main-wrapper .main-box .content-box .comments .com-box .comments-main textarea {
   border: none;
@@ -232,6 +230,8 @@
   box-sizing: border-box;
   padding: 10px;
   color: #999999;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 .main-wrapper .main-box .content-box .btn-box {
   margin: 25px auto;

@@ -212,10 +212,27 @@ module.exports = function(router){
 
     //学生完善流程
     router.get('/stuimproveprocess.html',function(req,res){
-        res.render('stuImproveProcess',{
-            title:'学生完善流程'
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+                let params={
+                    batch:rest['res1']?rest['res1']['obj']:'',
+                    token:req.session.token,
+                    type:1*1
+                }
+                api.getStubeforeClass(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2']['obj'])
+            res.render('stuImproveProcess',{
+                title:'学生完善流程',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                token:req.session.token?req.session.token:'',
+                batch:result['res1']?result['res1']['obj']:'',
+                trData:result['res2']?result['res2']['obj']:[]
+            })
         })
     })
-   
-    
 }

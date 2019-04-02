@@ -269,19 +269,6 @@ module.exports = function(router){
     })
 
 
-     // 老师3D(检验流程测试结果)
-    router.get('/tch3d.html',function(req,res){
-        res.render('tch3D',{
-            title:'老师3D(检验流程测试结果)'
-        })
-    })
-
-    
-   
-
-
-   
-
     // 老师VR考核
     router.get('/tchvrcheck.html',function(req,res){
         res.render('tchvrCheck',{
@@ -289,9 +276,14 @@ module.exports = function(router){
         })
     })
 
-
     
-
+     // 老师3D(检验流程测试结果)
+    router.get('/tch3d.html',function(req,res){
+        res.render('tch3D',{
+            title:'老师3D(检验流程测试结果)'
+        })
+    })
+    
      // 老师总结
      router.get('/tchsummarize.html',function(req,res){
         res.render('tchSummarize',{

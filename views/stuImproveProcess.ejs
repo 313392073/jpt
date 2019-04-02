@@ -26,42 +26,86 @@
   <%- include("share/header") %>
     <div class="main-wrapper">
       <div class="main-box">
-        <%- include("share/menu")%>
+        <%- include("share/stumenu")%>
         <div class="content-box">
           <div class="desc">请输入流程图中空白部分</div>
-          <form action="" method="post">
-              <div class="main">
-                      <div class="p1 pbox">消毒</div>
-                      <div class="arrdown arrdown1"></div>
-                      <div class="p2 pbox">样品处理</div>
-                      <div class="arrdown arrdown2"></div>
-                      <div class="p3 pbox">增菌</div>
-                      <div class="arrdown arrdown3"></div>
-                      <div class="p4 pbox">分离</div>
-                      <div class="fill fill1"><input type="text" value=""></div>
-                      <div class="fill fill2"><input type="text" value=""></div>
-                      <img class="bg-hr" src="./images/icon/hr.png" alt="">
-                      <div class="filed filed1"><input type="text" value=""></div>
-                      <img class="bg-al" src="./images/icon/arrleft.png" alt="">
-                      <div class="filed filed2"><input type="text" value=""></div>
-                      <img class="bg-ar" src="./images/icon/arrright.png" alt="">
-                      <img class="bg-hl" src="./images/icon/hl.png" alt="">
-                      <div class="filed filedr1"><input type="text" value=""></div>
-                      <div class="filed filedr2"><input type="text" value=""></div>
-                      <img class="bg-hl bg-hl2" src="./images/icon/hl.png" alt="">
-                      <div class="filed filedrr1"><input type="text" value=""></div>
-                      <div class="filed filedrr2"><input type="text" value=""></div>
-                      <img class="bg-hd" src="./images/icon/hd.png" alt="">
-                      <div class="con con1"><textarea name="" id="" cols="30" rows="10"></textarea></div>
-                      <div class="con con2"><textarea name="" id="" cols="30" rows="10"></textarea></div>
-              </div>
-              <div class="btn-box">
-                  <input type="submit" class="sbtn" value="提交">
-              </div>
-          </form>
-          
+            <input type="hidden" value="<%= token%>" id="tokend">
+            <input type="hidden" value="<%= batch%>" id="batch">
+            <input type="hidden" id="userLoginname" value="<%= userLoginname%>">
+            <input type="hidden" id="classBatch" value="<%= batch%>">
+            <div class="main">
+              <%for(var i=0;i<trData.length;i++) {%>
+                  <div class="steps"><%= trData[i]['course_item']%> 
+                    <input type="text" class="stepsvalue" data-courseid="<%= trData[i]['course_id']%>" data-itemscore="<%= trData[i]['item_score']%>" data-courseitemid="<%= trData[i]['course_item_id']%>" data-tag="<%= trData[i]['answer']%>">
+                  </div>
+              <%}%>
+            </div>
+            <div class="btn-box">
+                <input type="submit" class="sbtn" value="提交">
+            </div>
       </div>
       </div>
+      <script type="text/javascript">
+          $(".sbtn").on("click",function() {
+            var tokend = $.trim($("#tokend").val())
+            var batch = $.trim($("#batch").val())
+            var userLoginname = $.trim($('#userLoginname').val())
+            var classBatch = $.trim($('#classBatch').val())
+            var arr = []
+            $(".stepsvalue").each(function(index,item) {
+              var rightanswer = $.trim($(this).data('tag'))
+              var courseItemId = $.trim($(this).data('courseitemid'))
+              var itemScore = $.trim($(this).data('itemscore'))
+              var nowAnswer = $.trim($(this).val())
+              var obj = {
+                answer:nowAnswer,
+                classBatch:classBatch,
+                courseItemId:courseItemId,
+                isRight:0,
+                score:0,
+                useTime:0,
+                userLoginname:userLoginname
+              }
+              if(rightanswer == nowAnswer) {
+                obj['score'] = itemScore*1,
+                isRight = 1
+              }
+              arr.push(obj) 
+            })
+              $.ajax({
+              type:'post',
+              url:'http://118.31.8.72:85/v1/api/course/submit?token='+tokend+"&batch="+batch,
+              dataType:'json',
+              contentType: "application/json",
+              data:JSON.stringify(arr),
+              success:function(res) {
+                if(res.code == 200 && res.success == 1) {
+                      layer.alert(res.msg,{
+                          title:'温馨提示',
+                          yes:function(){
+                          window.location.reload()
+                          }
+                      })
+                  }else{
+                  layer.alert(res.msg,{
+                      title:'温馨提示',
+                      yes:function(){
+                          window.location.reload()
+                      }
+                  })
+                  }
+              },
+              error:function(err) {
+                  layer.alert('网络错误，请稍后再试',{
+                      title:'温馨提示',
+                      yes:function(){
+                      window.location.reload()
+                      }
+                  })
+              }
+          })
+          })
+      </script>
     </div>
 </body>
 

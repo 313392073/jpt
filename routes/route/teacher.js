@@ -3,7 +3,7 @@ const async = require('async');
 const qs = require('qs');
 module.exports = function(router){
     //老师出题
-    router.get('/teagiveproblem',function(req,res) {
+    router.get('/teagiveproblem.html',function(req,res) {
         async.auto({
             res1:function(done) {
                 let obj = {
@@ -63,7 +63,6 @@ module.exports = function(router){
            })
         })
    })
-
     // 老师课前
     router.get('/tchbeforeclass.html',function(req,res){
         async.auto({

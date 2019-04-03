@@ -28,12 +28,13 @@ module.exports = function(router){
              res2:['res1',function(done,rest) {
                 let params = {
                     token:req.session.token,
+                    courseType:3*1,
                     batch:rest['res1']?rest['res1']['obj']:''
                 }
-                api.teaVr(req,params,done)
+                api.teaScore(req,params,done)
              }]
          },function(error,result) {
-             console.log(result['res2'])
+             console.log(result['res2']['obj']['course_item'].length)
             res.render('tchVR',{
                 title:'老师VR实验',
                 trData:result['res2']?result['res2']['obj']:[]
@@ -173,6 +174,7 @@ module.exports = function(router){
             res2:['res1',function(done,rest) {
                 var params = {
                     token:req.session.token,
+                    courseType:2*1,
                     batch:rest['res1']?rest['res1']['obj']:''
                 }
                 api.teaScore(req,params,done)
@@ -196,6 +198,7 @@ module.exports = function(router){
                    token:req.session.token,
                    batch:rest['res1']?rest['res1']['obj']:''
                }
+               console.log(params)
                api.teaGroupData(req,params,done)
             }]
         },function(error,result) {
@@ -259,7 +262,7 @@ module.exports = function(router){
                 api.teaVideoComment(req,params,done)
              }]
          },function(error,result) {
-             console.log(result['res2']['obj'][0])
+             console.log(result['res2']['obj'])
             res.render('tchVideoReview',{
                 title:'老师视频点评',
                 trData:result['res2']?result['res2']['obj']:[]

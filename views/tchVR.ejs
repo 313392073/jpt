@@ -35,23 +35,30 @@
                                     <thead>
                                         <tr>
                                             <th>姓名</th>
-                                            <th>消毒</th>
-                                            <th>增菌</th>
-                                            <th>称重</th>
-                                            <th>革兰氏染色</th>
-                                            <th>血浆凝固酶试验</th>
+                                            <%if(trData['vrrecord_score'].length>0) {%>
+                                                <%var arr = Object.keys(trData['vrrecord_score'][0])%>
+                                                    <%arr.forEach(function(item,index) {%>
+                                                    <%if(/[a-z]/.test(item) == false) {%>
+                                                        <th><%= item%></th>
+                                                    <%}%>
+                                                <%})%>
+                                            <%}%>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% for(var i=0;i<trData.length;i++) {%>
-                                        <tr>
-                                            <td><%= trData[i]['user_name']%></td>
-                                            <td><%= trData[i]['消毒']%></td>
-                                            <td><%= trData[i]['增菌']%></td>
-                                            <td><%= trData[i]['称重']%></td>
-                                            <td><%= trData[i]['革兰氏染色']%></td>
-                                            <td><%= trData[i]['血浆凝固酶试验']%></td>
-                                        </tr>
+                                        <%var brr = trData['vrrecord_score']%>
+                                        <%if(brr.length>0) {%>
+                                            <% brr.forEach(function(item,index) {%>
+                                                <tr>
+                                                    <td><%= trData['vrrecord_score'][index]['user_name']%></td>
+                                                    <%var crr = Object.keys(item)%>
+                                                    <%crr.forEach(function(subItem,subIndex) {%>
+                                                        <%if(/[a-z]/.test(subItem) == false) {%>
+                                                            <td><%= trData['vrrecord_score'][index][subItem]%></td>
+                                                        <%}%>
+                                                    <%})%>
+                                                </tr>
+                                            <%})%>
                                         <%}%>
                                     </tbody>
                                 </table>

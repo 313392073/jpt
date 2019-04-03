@@ -36,26 +36,32 @@
               <%}%>
             </div>
             <div class="list-box">
-                <%for(var k=0 ; k < 4 ; k++) {%>
+                <% var arr = Object.keys(trData)%>
+                <% arr.forEach(function(item,index) {%>
                 <div class="list">
                     <div class="list-title clearfix">
-                        <p><strong><%= k+1%> .</strong> 正确答案： <span>消毒</span></p>
-                        <p class="allright">全班正确率100%</p>
-                    </div>
-                    <!-- <%for(var attr of trData) {%>
-                      <%if(attr.substr(attr.length-1,1) == r) {%>
-                        <div class="list-right">
-                            答对学生（<strong>12</strong>）：
-                            : <%for(var i=0;i<trData[''];i++){%><span>王天成，</span> <%}%>
-                            
-                          </div>
-                          <% } else { %>
-                            <div class="list-wrong">答错学生（<strong>0</strong>）: <%for(var i=0;i<11;i++){%><span>王天成，</span> <%}%></div>
+                        <p><strong><%= index%> 1.</strong> 正确答案： <span><%= item.substr(0,item.length-2) %></span></p>
+                        <% var rnum = 0;var wnum = 0%>
+                        <%if(item.substr(item.length-1,1) == 'r') {%>
+                            <% rnum = item.split(',').length%>
+                          <%} else {%>
+                            <% wnum = item.split(',').length%>
                           <%}%>
-                    <%}%> -->
-                    
+                        <p class="allright">全班正确率<%= rnum/(rnum+wnum).toFixed(2)*100%>%</p>
+                    </div>
+                    <%if(item.substr(item.length-1,1) == 'r') {%>
+                      <div class="list-right">
+                          答对学生（<strong><%= item.split(',').length%></strong>）：
+                          <span><%= trData[item]%></span>
+                      </div>
+                    <%} else {%>
+                        <div class="list-wrong">
+                            答错学生（<strong><%= item.split(',').length%></strong>）：
+                            <span><%= trData[item]%></span>
+                        </div>
+                    <%}%>
                 </div>
-                <%}%>
+                <%})%>
             </div>
         </div>
       </div>

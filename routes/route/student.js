@@ -11,12 +11,14 @@ module.exports = function(router){
             res2:['res1',function (done, rest){
                 let obj = {
                     batch:rest['res1']['obj'],
-                    type:0,
+                    type:0*1,
                     token:req.session.token
                 }
+                console.log(obj)
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
+            console.log(result['res2'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{
@@ -97,14 +99,13 @@ module.exports = function(router){
                    token:req.session.token,
                    batch:rest['res1']?rest['res1']['obj']:''
                }
-               console.log(params)
                api.stuSum(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
+            console.log(result['res2']['obj'])
            res.render('stuSummarize',{
                title:'学生总结',
-            //    trData:result['res2']?result['res2']['obj']:[]
+               trData:result['res2']?result['res2']['obj']:[]
            })
         })
     })

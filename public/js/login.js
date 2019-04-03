@@ -9,7 +9,17 @@ $(".sbtn").on("click",function(){
         success:function(res){
             if(res.code == 200 && res.success == 1) {
                 localStorage.setItem('userInfo',JSON.stringify(res.obj))
-                window.location.href = '/tchbeforeclass.html'
+                if(res.obj.user) {
+                    if(JSON.parse(res.obj.user)['userType'] == 0)  {
+                        window.location.href = '/stubeforeclass.html'
+                    }else{
+                         window.location.href = '/tchbeforeclass.html'
+                    }
+                }else{
+                    layer.alert(res.msg,{
+                        title:'温馨提示'
+                    })
+                }
             }else{
                 layer.alert(res.msg,{
                     title:'温馨提示'

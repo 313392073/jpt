@@ -131,26 +131,9 @@
                         "sysGroupId":sysGroupId*1,
                         "userLoginname":seleName
                     }
-<<<<<<< Updated upstream
-                    var str = ''
-                    if(dataArr.length > 0) {
-                        for(var i=0;i<dataArr.length;i++) {
-                            str += "<span data-sysclassid="+dataArr[i]['sysClassId']+" data-sysgroupid="+dataArr[i]['sysGroupId']+">"+dataArr[i]['userLoginname']+"<b></b></span>"
-                            if(dataArr[i]['sysClassId'] != obj['sysClassId'] && dataArr[i]['sysGroupId'] != obj['sysGroupId'] && dataArr[i]['userLoginname'] != obj['userLoginname']) {
-                                dataArr.push(obj)
-                                str += "<span data-sysclassid="+obj['sysClassId']+" data-sysgroupid="+obj['sysGroupId']+">"+obj['userLoginname']+"<b></b></span>"
-                            }else{
-                                console.log(dataArr)
-                                layer.alert('该组员已被分配',{
-                                    title:'温馨提示'
-                                })
-                                return;
-                            }
-                        }
-=======
+
                     if(objInArray(obj,dataArr)) {
                         console.log(111)
->>>>>>> Stashed changes
                     }else{
                         splitDom($(this),sysGroupId,dataArr)
                     }

@@ -28,6 +28,10 @@
       <div class="main-box">
         <%- include("share/tchmenu")%>
         <div class="step-box">
+            <a href="C:\fakepath\20181224.xlsx">aaa</a>
+            <input type="file" class="filesd">
+            <button class="sbtn">上传</button>
+            <div id="datas"></div>
             <p class="step1-title step-title">消毒</p>
             <p class="step1-vline vtline"></p>
             <p class="step1-hline htline"></p>
@@ -143,6 +147,12 @@
             </table>
       </div>
     </div>
+    <script type="text/javascript">
+        $(".sbtn").on("click",function() {
+            console.log($(".filesd").val())
+            $("#datas").html("<a href='"+$(".filesd").val()+"'></a>")
+        })
+    </script>
 </body>
 
 </html>

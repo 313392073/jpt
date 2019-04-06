@@ -293,5 +293,7 @@ module.exports = function(router){
         })
     })
 
-   
+    router.get('/exlce',function(req,res) {
+        res.render('exlce')
+    })
 }

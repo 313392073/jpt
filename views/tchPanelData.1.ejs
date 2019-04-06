@@ -40,7 +40,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <% for(var i=0;i<trData['group'].length;i++) {%>
+                    <tr>
+                        <td>第<%= i+1%>组</td>
+                        <td><%= trData['group'][i]['称重']%></td>
+                        <td><%= trData['group'][i]['增菌']%></td>
+                        <td><%= trData['group'][i]['消毒']%></td>
+                        <td><%= trData['group'][i]['血浆凝固酶试验']%></td>
+                        <td><%= trData['group'][i]['革兰氏染色']%></td>
+                    </tr>
+                    <%}%>
                 </tbody>
             </table>
             <div class="item-box clearfix">

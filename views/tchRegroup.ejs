@@ -131,6 +131,7 @@
                         "sysGroupId":sysGroupId*1,
                         "userLoginname":seleName
                     }
+<<<<<<< Updated upstream
                     var str = ''
                     if(dataArr.length > 0) {
                         for(var i=0;i<dataArr.length;i++) {
@@ -146,11 +147,14 @@
                                 return;
                             }
                         }
+=======
+                    if(objInArray(obj,dataArr)) {
+                        console.log(111)
+>>>>>>> Stashed changes
                     }else{
-                        dataArr.push(obj)
-                        str += "<span data-sysclassid="+obj['sysClassId']+" data-sysgroupid="+obj['sysGroupId']+">"+obj['userLoginname']+"<b></b></span>"
+                        splitDom($(this),sysGroupId,dataArr)
                     }
-                    $(this).parents('.group-title').next('.team-members').append(str);
+                    
                 })
             });
             var tokend = $.trim($("#tokend").val())
@@ -176,6 +180,39 @@
                 })
             })
         });
+        function objInArray(obj,arr) {
+            var flag = false;
+            if(arr.length>0) {
+                for(var i=0;i<arr.length;i++) {
+                    if(arr[i]['sysClassId'] == obj['sysClassId'] && arr[i]['userLoginname'] == obj['userLoginname']) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if(flag == false) {
+                    arr.push(obj)
+                }else{
+                    layer.alert('该组员已被分配',{
+                        title:'温馨提示'
+                    })
+                    return true;
+                }
+            }else{
+                arr.push(obj)
+            }
+            return flag
+        }
+
+        function splitDom(obj,sysGroupId,dataArr) {
+            obj.parents('.group-title').next('.team-members').html('')
+            var str = ''
+            for(var i=0;i<dataArr.length;i++) {
+                if(dataArr[i]['sysGroupId'] == sysGroupId) {
+                    str += "<span data-sysclassid="+dataArr[i]['sysClassId']+" data-sysgroupid="+dataArr[i]['sysGroupId']+">"+dataArr[i]['userLoginname']+"<b></b></span>"
+                }
+            }
+           obj.parents('.group-title').next('.team-members').append(str);
+        }
     </script>
 </body>
 

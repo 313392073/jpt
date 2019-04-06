@@ -250,6 +250,9 @@
   width: 60px;
   float: left;
 }
+.main-wrapper .main-box .content-box .item-box .item .list .header-icon img {
+  max-width: 45px;
+}
 .main-wrapper .main-box .content-box .item-box .item .list .comments-main {
   float: left;
   width: calc(100% - 60px);

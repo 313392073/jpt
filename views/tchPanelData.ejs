@@ -40,25 +40,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <%for(var i=0;i<trData.length;i++) {%>
+                        <tr>
+                            <td>第<%= trData[i]['group_id']%>组</td>
+                            <td><%= trData[i]['称重']%></td>
+                            <td><%= trData[i]['增菌']%></td>
+                            <td><%= trData[i]['消毒']%></td>
+                            <td><%= trData[i]['血浆凝固酶试验']%></td>
+                            <td><%= trData[i]['革兰氏染色']%></td>
+                        </tr>
+                    <%}%>
                 </tbody>
             </table>
             <div class="item-box clearfix">
-                <%for(var i=0;i<trData['comments'];i++) {%>
+                <% if(trData.length > 0) {%>
+                <%for(var i=0;i<trData.length;i++) {%>
                 <div class="item">
-                    <p class="item-title">第<%= i+1%>>小组讨论总结</p>
-                    <%for(var k=0;k<trData['comments'].length;k++) {%>
+                    <p class="item-title">第<%= i+1%>小组讨论总结</p>
+                    <% if(trData[i]['comments'].length > 0) {%>
+                    <%for(var k=0;k<trData[i]['comments'].length;k++) {%>
                     <div class="list">
                         <div class="header-icon">
-                            <img src="./images/icon/header.png" alt="">
+                            <img src="<%= trData[i]['comments'][k]['userHeadImage']%>" alt="<%= trData[i]['comments'][k]['userLoginname']%>">
                         </div>
                         <div class="comments-main">
-                            <span>姓名</span>
-                            <p>点评问题及亮点 </p>
+                            <span><%= trData[i]['comments'][k]['userLoginname']%></span>
+                            <p><%= trData[i]['comments'][k]['comment']%> </p>
                         </div>
                     </div>
                     <%}%>
+                    <%}%>
                 </div>
+                <%}%>
                 <%}%>
             </div>
         </div>

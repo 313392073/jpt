@@ -128,7 +128,6 @@ module.exports = function(router){
                     token:req.session.token,
                     batch:rest['res1']?rest['res1']['obj']:''
                 }
-                console.log(params)
                 api.teaVr(req,params,done)
             }]
         },function(error,result) {
@@ -203,6 +202,7 @@ module.exports = function(router){
             }]
         },function(error,result) {
             console.log(result['res2']['obj'])
+            console.log(result['res2']['obj'][0]['comments'])
            res.render('tchPanelData',{
                title:'老师小组数据',
                trData:result['res2']?result['res2']['obj']:[]

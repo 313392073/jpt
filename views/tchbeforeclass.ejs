@@ -77,10 +77,6 @@
     <script type="text/javascript">
         var obj = JSON.parse($("#hideData").val());
         var colors = ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#8d98b3','#e5cf0d','#97b552','#95706d']
-        // var data1 = [
-        //             { value: "<%= trData['course_right_lv']['1']%>", name: '默认数据' },
-        //             { value: 100, name: '生化特性' }
-        //         ]
         Object.keys(obj).forEach(function(item,index) {
             var datas = [
                 { value: (100 - obj[item]*1)*1, name: '总占比例' },

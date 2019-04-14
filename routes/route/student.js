@@ -164,9 +164,12 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(error,result) {
+            console.log(result['res2'])
             res.render('stuVR',{
                 title:'学生VR实验',
-                trData:result['res2']?result['res2']['obj']:[]
+                trData:result['res2']?result['res2']['obj']:[],
+                batch:result['res1']?result['res1']['obj']:'',
+                token:req.session.token?req.session.token:''
             })
         })
     })

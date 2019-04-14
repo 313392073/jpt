@@ -29,37 +29,100 @@
         <%- include("share/stumenu")%>
         <div class="content-box">
             <div class="desc">VR实验记录：</div>
-            <form action="" method="POST">
-                <table>
-                    <thead>
+            <input type="hidden" value="<%= token%>" id="tokend">
+            <input type="hidden" value="<%= batch%>" id="batch">
+            <input type="hidden" id="classBatch" value="<%= batch%>">
+            <table>
+                <thead>
+                    <tr>
+                        <th> 流程 </th>
+                        <th> 数据 </th>
+                        <th> 完成情况 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(var i=0;i<trData.length;i++) {%>
                         <tr>
-                            <th> 流程 </th>
-                            <th> 数据 </th>
-                            <th> 完成情况 </th>
+                            <td><%= trData[i]['course_item']%></td>
+                            <td>
+                                <input type="text" class="datad" data-user="<%= trData[i]['user_loginname']%>" data-score="<%= trData[i]['item_score']%>" data-answer="<%= trData[i]['answer']%>" data-itemid="<%= trData[i]['course_item_id']%>" value="<%= trData[i]['handled_answer']%>"/>
+                            </td>
+                            <td>
+                                <%if(trData[i]['if_handle'] != 0) {%>
+                                    <input type="text" value="已完成">
+                                <%} else {%>
+                                    <input type="text" value="未完成">
+                                <%}%>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <%for(var i=0;i<trData.length;i++) {%>
-                            <tr>
-                                <td><%= trData[i]['course_item']%></td>
-                                <td>
-                                    <input type="text" readonly value="<%= trData[i]['handled_answer']%>"/>
-                                </td>
-                                <td>
-                                    <%if(trData[i]['if_handle'] != 0) {%>
-                                        <input type="text" value="已完成" readonly>
-                                    <%} else {%>
-                                        <input type="text" value="未完成" readonly>
-                                    <%}%>
-                                </td>
-                            </tr>
-                        <%}%>
-                    </tbody>
-                </table>
-                <div class="btn-box">
-                    <input type="button" class="sbtn" value="提交">
-                </div>
-            </form>
+                    <%}%>
+                </tbody>
+            </table>
+            <div class="btn-box">
+                <input type="button" class="sbtn" value="提交">
+            </div>
+            <script type="text/javascript">
+                $(".sbtn").on("click",function() {
+                    var arr = []
+                    var classBatch = $.trim($('#classBatch').val())
+                    var tokend = $.trim($("#tokend").val())
+                     var batch = $.trim($("#batch").val())
+                    $(".datad").each(function() {
+                        var rightAnswer = $.trim($(this).data('answer'))
+                        var userLoginname = $.trim($(this).data('user'))
+                        var courseItemId = $.trim($(this).data('itemid'))
+                        var score = $.trim($(this).data('score'))
+                        var nowAnswer = $.trim($(this).val())
+
+                        var obj = {
+                            answer:nowAnswer,
+                            classBatch:classBatch,
+                            courseItemId:courseItemId,
+                            isRight:0,
+                            score:0,
+                            useTime:0,
+                            userLoginname:userLoginname
+                        }
+                        if(rightAnswer == nowAnswer) {
+                            obj['score'] = score*1
+                            obj['isRight'] = 1
+                        }
+                        arr.push(obj)
+                    })
+                    $.ajax({
+                        type:'post',
+                        url:'http://118.31.8.72:89/v1/api/course/submit?token='+tokend+"&batch="+batch,
+                        dataType:'json',
+                        contentType: "application/json",
+                        data:JSON.stringify(arr),
+                        success:function(res) {
+                        if(res.code == 200 && res.success == 1) {
+                                layer.alert(res.msg,{
+                                    title:'温馨提示',
+                                    yes:function(){
+                                    window.location.reload()
+                                    }
+                                })
+                            }else{
+                            layer.alert(res.msg,{
+                                title:'温馨提示',
+                                yes:function(){
+                                    window.location.reload()
+                                }
+                            })
+                            }
+                        },
+                        error:function(err) {
+                            layer.alert('网络错误，请稍后再试',{
+                                title:'温馨提示',
+                                yes:function(){
+                                window.location.reload()
+                                }
+                            })
+                        }
+                    })
+                })
+            </script>
         </div>
       </div>
     </div>

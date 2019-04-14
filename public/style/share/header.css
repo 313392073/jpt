@@ -120,3 +120,6 @@
 .nav-wrapper .nav-box .back-home a:hover {
   opacity: 0.9;
 }
+.nav-wrapper .nav-box .back-home .loginout {
+  margin-right: 5px;
+}

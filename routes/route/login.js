@@ -51,7 +51,7 @@ module.exports = function(router) {
         })
     })
 
-    router.get('/loginout.html',function(){
+    router.get('/loginout',function(){
         async.auto({
             res1:function(done) {
                 api.loginOut(req,done)

@@ -54,7 +54,8 @@
   color: #a2a4a4;
   font-size: 16px;
 }
-.sidebar .menu .tab li:hover a {
+.sidebar .menu .tab li:hover a,
+.sidebar .menu .tab li.active a {
   color: #00b2b8;
   background-color: #ccf0f1;
 }

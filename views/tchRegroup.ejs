@@ -34,7 +34,7 @@
                         <thead>
                         <tr>
                             <th>学生</th>
-                            <th class="score">得分<b class="operate-arrow"></b></th>
+                            <th class="scored">得分<b class="operate-arrow"></b></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -145,7 +145,7 @@
             $('.submit-btn').click(function(){
                 $.ajax({
                     type:'post',
-                    url:'http://118.31.8.72:85/v1/api/tea/group/repartDiscuss/confirm?token='+tokend,
+                    url:'http://118.31.8.72:89/v1/api/tea/group/repartDiscuss/confirm?token='+tokend,
                     dataType:'json',
                     contentType: "application/json",
                     data:JSON.stringify(dataArr),

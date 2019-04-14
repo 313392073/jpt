@@ -40,9 +40,9 @@
                   <div class="main-item">
                     <div class="item-content">
                         <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
-                            <option value="0">请选择</option>
+                            <option value="0" class="noselect">请选择</option>
                             <% for(var i=0;i<dataList.length;i++) {%>
-                                <option value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
+                                <option class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
                             <%}%>
                         </select>
                         <%if(k < dataList.length-1) {%>
@@ -100,11 +100,10 @@
             }
             arr.push(obj) 
         })
-        console.log(JSON.stringify(arr))
         
         $.ajax({
             type:'post',
-            url:'http://118.31.8.72:85/v1/api/course/submit?token='+tokend+"&batch="+batch,
+            url:'http://118.31.8.72:89/v1/api/course/submit?token='+tokend+"&batch="+batch,
             dataType:'json',
             contentType: "application/json",
             data:JSON.stringify(arr),
@@ -134,6 +133,25 @@
                 })
             }
         })
+    })
+
+    $(".default-value").on("change",function() {
+        var that = this;
+        var thisValue = $(that).val();
+        var doms = $(that).html();
+        var datas = $(that).children();
+        var resoveDom = ''
+       
+        datas.each(function() {
+            if(thisValue == $(this).val()) {
+                var removeDom = $(this).attr('class')
+                resoveDom = $('.'+removeDom);
+                $("."+removeDom).remove()
+            }
+        })
+        $(this).attr('disabled','disabled')
+        $(that).prepend(resoveDom[0])
+        $(this).find('.noselect').remove()
     })
 
 </script>

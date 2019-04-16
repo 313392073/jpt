@@ -60,7 +60,7 @@
                     <%}%>）
                   </div>
                   <input type="hidden" class="answer-hidden" value="<%= JSON.stringify(courseList[i])%>"/>
-                  <div class="check-answer awrong">
+                  <div class="check-answer awrong" style="display: none">
                     <span>
                       <i class="iconfont icon-cuowu"></i>正确</span>
                   </div>
@@ -147,7 +147,7 @@
         var batch = $.trim($("#batch").val())
         $.ajax({
           type:'post',
-          url:'http://118.31.8.72:89/v1/api/course/submit?token='+tokend+"&batch="+batch,
+          url:'http://39.97.119.155:85/v1/api/course/submit?token='+tokend+"&batch="+batch,
           dataType:'json',
           contentType: "application/json",
           data:JSON.stringify(dataArr),

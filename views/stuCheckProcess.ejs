@@ -42,7 +42,7 @@
                         <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
                             <option value="0" class="noselect">请选择</option>
                             <% for(var i=0;i<dataList.length;i++) {%>
-                                <option class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
+                                <option <%= dataList[i]['if_handle'] == 0?'selected = selected ':''%> class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
                             <%}%>
                         </select>
                         <%if(k < dataList.length-1) {%>
@@ -103,7 +103,7 @@
         
         $.ajax({
             type:'post',
-            url:'http://118.31.8.72:89/v1/api/course/submit?token='+tokend+"&batch="+batch,
+            url:'http://39.97.119.155:85/v1/api/course/submit?token='+tokend+"&batch="+batch,
             dataType:'json',
             contentType: "application/json",
             data:JSON.stringify(arr),

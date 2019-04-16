@@ -7,7 +7,7 @@
         <a href="javascript:void(0)">
             <i class="iconfont icon-home"></i>课前</a>
         <ul class="tab">
-            <li>
+            <li <%= nowurl == '/stubeforeclass' ? 'class = active': ''%> >
                 <a href="/stubeforeclass.html">课前习题</a>
             </li>
         </ul>
@@ -18,28 +18,28 @@
             <i class="iconfont icon-home"></i>课中
         </a>
         <ul class="tab">
-            <li>
+            <li <%= nowurl == '/stucheckprocess' ? 'class = active': ''%>>
                 <a href="/stucheckprocess.html">检验流程</a>
             </li>
-            <li>
+            <li <%= nowurl == '/stuanswerprocess' ? 'class = active': ''%>>
                 <a href="/stuanswerprocess.html">活动分组</a>
             </li>
-            <li>
+            <li <%= nowurl == '/stuimproveprocess' ? 'class = active': ''%>>
                 <a href="/stuimproveprocess.html">完善流程</a>
             </li>
-            <li>
+            <li <%= nowurl == '/stuvr' ? 'class = active': ''%>>
                 <a href="/stuvr.html">VR实验</a>
             </li>
-            <li>
+            <li <%= nowurl == '/stuupload' ? 'class = active': ''%>>
                 <a href="/stuupload.html">视频上传</a>
             </li>
-            <li>
+            <li <%= nowurl == '/stuvideo' ? 'class = active': ''%>>
                 <a href="/stuvideo.html">视频</a>
             </li>
-            <li>
+            <li <%= nowurl == '/studiscuss' ? 'class = active': ''%>>
                 <a href="/studiscuss.html">讨论</a>
             </li>
-            <li>
+            <li <%= nowurl == '/stuaftercalss' ? 'class = active': ''%>>
                 <a href="/stuaftercalss.html">点评</a>
             </li>
         </ul>
@@ -49,7 +49,7 @@
             <i class="iconfont icon-home"></i>课后
         </a>
         <ul class="tab">
-            <li><a href="/stusummarize.html">总结</a></li>
+            <li <%= nowurl == '/stusummarize' ? 'class = active': ''%>><a href="/stusummarize.html">总结</a></li>
         </ul>
     </div>
 </div>

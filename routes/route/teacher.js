@@ -37,7 +37,8 @@ module.exports = function(router){
              console.log(result['res2']['obj']['course_item'].length)
             res.render('tchVR',{
                 title:'老师VR实验',
-                trData:result['res2']?result['res2']['obj']:[]
+                trData:result['res2']?result['res2']['obj']:[],
+                nowurl:'/tchvr'
             })
          })
         
@@ -60,7 +61,8 @@ module.exports = function(router){
         },function(error,result) {
            res.render('tchVR',{
                title:'个人成绩',
-               trData:result['res2']?result['res2']['obj']:[]
+               trData:result['res2']?result['res2']['obj']:[],
+               nowurl:'/score'
            })
         })
    })
@@ -81,7 +83,8 @@ module.exports = function(router){
             console.log(result['res2']['obj'])
            res.render('tchBeforeClass',{
                title:'老师课前',
-               trData:result['res2']?result['res2']['obj']:[]
+               trData:result['res2']?result['res2']['obj']:[],
+               nowurl:'/tchbeforeclass'
            })
         })
     })
@@ -103,7 +106,8 @@ module.exports = function(router){
             console.log(result['res2']['obj'])
            res.render('tchCorrectRate',{
                title:'老师课前习题正确率',
-               trData:result['res2']?result['res2']['obj']:[]
+               trData:result['res2']?result['res2']['obj']:[],
+               nowurl:'/tchcorrectrate'
            })
         })
     })
@@ -135,7 +139,8 @@ module.exports = function(router){
             res.render('tchVerifyProcess',{
                 title:'老师检验流程测试结果',
                 step:result['res2']?result['res2']['obj']:[],
-                trData:result['res3']?result['res3']['obj']:{}
+                trData:result['res3']?result['res3']['obj']:{},
+                nowurl:'/tchverifyprocess'
             })
         })
     })
@@ -158,7 +163,8 @@ module.exports = function(router){
             console.log(result['res2'])
             res.render('tchAfterClass',{
                 title:'老师课后',
-                trData:result['res2']?result['res2']['obj']:[]
+                trData:result['res2']?result['res2']['obj']:[],
+                nowurl:'/tchafterclass'
             })
         })
     })
@@ -182,7 +188,8 @@ module.exports = function(router){
             console.log(result['res2'])
             res.render('tchImproveProcess',{
                 title:'老师完善流程',
-                trData:result['res2']?result['res2']['obj']:[]
+                trData:result['res2']?result['res2']['obj']:[],
+                nowurl:'/tchimproveprocess'
             })
         })
     })
@@ -205,7 +212,8 @@ module.exports = function(router){
             console.log(result['res2']['obj'][0]['comments'])
            res.render('tchPanelData',{
                title:'老师小组数据',
-               trData:result['res2']?result['res2']['obj']:[]
+               trData:result['res2']?result['res2']['obj']:[],
+               nowurl:'/tchpaneldata'
            })
         })
     })
@@ -228,7 +236,8 @@ module.exports = function(router){
             res.render('tchRegroup',{
                 title:'老师重新分组',
                 trData:result['res2']?result['res2']['obj']:[],
-                token:req.session.token
+                token:req.session.token,
+                nowurl:'/tchregroup'
             })
          })
     })
@@ -243,7 +252,8 @@ module.exports = function(router){
             res.render('tchUpload',{
                 title:'老师文件上传',
                 batch:result['res1']?result['res1']['obj']:'',
-                token:req.session.token
+                token:req.session.token,
+                nowurl:'/tchupload'
             })
          })
     })
@@ -265,7 +275,8 @@ module.exports = function(router){
              console.log(result['res2']['obj'])
             res.render('tchVideoReview',{
                 title:'老师视频点评',
-                trData:result['res2']?result['res2']['obj']:[]
+                trData:result['res2']?result['res2']['obj']:[],
+                nowurl:'/tchvideoreview'
             })
          })
     })
@@ -274,7 +285,8 @@ module.exports = function(router){
     // 老师VR考核
     router.get('/tchvrcheck.html',function(req,res){
         res.render('tchvrCheck',{
-            title:'老师小组数据'
+            title:'老师小组数据',
+            nowurl:'/tchvrcheck'
         })
     })
 

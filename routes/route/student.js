@@ -14,7 +14,6 @@ module.exports = function(router){
                     type:0*1,
                     token:req.session.token
                 }
-                console.log(obj)
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
@@ -27,7 +26,8 @@ module.exports = function(router){
                     courseList:result['res2']['obj'],
                     makeOrder:base.makeOrder,
                     batch:result['res1']?result['res1']['obj']:'',
-                    token:req.session.token
+                    token:req.session.token,
+                    nowurl:'/stubeforeclass'
                 })
             }
         })
@@ -59,7 +59,8 @@ module.exports = function(router){
                     userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
                     token:req.session.token?req.session.token:'',
                     batch:result['res1']?result['res1']['obj']:'',
-                    dataList:result['res2']['obj']
+                    dataList:result['res2']['obj'],
+                    nowurl:'/stucheckprocess'
                 })
             }
         })
@@ -83,7 +84,8 @@ module.exports = function(router){
             console.log(result['res2']['obj'])
             res.render('stuAnswerProcess',{
                 title:'学生检验流程的答案',
-                trData:result['res2']?result['res2']['obj']:[]
+                trData:result['res2']?result['res2']['obj']:[],
+                nowurl:'/stuanswerprocess'
             })
         })
     })
@@ -105,7 +107,8 @@ module.exports = function(router){
             console.log(result['res2']['obj'])
            res.render('stuSummarize',{
                title:'学生总结',
-               trData:result['res2']?result['res2']['obj']:[]
+               trData:result['res2']?result['res2']['obj']:[],
+               nowurl:'/stusummarize'
            })
         })
     })
@@ -120,7 +123,8 @@ module.exports = function(router){
            res.render('stuUpload',{
                title:'学生视频上传',
                batch:result['res1']?result['res1']['obj']:'',
-               token:req.session.token
+               token:req.session.token,
+               nowurl:'/stuupload'
            })
         })
    })
@@ -143,7 +147,8 @@ module.exports = function(router){
                title:'学生讨论',
                trData:result['res2']?result['res2']['obj']:[],
                batch:result['res1']?result['res1']['obj']:'',
-               token:req.session.token
+               token:req.session.token,
+               nowurl:'/studiscuss'
            })
         })
     })
@@ -169,7 +174,8 @@ module.exports = function(router){
                 title:'学生VR实验',
                 trData:result['res2']?result['res2']['obj']:[],
                 batch:result['res1']?result['res1']['obj']:'',
-                token:req.session.token?req.session.token:''
+                token:req.session.token?req.session.token:'',
+                nowurl:'/stuvr'
             })
         })
     })
@@ -192,7 +198,8 @@ module.exports = function(router){
             console.log(result['res2'])
             res.render('stuVideo',{
                 title:'学生视频',
-                trData:result['res2']?result['res2']['obj']:[]
+                trData:result['res2']?result['res2']['obj']:[],
+                nowurl:'/stuvideo'
             })
         })
     })
@@ -208,7 +215,8 @@ module.exports = function(router){
             res.render('stuAfterClass',{
                 title:'学生课后',
                 batch:result['res1']?result['res1']['obj']:'',
-                token:req.session.token
+                token:req.session.token,
+                nowurl:'/stuaftercalss'
             })
         })
     })
@@ -235,7 +243,8 @@ module.exports = function(router){
                 userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
                 token:req.session.token?req.session.token:'',
                 batch:result['res1']?result['res1']['obj']:'',
-                trData:result['res2']?result['res2']['obj']:[]
+                trData:result['res2']?result['res2']['obj']:[],
+                nowurl:'/stuimproveprocess'
             })
         })
     })

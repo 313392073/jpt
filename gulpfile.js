@@ -65,7 +65,7 @@ gulp.task('cshare',function () {
 gulp.task('img',function () {
    return gulp.src('public/images/**/*.{jpg,png,gif,ico}')
         .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-        .pipe(gulp.dest('dist/img/'))
+        .pipe(gulp.dest('dist/images/'))
 })
 
 //字体

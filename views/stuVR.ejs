@@ -48,7 +48,7 @@
                                 <input type="text" class="datad" data-user="<%= trData[i]['user_loginname']%>" data-score="<%= trData[i]['item_score']%>" data-answer="<%= trData[i]['answer']%>" data-itemid="<%= trData[i]['course_item_id']%>" value="<%= trData[i]['handled_answer']%>"/>
                             </td>
                             <td>
-                                <%if(trData[i]['if_handle'] != 0) {%>
+                                <%if(trData[i]['handled_answer']) {%>
                                     <input type="text" value="已完成">
                                 <%} else {%>
                                     <input type="text" value="未完成">
@@ -91,7 +91,7 @@
                     })
                     $.ajax({
                         type:'post',
-                        url:'http://118.31.8.72:89/v1/api/course/submit?token='+tokend+"&batch="+batch,
+                        url:'http://39.97.119.155:85/v1/api/course/submit?token='+tokend+"&batch="+batch,
                         dataType:'json',
                         contentType: "application/json",
                         data:JSON.stringify(arr),

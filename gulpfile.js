@@ -25,6 +25,14 @@ gulp.task('js', function () {
     .pipe(js())  //使用uglify进行压缩,更多配置请参考：
     .pipe(gulp.dest('dist/js')); //压缩后的路径
 });
+
+//样式工具
+gulp.task('jstool',function () {
+    return gulp.src('public/js/tool/**/*')
+        .pipe(gulp.dest('dist/js/tool'));
+})
+
+
 //编译并压缩less
 gulp.task('less', function () {
     return gulp.src('public/style/**/*.less')
@@ -89,12 +97,13 @@ gulp.task('ejs', function() {
 
 
 //监听
-gulp.task('build',['less','css','ctool','cshare','js','img','font','ejs'],function(){
+gulp.task('build',['less','css','ctool','cshare','js','jstool','img','font','ejs'],function(){
 	gulp.watch('public/style/**/*',['less']);
 	gulp.watch('public/style/**/*',['css']);
 	gulp.watch('public/tool/**/*',['ctool']);
 	gulp.watch('public/style/share/**/*',['cshare']);
-	gulp.watch('public/js/**/*',['js']);
+    gulp.watch('public/js/**/*',['js']);
+    gulp.watch('public/js/jstool/**/*',['jstool']);
 	gulp.watch('public/images/**/*',['img']);
 	gulp.watch('public/font/**/*',['font']);
 	gulp.watch('views/**/**/*',['ejs']);

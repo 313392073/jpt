@@ -39,12 +39,22 @@
                   <% for(var k=0;k<dataList.length;k++) {%>
                   <div class="main-item">
                     <div class="item-content">
+                        <%if(dataList[k]['if_handle'] == 0) {%>
                         <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
-                            <option value="0" class="noselect">请选择</option>
-                            <% for(var i=0;i<dataList.length;i++) {%>
-                                <option <%= dataList[i]['if_handle'] == 0?'selected = selected ':''%> class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
+                            <% if((k+1) == dataList[k]['title']) {%>
+                                <option selected="selected" class="option<%=k%>" value="<%= dataList[k]['title']%>"><%= dataList[k]['course_item']%></option>
+                            <%} else {%>
+                                <option class="option<%=k%>" value="<%= dataList[k]['title']%>"><%= dataList[k]['course_item']%></option>
                             <%}%>
                         </select>
+                        <% }else {%>
+                            <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
+                                <option value="0" class="noselect">请选择</option>
+                                <% for(var i=0;i<dataList.length;i++) {%>
+                                    <option <%= (i+1) == dataList[i]['title'] ?'selected = selected ':''%> class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
+                                <%}%>
+                            </select>
+                        <%}%>
                         <%if(k < dataList.length-1) {%>
                           <p class="item-bg"></p>
                         <%}%>

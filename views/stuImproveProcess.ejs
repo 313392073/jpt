@@ -36,6 +36,7 @@
             <div class="main">
               <%for(var i=0;i<trData.length;i++) {%>
                   <div class="steps"><%= trData[i]['course_item']%> 
+                    <i class="lar"></i>
                     <input type="text" class="stepsvalue" data-courseid="<%= trData[i]['course_id']%>" data-itemscore="<%= trData[i]['item_score']%>" data-courseitemid="<%= trData[i]['course_item_id']%>" data-tag="<%= trData[i]['answer']%>">
                   </div>
               <%}%>

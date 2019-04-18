@@ -25,7 +25,7 @@ function readFile(){
         formData.append("token", "");
 		console.log(formData)
         $.ajax({
-            url: "http://39.97.119.155:85/v1/api/comm/uploadfile",
+            url: "<%= baseurl%>/v1/api/comm/uploadfile",
             type: 'POST',
             cache: false,
             data: formData,

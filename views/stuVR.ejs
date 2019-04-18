@@ -91,7 +91,7 @@
                     })
                     $.ajax({
                         type:'post',
-                        url:'http://39.97.119.155:85/v1/api/course/submit?token='+tokend+"&batch="+batch,
+                        url:'<%= baseurl%>/v1/api/course/submit?token='+tokend+"&batch="+batch,
                         dataType:'json',
                         contentType: "application/json",
                         data:JSON.stringify(arr),

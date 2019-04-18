@@ -59,7 +59,7 @@
               var formData = new FormData();
               formData.append("file", fileData);
               $.ajax({
-                  url: "http://39.97.119.155:85/v1/api/comm/uploadfile?token="+token+"&batch="+batch,
+                  url: "<%= baseurl%>/v1/api/comm/uploadfile?token="+token+"&batch="+batch,
                   type: 'POST',
                   cache: false,
                   data: formData,

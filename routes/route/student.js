@@ -27,7 +27,8 @@ module.exports = function(router){
                     makeOrder:base.makeOrder,
                     batch:result['res1']?result['res1']['obj']:'',
                     token:req.session.token,
-                    nowurl:'/stubeforeclass'
+                    nowurl:'/stubeforeclass',
+                    baseurl:base.publicPath
                 })
             }
         })
@@ -47,7 +48,6 @@ module.exports = function(router){
                     type:1,
                     token:req.session.token
                 }
-                console.log(req.body)
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
@@ -60,7 +60,8 @@ module.exports = function(router){
                     token:req.session.token?req.session.token:'',
                     batch:result['res1']?result['res1']['obj']:'',
                     dataList:result['res2']['obj'],
-                    nowurl:'/stucheckprocess'
+                    nowurl:'/stucheckprocess',
+                    baseurl:base.publicPath
                 })
             }
         })
@@ -124,7 +125,8 @@ module.exports = function(router){
                title:'学生视频上传',
                batch:result['res1']?result['res1']['obj']:'',
                token:req.session.token,
-               nowurl:'/stuupload'
+               nowurl:'/stuupload',
+               baseurl:base.publicPath
            })
         })
    })
@@ -148,7 +150,8 @@ module.exports = function(router){
                trData:result['res2']?result['res2']['obj']:[],
                batch:result['res1']?result['res1']['obj']:'',
                token:req.session.token,
-               nowurl:'/studiscuss'
+               nowurl:'/studiscuss',
+               baseurl:base.publicPath
            })
         })
     })
@@ -175,7 +178,8 @@ module.exports = function(router){
                 trData:result['res2']?result['res2']['obj']:[],
                 batch:result['res1']?result['res1']['obj']:'',
                 token:req.session.token?req.session.token:'',
-                nowurl:'/stuvr'
+                nowurl:'/stuvr',
+                baseurl:base.publicPath
             })
         })
     })
@@ -216,7 +220,8 @@ module.exports = function(router){
                 title:'学生课后',
                 batch:result['res1']?result['res1']['obj']:'',
                 token:req.session.token,
-                nowurl:'/stuaftercalss'
+                nowurl:'/stuaftercalss',
+                baseurl:base.publicPath
             })
         })
     })
@@ -244,7 +249,8 @@ module.exports = function(router){
                 token:req.session.token?req.session.token:'',
                 batch:result['res1']?result['res1']['obj']:'',
                 trData:result['res2']?result['res2']['obj']:[],
-                nowurl:'/stuimproveprocess'
+                nowurl:'/stuimproveprocess',
+                baseurl:base.publicPath
             })
         })
     })

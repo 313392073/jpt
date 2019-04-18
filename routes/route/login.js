@@ -1,9 +1,11 @@
 const api = require('../interface');
 const async = require('async');
+const base = require('../config/base');
 module.exports = function(router) {
     router.get('/reg.html',function(req,res) {
         res.render('reg',{
-            title:'注册'
+            title:'注册',
+            baseurl:base.publicPath
         })
     })
 

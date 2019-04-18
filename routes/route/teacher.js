@@ -1,6 +1,7 @@
 const api = require('../interface');
 const async = require('async');
 const qs = require('qs');
+const base = require('../config/base')
 module.exports = function(router){
     //老师出题
     router.get('/teagiveproblem.html',function(req,res) {
@@ -237,7 +238,8 @@ module.exports = function(router){
                 title:'老师重新分组',
                 trData:result['res2']?result['res2']['obj']:[],
                 token:req.session.token,
-                nowurl:'/tchregroup'
+                nowurl:'/tchregroup',
+                baseurl:base.publicPath
             })
          })
     })
@@ -253,7 +255,8 @@ module.exports = function(router){
                 title:'老师文件上传',
                 batch:result['res1']?result['res1']['obj']:'',
                 token:req.session.token,
-                nowurl:'/tchupload'
+                nowurl:'/tchupload',
+                baseurl:base.publicPath
             })
          })
     })

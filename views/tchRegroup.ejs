@@ -145,7 +145,7 @@
             $('.submit-btn').click(function(){
                 $.ajax({
                     type:'post',
-                    url:'http://39.97.119.155:85/v1/api/tea/group/repartDiscuss/confirm?token='+tokend,
+                    url:'<%= baseurl%>/v1/api/tea/group/repartDiscuss/confirm?token='+tokend,
                     dataType:'json',
                     contentType: "application/json",
                     data:JSON.stringify(dataArr),

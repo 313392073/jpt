@@ -65,12 +65,24 @@
                       <i class="iconfont icon-cuowu"></i>正确</span>
                   </div>
                 </div>
-                
-                <% for(var k=0;k<cnum.length;++k) {%>
-                    <label class="item">
-                      <input type="checkbox" value="<%= i%>_<%= cnum[k]%>">
-                      <span></span><%= makeOrder(k)%>.<%= cnum[k]%>
-                    </label>
+               
+                <%for(var k=0;k<cnum.length;k++) {%>
+                    <% var anum = JSON.parse(courseList[i]['handled_answer'])%>
+                    <%if(anum.length > 0) {%>
+                    <%for(var j=0;j<anum.length;j++) {%>
+                      <%if(cnum[k] == anum[j]) {%>
+                        <label class="item">
+                            <input type="checkbox" checked="checked" value="<%= i%>_<%= cnum[k]%>">
+                            <span></span><%= makeOrder(k)%>.<%= cnum[k]%>
+                        </label>
+                      <%}else{%>
+                        <label class="item">
+                            <input type="checkbox" value="<%= i%>_<%= cnum[k]%>">
+                            <span></span><%= makeOrder(k)%>.<%= cnum[k]%>
+                            </label>
+                        <%}%>
+                      <%}%>
+                    <%}%>
                 <%}%>
               </div>
               <%}%>
@@ -147,7 +159,7 @@
         var batch = $.trim($("#batch").val())
         $.ajax({
           type:'post',
-          url:'http://39.97.119.155:85/v1/api/course/submit?token='+tokend+"&batch="+batch,
+          url:'<%= baseurl%>/v1/api/course/submit?token='+tokend+"&batch="+batch,
           dataType:'json',
           contentType: "application/json",
           data:JSON.stringify(dataArr),

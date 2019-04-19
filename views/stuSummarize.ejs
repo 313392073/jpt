@@ -29,8 +29,7 @@
         <%- include("share/stumenu")%>
           <div class="content-box">
             <div class="list">
-              <h3>
-                <span></span>课前习题</h3>
+              <h3> <span></span>课前习题</h3>
               <table>
                 <thead>
                   <tr>
@@ -40,18 +39,20 @@
                         <th>第<%= index+1%>题</th>
                       <%})%>
                     <%}%>
-                    <th style="display: none">得分</th>
+                    <th>得分</th>
                   </tr>
                 </thead>
                 <tbody>
                     <tr>
                       <td><%= trData['courseType0'][0]?trData['courseType0'][0]['user_loginname']:'' %></td>
                       <% if(trData['courseType0']) { %>
+                        <%var score = 0%>
                         <%trData['courseType0'].forEach(function(item,index) {%>
                           <td><%= item['is_right'] == 0?'x':'√' %></td>
+                          <%score+= item['item_score']%>
                         <%})%>
                       <%}%>
-                      <td class="score" style="display: none">60</td>
+                      <td class="score"><%= score%></td>
                   </tr>
                 </tbody>
               </table>
@@ -68,18 +69,20 @@
                           <th>第<%= index+1%>题</th>
                         <%})%>
                       <%}%>
-                      <th style="display: none">得分</th>
+                      <th>得分</th>
                   </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><%= trData['courseType1'][0]?trData['courseType1'][0]['user_loginname']:'' %></td>
                         <% if(trData['courseType1']) { %>
+                          <%var score = 0%>
                           <%trData['courseType1'].forEach(function(item,index) {%>
                             <td><%= item['is_right'] == 0?'x':'√' %></td>
+                            <% score+= item['item_score']%>
                           <%})%>
                         <%}%>
-                        <td class="score" style="display: none">60</td>
+                        <td class="score"><%= score%></td>
                     </tr>
                 </tbody>
               </table>
@@ -96,18 +99,20 @@
                           <th>第<%= index+1%>题</th>
                         <%})%>
                       <%}%>
-                      <th style="display: none">得分</th>
+                      <th>得分</th>
                   </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><%= trData['courseType2'][0]?trData['courseType2'][0]['user_loginname']:'' %></td>
                         <% if(trData['courseType2']) { %>
+                          <%var score = 0%>
                           <%trData['courseType2'].forEach(function(item,index) {%>
                             <td><%= item['is_right'] == 0?'x':'√' %></td>
+                            <%score+= item['item_score']%>
                           <%})%>
                         <%}%>
-                        <td class="score" style="display: none">60</td>
+                        <td class="score"><%= score%></td>
                     </tr>
                 </tbody>
               </table>

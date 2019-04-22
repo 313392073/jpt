@@ -51,6 +51,7 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
+            console.log(result['res2']['obj'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{

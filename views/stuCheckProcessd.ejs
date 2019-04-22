@@ -37,18 +37,24 @@
                   <input type="hidden" id="classBatch" value="<%= batch%>">
                 <% if(dataList.length > 0) {%>
                   <% for(var k=0;k<dataList.length;k++) {%>
-                  <div class="main-item" data-id="<%= k%>">
+                  <div class="main-item">
                     <div class="item-content">
+                        <%if(dataList[k]['if_handle'] == 0) {%>
                         <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
-                            <option value="0" class="noselect">请选择你的答案</option>
-                            <% for(var i=0;i<dataList.length;i++) {%>
-                                <% if(dataList[i]['if_handle'] == 0) {%>
-                                    <option <%= dataList[i]['title'] == (k+1)?"selected":''%> class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
-                                 <%} else {%>
-                                    <option  class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
-                                 <%}%>
+                            <% if((k+1) == dataList[k]['title']) {%>
+                                <option selected="selected" class="option<%=k%>" value="<%= dataList[k]['title']%>"><%= dataList[k]['course_item']%></option>
+                            <%} else {%>
+                                <option class="option<%=k%>" value="<%= dataList[k]['title']%>"><%= dataList[k]['course_item']%></option>
                             <%}%>
                         </select>
+                        <% }else {%>
+                            <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
+                                <option value="0" class="noselect">请选择</option>
+                                <% for(var i=0;i<dataList.length;i++) {%>
+                                    <option <%= (i+1) == dataList[i]['title'] ?'selected = selected ':''%> class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
+                                <%}%>
+                            </select>
+                        <%}%>
                         <%if(k < dataList.length-1) {%>
                           <p class="item-bg"></p>
                         <%}%>
@@ -138,23 +144,50 @@
             }
         })
     })
+
+    $(".default-value").on("change",function() {
+        var that = this;
+        var thisValue = $(that).val();
+        var doms = $(that).html();
+        var datas = $(that).children();
+        var resoveDom = ''
+       
+        datas.each(function() {
+            if(thisValue == $(this).val()) {
+                var removeDom = $(this).attr('class')
+                resoveDom = $('.'+removeDom);
+                $("."+removeDom).remove()
+            }
+        })
+        $(this).attr('disabled','disabled')
+        $(that).prepend(resoveDom[0])
+        $(this).find('.noselect').remove()
+    })
+
+
+
+    //demo
+
     var oldVal = '';
-    $(".main select").each(function() {
+    $(".main-item .default-value").each(function() {
         if($(this).find("option:selected")) {
             var _thisValue = $(this).find("option:selected").val();
-            $(this).attr('old',_thisValue)
-            $(".main select").closest(".main-item").siblings("div").find("option[value="+_thisValue+"]").not("option[value='0']").hide()
+            oldVal = $(this).attr('old',_thisValue)
+            $(".main-item .default-value").parent().siblings(".main-item").find("option[value="+_thisValue+"]").not("option[value=0]").hide()
+
         }
     })
 
-   $(".main select").change(function() {
-       oldVal = $(this).attr('old');
-       var _thisValue = $(this).find("option:selected").val();
-       $(this).closest(".main-item").siblings(".main-item").find("option[value="+_thisValue+"]").not("option[value='0']").hide();
-       $(this).closest(".main-item").siblings(".main-item").find("option[value="+oldVal+"]").show();
-       $(this).find("option[value="+oldVal+"]").show();
-       $(this).attr("old",_thisValue)
-   })
+    // $(".video_in select").change(function() {
+    //     oldVal = $(this).attr('old');
+    //     var _thisValue = $(this).find("option:selected").val();
+    //     var id = $(this).attr('id')
+    //     $(this).parent().siblings("p").find("option[value="+_thisValue+"]").not("option[value=0]").hide();
+    //     $(this).parent().siblings("P").find("option[value=]"+oldVal+"]").show();
+    //     $(this).find("option[value="+oldVal+"]").show();
+    //     $(this).attr('old',_thisValue)
+    // })
+
 </script>
 </body>
 

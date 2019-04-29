@@ -48,7 +48,7 @@
                       <% if(trData['courseType0']) { %>
                         <%var score = 0%>
                         <%trData['courseType0'].forEach(function(item,index) {%>
-                          <td><%= item['is_right'] == 0?'x':'√' %></td>
+                          <td><%= item['is_right'] == -1?'x':'√' %></td>
                           <%score+= item['item_score']%>
                         <%})%>
                       <%}%>
@@ -78,7 +78,7 @@
                         <% if(trData['courseType1']) { %>
                           <%var score = 0%>
                           <%trData['courseType1'].forEach(function(item,index) {%>
-                            <td><%= item['is_right'] == 0?'x':'√' %></td>
+                            <td><%= item['is_right'] == -1?'x':'√' %></td>
                             <% score+= item['item_score']%>
                           <%})%>
                         <%}%>
@@ -108,7 +108,7 @@
                         <% if(trData['courseType2']) { %>
                           <%var score = 0%>
                           <%trData['courseType2'].forEach(function(item,index) {%>
-                            <td><%= item['is_right'] == 0?'x':'√' %></td>
+                            <td><%= item['is_right'] == -1?'x':'√' %></td>
                             <%score+= item['item_score']%>
                           <%})%>
                         <%}%>

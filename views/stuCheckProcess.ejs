@@ -93,14 +93,14 @@
                 answer:nowAnswer,
                 classBatch:classBatch,
                 courseItemId:courseItemId,
-                isRight:0,
+                isRight:-1,
                 score:0,
                 useTime:0,
                 userLoginname:userLoginname
             }
             if(rightanswer == nowAnswer) {
                 obj['score'] = itemScore*1,
-                isRight = 1
+                isRight = 0
             }
             arr.push(obj) 
         })

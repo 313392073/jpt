@@ -93,7 +93,7 @@
         initObj[i]['classBatch'] = batch;
         initObj[i]['id'] = '';
         initObj[i]['courseItemId'] = 0;
-        initObj[i]['isRight'] = 0;
+        initObj[i]['isRight'] = -1;
         initObj[i]['score'] = '0';
         initObj[i]['userLoginname'] = JSON.parse(JSON.parse(localStorage.getItem('userInfo'))['user'])['userLoginname'];
       }
@@ -131,7 +131,7 @@
           initObj[i]['id'] = JSON.parse(check[i])['course_id'];
           if(JSON.stringify(initObj[i]['answer']) == JSON.stringify(JSON.parse(JSON.parse(check[i])['answer'])['a'])) {
             initObj[i]['answer'] = JSON.stringify(initObj[i]['answer']);
-            initObj[i]['isRight'] = 1;
+            initObj[i]['isRight'] = 0;
             initObj[i]['score'] = JSON.parse(check[i])['item_score'];
           }
         }

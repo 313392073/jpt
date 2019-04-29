@@ -106,7 +106,7 @@ module.exports = function(router){
                api.stuSum(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj'])
+            console.log(result)
            res.render('stuSummarize',{
                title:'学生总结',
                trData:result['res2']?result['res2']['obj']:[],
@@ -143,6 +143,7 @@ module.exports = function(router){
                    token:req.session.token,
                    batch:rest['res1']?rest['res1']['obj']:''
                }
+               console.log(params)
                api.stuVrList(req,params,done)
             }]
         },function(error,result) {

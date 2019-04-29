@@ -205,7 +205,6 @@ module.exports = function(router){
                    token:req.session.token,
                    batch:rest['res1']?rest['res1']['obj']:''
                }
-               console.log(params)
                api.teaGroupData(req,params,done)
             }]
         },function(error,result) {

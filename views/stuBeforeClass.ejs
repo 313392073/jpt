@@ -48,12 +48,11 @@
             </ul>
           </div>
           <div class="content-box">
-            <!-- <form action="/subAnswer" method="post"> -->
               <% if(courseList.length > 0) {%>
               <% for(var i=0;i<courseList.length;i++) {%>
               <div class="list">
                 <div class="requestion-box clearfix">
-                  <div class="requestion"> <%= JSON.parse(courseList[i]['course_item'])['q']%> （
+                  <div class="requestion"><span><%= i+1%></span> <%= JSON.parse(courseList[i]['course_item'])['q']%> （
                     <% var cnum = JSON.parse(courseList[i]['course_item'])['c'] %>
                     <% for(var k=0;k<cnum.length;++k) {%>
                         <i class="answer <%= i%>_<%= cnum[k]%>"><%= makeOrder(k)%></i>
@@ -65,24 +64,11 @@
                       <i class="iconfont icon-cuowu"></i>正确</span>
                   </div>
                 </div>
-               
-                <%for(var k=0;k<cnum.length;k++) {%>
-                    <% var anum = JSON.parse(courseList[i]['handled_answer'])%>
-                    <%if(anum.length > 0) {%>
-                    <%for(var j=0;j<anum.length;j++) {%>
-                      <%if(cnum[k] == anum[j]) {%>
-                        <label class="item">
-                            <input type="checkbox" checked="checked" value="<%= i%>_<%= cnum[k]%>">
-                            <span></span><%= makeOrder(k)%>.<%= cnum[k]%>
-                        </label>
-                      <%}else{%>
-                        <label class="item">
-                            <input type="checkbox" value="<%= i%>_<%= cnum[k]%>">
-                            <span></span><%= makeOrder(k)%>.<%= cnum[k]%>
-                            </label>
-                        <%}%>
-                      <%}%>
-                    <%}%>
+                <% for(var k=0;k<cnum.length;++k) {%>
+                    <label class="item">
+                      <input type="checkbox" value="<%= i%>_<%= cnum[k]%>">
+                      <span></span><%= makeOrder(k)%>.<%= cnum[k]%>
+                    </label>
                 <%}%>
               </div>
               <%}%>
@@ -90,7 +76,6 @@
               <div class="btn-box">
                 <input type="submit" class="sbtn" value="提交">
               </div>
-            <!-- </form> -->
           </div>
       </div>
     </div>
@@ -154,7 +139,6 @@
         for(var attr in initObj) {
           dataArr.push(initObj[attr])
         }
-        console.log(JSON.stringify(dataArr))
         var tokend = $.trim($("#tokend").val())
         var batch = $.trim($("#batch").val())
         $.ajax({

@@ -3,7 +3,15 @@ const orderArr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P
 const makeOrder = function(num) {
     return orderArr[num]
 }
+let sortOrder = function (property){
+    return function(a,b){
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+    }
+}
 module.exports = {
     publicPath:publicPath,
-    makeOrder:makeOrder
+    makeOrder:makeOrder,
+    sortOrder:sortOrder
 }

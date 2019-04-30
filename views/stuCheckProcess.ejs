@@ -29,7 +29,6 @@
         <%- include("share/stumenu")%>
         <div class="content-box">
           <div class="desc">请选择检验流程中空白部分的答案</div>
-          <!-- <form action="" method="post"> -->
               <div class="main">
                   <input type="hidden" value="<%= token%>" id="tokend">
                   <input type="hidden" value="<%= batch%>" id="batch">
@@ -43,7 +42,7 @@
                             <option value="0" class="noselect">请选择你的答案</option>
                             <% for(var i=0;i<dataList.length;i++) {%>
                                 <% if(dataList[i]['if_handle'] == 0) {%>
-                                    <option <%= dataList[i]['title'] == (k+1)?"selected":''%> class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
+                                    <option <%= dataList[i]['handled_answer'] == (k+1)?"selected":''%> class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
                                  <%} else {%>
                                     <option  class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
                                  <%}%>
@@ -60,8 +59,6 @@
               <div class="btn-box">
                   <input type="submit" class="sbtn" value="提交">
               </div>
-          <!-- </form> -->
-
       </div>
       </div>
     </div>
@@ -100,7 +97,7 @@
             }
             if(rightanswer == nowAnswer) {
                 obj['score'] = itemScore*1,
-                isRight = 0
+                obj['isRight'] = 0
             }
             arr.push(obj) 
         })

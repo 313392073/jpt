@@ -49,7 +49,7 @@
                         <%var score = 0%>
                         <%trData['courseType0'].forEach(function(item,index) {%>
                           <td><%= item['is_right'] == -1?'x':'√' %></td>
-                          <%score+= item['item_score']%>
+                          <%score+= item['item_score']*1%>
                         <%})%>
                       <%}%>
                       <td class="score"><%= score%></td>
@@ -79,7 +79,7 @@
                           <%var score = 0%>
                           <%trData['courseType1'].forEach(function(item,index) {%>
                             <td><%= item['is_right'] == -1?'x':'√' %></td>
-                            <% score+= item['item_score']%>
+                            <% score+= item['item_score']*1%>
                           <%})%>
                         <%}%>
                         <td class="score"><%= score%></td>
@@ -109,7 +109,7 @@
                           <%var score = 0%>
                           <%trData['courseType2'].forEach(function(item,index) {%>
                             <td><%= item['is_right'] == -1?'x':'√' %></td>
-                            <%score+= item['item_score']%>
+                            <%score+= item['item_score']*1%>
                           <%})%>
                         <%}%>
                         <td class="score"><%= score%></td>
@@ -157,7 +157,7 @@
                 <h3>
                   <span></span>上传的视频</h3>
                 <div class="video-box">
-                  <img src="<%= trData['video']['upload_net_url']%>" alt="">
+                  <video src="<%= trData['video']['upload_net_url']%>" controls></video>
                 </div>
               </div>
               <div class="detail-list3">

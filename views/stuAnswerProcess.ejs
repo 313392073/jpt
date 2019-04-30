@@ -29,78 +29,62 @@
         <%- include("share/stumenu")%>
         <div class="content-box">
           <div class="desc">我的答案</div>
-          <form action="" method="post">
-              <div class="main">
-                  <div class="p1 pbox clearfix">
-                      <select name="" id="">
-                          <% for(var i=0;i<trData.length;i++) {%>
-                           <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
-                          <%}%>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <div class="arrdown arrdown1"></div>
-                  <div class="p2 pbox">
-                      <select name="" id="">
+            <div class="main">
+                <% if(trData.length > 0) {%>
+                <% for(var k=0;k<trData.length;k++) {%>
+                <div class="main-item" data-id="<%= k%>">
+                    <div class="item-content">
+                        <select class="default-value" data-tag="<%= trData[k]['answer']%>" data-courseitemid="<%= trData[k]['course_item_id']%>" data-itemscore="<%= trData[k]['item_score']%>">
+                            <option value="0" class="noselect">请选择你的答案</option>
                             <% for(var i=0;i<trData.length;i++) {%>
-                            <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
+                                <% if(trData[i]['if_handle'] == 0) {%>
+                                    <option <%= trData[i]['handled_answer'] == (k+1)?"selected":''%> class="option<%=i%>" value="<%= trData[i]['title']%>"><%= trData[i]['course_item']%></option>
+                                <%} else {%>
+                                    <option  class="option<%=i%>" value="<%= trData[i]['title']%>"><%= trData[i]['course_item']%></option>
+                                <%}%>
                             <%}%>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <div class="arrdown arrdown2"></div>
-                  <div class="p3 pbox">
-                      <select name="" id="">
-                        <% for(var i=0;i<trData.length;i++) {%>
-                        <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
+                        </select>
+                        <%if(k < trData.length-1) {%>
+                        <p class="item-bg"></p>
                         <%}%>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <div class="arrdown arrdown3"></div>
-                  <div class="p4 pbox">
-                      <select name="" id="">
-                            <% for(var i=0;i<trData.length;i++) {%>
-                            <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
-                            <%}%>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <div class="filed filed1">
-                      <select name="" id="">
-                            <% for(var i=0;i<trData.length;i++) {%>
-                            <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
-                            <%}%>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <img class="bg-al" src="./images/icon/arrleft.png" alt="">
-                  <div class="filed filed2">
-                      <select name="" id="">
-                            <% for(var i=0;i<trData.length;i++) {%>
-                            <option value="<%= trData[i]['course_item']%>"><%= trData[i]['course_item']%></option>
-                            <%}%>
-                      </select>
-                      <i class="iconfont icon-arrLeft-fill"></i>
-                  </div>
-                  <img class="bg-ar" src="./images/icon/arrright.png" alt="">
-              </div>
-          </form>
+                    </div>
+                    </div>
+                    <%}%>
+                <%}%>
       </div>
       <div class="answer-box">
           <% var num = 0%>
-          <%for(var i=0;i<trData.length;i++){%>
-              <% num+= trData[i]['score']?trData[i]['score']*1:0%>
-              <%if(trData[i]['score'] > 0){%>
-                <span><%= i+1 %>、<%= trData[i]['course_item']%>（<i class="right">正确</i>）</span>
+          <%for(var i=0;i<sortData.length;i++){%>
+              <% num+= sortData[i]['score']?sortData[i]['score']*1:0%>
+              <%if(sortData[i]['score'] > 0){%>
+                <span><%= i+1 %>、<%= sortData[i]['course_item']%>（<i class="right">正确</i>）</span>
               <%}else{%>
-                <span><%= i+1 %>、<%= trData[i]['course_item']%>（<i class="error">错误</i>）</span>
+                <span><%= i+1 %>、<%= sortData[i]['course_item']%>（<i class="error">错误</i>）</span>
               <%}%>
           <%}%>
           <p class="score">得分：<span><%= num%>分</span></p>
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+        var oldVal = '';
+        $(".main select").each(function() {
+            if($(this).find("option:selected")) {
+                var _thisValue = $(this).find("option:selected").val();
+                $(this).attr('old',_thisValue)
+                $(".main select").closest(".main-item").siblings("div").find("option[value="+_thisValue+"]").not("option[value='0']").hide()
+            }
+        })
+
+        $(".main select").change(function() {
+            oldVal = $(this).attr('old');
+            var _thisValue = $(this).find("option:selected").val();
+            $(this).closest(".main-item").siblings(".main-item").find("option[value="+_thisValue+"]").not("option[value='0']").hide();
+            $(this).closest(".main-item").siblings(".main-item").find("option[value="+oldVal+"]").show();
+            $(this).find("option[value="+oldVal+"]").show();
+            $(this).attr("old",_thisValue)
+        })
+    </script>
 </body>
 
 </html>

@@ -35,10 +35,16 @@
             <input type="hidden" id="classBatch" value="<%= batch%>">
             <div class="main">
               <%for(var i=0;i<trData.length;i++) {%>
-                  <div class="steps"><%= trData[i]['course_item']%> 
-                    <i class="lar"></i>
+                  <div class="steps">
+                    <span>
+                      <%= trData[i]['course_item']%>
+                      <%if(i < trData.length-1) {%>
+                        <p class="item-bg"></p>
+                      <%}%>
+                    </span> 
                     <input type="text" class="stepsvalue" data-courseid="<%= trData[i]['course_id']%>" data-itemscore="<%= trData[i]['item_score']%>" data-courseitemid="<%= trData[i]['course_item_id']%>" data-tag="<%= trData[i]['answer']%>">
                   </div>
+                  
               <%}%>
             </div>
             <div class="btn-box">
@@ -69,7 +75,7 @@
               }
               if(rightanswer == nowAnswer) {
                 obj['score'] = itemScore*1,
-                isRight = 0
+                obj['isRight'] = 0
               }
               arr.push(obj) 
             })

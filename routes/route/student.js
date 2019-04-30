@@ -45,7 +45,7 @@ module.exports = function(router){
             res2:['res1',function (done, rest){
                 let obj = {
                     batch:rest['res1']?rest['res1']['obj']:'',
-                    type:1,
+                    type:1*1,
                     token:req.session.token
                 }
                 api.getStubeforeClass(req,obj,done)
@@ -80,13 +80,16 @@ module.exports = function(router){
                     token:req.session.token,
                     batch:rest['res1']?rest['res1']['obj']:''
                 }
+                console.log(params)
                api.stuVr(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj'])
+            // console.log(result['res2']['obj'])
+            console.log(result['res2']['obj'].sort(base.sortOrder('handled_answer')))
             res.render('stuAnswerProcess',{
                 title:'学生检验流程的答案',
                 trData:result['res2']?result['res2']['obj']:[],
+                sortData:result['res2']?result['res2']['obj'].sort(base.sortOrder('handled_answer')):[],
                 nowurl:'/stuanswerprocess'
             })
         })
@@ -106,7 +109,7 @@ module.exports = function(router){
                api.stuSum(req,params,done)
             }]
         },function(error,result) {
-            console.log(result)
+            console.log(result['res2']['obj'])
            res.render('stuSummarize',{
                title:'学生总结',
                trData:result['res2']?result['res2']['obj']:[],
@@ -168,15 +171,15 @@ module.exports = function(router){
             res2:['res1',function (done, rest){
                 let obj = {
                     batch:rest['res1']['obj'],
-                    type:2,
+                    type:3*1,
                     token:req.session.token
                 }
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
             res.render('stuVR',{
                 title:'学生VR实验',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
                 trData:result['res2']?result['res2']['obj']:[],
                 batch:result['res1']?result['res1']['obj']:'',
                 token:req.session.token?req.session.token:'',
@@ -239,7 +242,7 @@ module.exports = function(router){
                 let params={
                     batch:rest['res1']?rest['res1']['obj']:'',
                     token:req.session.token,
-                    type:1*1
+                    type:2*1
                 }
                 api.getStubeforeClass(req,params,done)
             }]

@@ -92,15 +92,11 @@
                         title:'温馨提示'
                     })
                 }else{
-                    let obj = {
-                        "comment":commented
-                    }
                     $.ajax({
                         type:'POST',
-                        url:'<%= baseurl%>/v1/api/stu/vrrecord/submit?token='+tokend+"&batch="+batch,
+                        url:'<%= baseurl%>/v1/api/stu/vrrecord/list/submit?token='+tokend+"&batch="+batch+"&remark="+commented,
                         dataType:'json',
                         contentType: "application/json",
-                        data:JSON.stringify(obj),
                         success:function(res) {
                            if(res.success == 1 && res.code == 200) {
                                 layer.alert(res.msg,{

@@ -136,7 +136,7 @@ module.exports = function(router){
                 api.teaVr(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res3'])
+            console.log(result['res2'])
             res.render('tchVerifyProcess',{
                 title:'老师检验流程测试结果',
                 step:result['res2']?result['res2']['obj']:[],

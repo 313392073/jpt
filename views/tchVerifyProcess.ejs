@@ -40,11 +40,7 @@
                 <% arr.forEach(function(item,index) {%>
                 <div class="list">
                     <div class="list-title clearfix">
-<<<<<<< HEAD
                         <p><strong><%= index*1 + 1%></strong> 正确答案： <span><%= item.substr(0,item.length-2) %></span></p>
-=======
-                        <p><strong><%= index*1+1%> </strong> 正确答案： <span><%= item.substr(0,item.length-2) %></span></p>
->>>>>>> af8f3a71561bd17b7467becc0556e57b741793a3
                         <% var rnum = 0;var wnum = 0%>
                         <%if(item.substr(item.length-1,1) == 'r') {%>
                             <% rnum = item.split(',').length%>

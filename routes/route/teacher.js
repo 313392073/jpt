@@ -136,10 +136,10 @@ module.exports = function(router){
                 api.teaVr(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
+            console.log(result['res3'])
             res.render('tchVerifyProcess',{
                 title:'老师检验流程测试结果',
-                step:result['res2']?result['res2']['obj'].sort(base.sortOrder('handled_answer')):[],
+                step:result['res2']?result['res2']['obj'].sort(base.sortOrder('answer')):[],
                 trData:result['res3']?result['res3']['obj']:{},
                 nowurl:'/tchverifyprocess'
             })
@@ -210,7 +210,7 @@ module.exports = function(router){
                api.teaGroupData(req,params,done)
             }]
         },function(error,result) {
-            console.log(result)
+            console.log(result['res2']['obj'])
            res.render('tchPanelData',{
                title:'老师小组数据',
                trData:result['res2']?result['res2']['obj']:[],

@@ -33,6 +33,12 @@ gulp.task('jstool',function () {
 })
 
 
+//样式工具
+gulp.task('doc',function () {
+    return gulp.src('public/doc/**')
+        .pipe(gulp.dest('dist/doc'));
+})
+
 //编译并压缩less
 gulp.task('less', function () {
     return gulp.src('public/style/**/*.less')
@@ -97,13 +103,14 @@ gulp.task('ejs', function() {
 
 
 //监听
-gulp.task('build',['less','css','ctool','cshare','js','jstool','img','font','ejs'],function(){
+gulp.task('build',['less','css','ctool','cshare','js','doc','jstool','img','font','ejs'],function(){
 	gulp.watch('public/style/**/*',['less']);
 	gulp.watch('public/style/**/*',['css']);
 	gulp.watch('public/tool/**/*',['ctool']);
 	gulp.watch('public/style/share/**/*',['cshare']);
     gulp.watch('public/js/**/*',['js']);
     gulp.watch('public/js/jstool/**/*',['jstool']);
+    gulp.watch('public/doc/*',['doc']);
 	gulp.watch('public/images/**/*',['img']);
 	gulp.watch('public/font/**/*',['font']);
 	gulp.watch('views/**/**/*',['ejs']);

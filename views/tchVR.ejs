@@ -35,30 +35,30 @@
                                     <thead>
                                         <tr>
                                             <th>姓名</th>
-                                            <%if(trData['vrrecord_score'].length>0) {%>
-                                                <%var arr = Object.keys(trData['vrrecord_score'][0])%>
-                                                    <%arr.forEach(function(item,index) {%>
-                                                    <%if(/[a-z]/.test(item) == false) {%>
-                                                        <th><%= item%></th>
-                                                    <%}%>
-                                                <%})%>
-                                            <%}%>
+                                            <th>称重</th>
+                                            <th>增菌</th>
+                                            <th>血浆凝固酶试验</th>
+                                            <th>消毒</th>
+                                            <th>革兰氏染色</th>
+                                            <th>得分</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%var brr = trData['vrrecord_score']%>
-                                        <%if(brr.length>0) {%>
-                                            <% brr.forEach(function(item,index) {%>
-                                                <tr>
-                                                    <td><%= trData['vrrecord_score'][index]['user_name']%></td>
-                                                    <%var crr = Object.keys(item)%>
-                                                    <%crr.forEach(function(subItem,subIndex) {%>
-                                                        <%if(/[a-z]/.test(subItem) == false) {%>
-                                                            <td><%= trData['vrrecord_score'][index][subItem]%></td>
-                                                        <%}%>
-                                                    <%})%>
-                                                </tr>
-                                            <%})%>
+                                        <% for(var i=0;i<trData['vrrecord_score'].length;i++) {%>
+                                            <tr>
+                                                <td><%= trData['vrrecord_score'][i]['user_loginname']%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['称重']?trData['vrrecord_score'][i]['称重']*1:0*1%>"><%= trData['vrrecord_score'][i]['称重']*1 > 0?'√':'x'%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['增菌']?trData['vrrecord_score'][i]['增菌']*1:0*1%>"><%= trData['vrrecord_score'][i]['增菌']*1 > 0 ?'√':'x'%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['血浆凝固酶试验']?trData['vrrecord_score'][i]['血浆凝固酶试验']*1:0*1%>"><%= trData['vrrecord_score'][i]['血浆凝固酶试验']*1 > 0 ? '√':'x'%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['消毒']?trData['vrrecord_score'][i]['消毒']*1:0*1%>"><%= trData['vrrecord_score'][i]['消毒']*1 > 0 ? '√':'x'%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['革兰氏染色']?trData['vrrecord_score'][i]['革兰氏染色']*1:0*1%>"><%= trData['vrrecord_score'][i]['革兰氏染色']*1 > 0 ? '√':'x'%></td>
+                                                <%var cz = trData['vrrecord_score'][i]['称重']?trData['vrrecord_score'][i]['称重']*1:0*1%>
+                                                <%var zj = trData['vrrecord_score'][i]['增菌']?trData['vrrecord_score'][i]['增菌']*1:0*1%>
+                                                <%var xj = trData['vrrecord_score'][i]['血浆凝固酶试验']?trData['vrrecord_score'][i]['血浆凝固酶试验']*1:0*1%>
+                                                <%var xd = trData['vrrecord_score'][i]['消毒']?trData['vrrecord_score'][i]['消毒']*1:0*1%>
+                                                <%var gl = trData['vrrecord_score'][i]['革兰氏染色']?trData['vrrecord_score'][i]['革兰氏染色']*1:0*1%>
+                                                <td><%= cz*1 +zj*1+xj*1+xd*1+gl*1%></td>
+                                            </tr>
                                         <%}%>
                                     </tbody>
                                 </table>

@@ -60,9 +60,9 @@
                                 <%for(var i=0;i<dataDetail.length;i++) {%>
                                 <tr>
                                     <td><%= dataDetail[i]['userName']%></td>
-                                    <td><%= dataDetail[i]['1']?dataDetail[i]['1']:0%></td>
-                                    <td><%= dataDetail[i]['2']?dataDetail[i]['2']:0%></td>
-                                    <td><%= dataDetail[i]['3']?dataDetail[i]['3']:0%></td>
+                                    <td><%= dataDetail[i]['1']?(dataDetail[i]['1'] == 0?'√':'x'):'x'%></td>
+                                    <td><%= dataDetail[i]['2']?(dataDetail[i]['2'] == 0?'√':'x'):'x'%></td>
+                                    <td><%= dataDetail[i]['3']?(dataDetail[i]['3'] == 0?'√':'x'):'x'%></td>
                                     <td class="score"><%= dataDetail[i]['sumscore']%></td>
                                 </tr>
                                 <%}%>

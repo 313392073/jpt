@@ -104,7 +104,7 @@ module.exports = function(router){
                api.teaClassList(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj'])
+            console.log(result['res2'])
            res.render('tchCorrectRate',{
                title:'老师课前习题正确率',
                trData:result['res2']?result['res2']['obj']:[],

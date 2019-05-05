@@ -45,7 +45,7 @@
                         <tr>
                             <td><%= trData[i]['course_item']%></td>
                             <td>
-                                <input type="text" class="datad" data-user="<%= trData[i]['user_loginname']%>" data-score="<%= trData[i]['item_score']%>" data-answer="<%= trData[i]['answer']%>" data-itemid="<%= trData[i]['course_item_id']%>" value="<%= trData[i]['handled_answer']%>"/>
+                                <input type="text" class="datad" data-user="<%= userLoginname%>" data-score="<%= trData[i]['item_score']%>" data-answer="<%= trData[i]['answer']%>" data-itemid="<%= trData[i]['course_item_id']%>" value="<%= trData[i]['handled_answer']%>"/>
                             </td>
                             <td>
                                 <%if(trData[i]['handled_answer']) {%>

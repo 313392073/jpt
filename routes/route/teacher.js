@@ -139,7 +139,7 @@ module.exports = function(router){
             console.log(result['res2'])
             res.render('tchVerifyProcess',{
                 title:'老师检验流程测试结果',
-                step:result['res2']?result['res2']['obj']:[],
+                step:result['res2']?result['res2']['obj'].sort(base.sortOrder('handled_answer')):[],
                 trData:result['res3']?result['res3']['obj']:{},
                 nowurl:'/tchverifyprocess'
             })
@@ -183,10 +183,11 @@ module.exports = function(router){
                     courseType:2*1,
                     batch:rest['res1']?rest['res1']['obj']:''
                 }
+                console.log(params)
                 api.teaScore(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
+            console.log(result['res2']['obj'])
             res.render('tchImproveProcess',{
                 title:'老师完善流程',
                 trData:result['res2']?result['res2']['obj']:[],
@@ -205,9 +206,11 @@ module.exports = function(router){
                    token:req.session.token,
                    batch:rest['res1']?rest['res1']['obj']:''
                }
+               console.log(params)
                api.teaGroupData(req,params,done)
             }]
         },function(error,result) {
+            console.log(result)
            res.render('tchPanelData',{
                title:'老师小组数据',
                trData:result['res2']?result['res2']['obj']:[],

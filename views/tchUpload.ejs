@@ -67,11 +67,11 @@
                   contentType: false,
                   success: function (result) {
                     if(result.success == 1 && result.code == 200) {
-                        layer.alert(result.msg,{
+                        layer.alert('上传成功',{
                             title:'温馨提示'
                         })
                     }else{
-                        layer.alert(result.msg,{
+                        layer.alert('网络错误,上传失败',{
                             title:'温馨提示'
                         })
                     }

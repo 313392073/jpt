@@ -122,6 +122,9 @@
 .nav-wrapper .nav-box .back-home a:hover {
   opacity: 0.9;
 }
+.nav-wrapper .nav-box .back-home .loginout {
+  margin-right: 5px;
+}
 .sidebar {
   position: absolute;
   left: -215px;
@@ -178,7 +181,8 @@
   color: #a2a4a4;
   font-size: 16px;
 }
-.sidebar .menu .tab li:hover a {
+.sidebar .menu .tab li:hover a,
+.sidebar .menu .tab li.active a {
   color: #00b2b8;
   background-color: #ccf0f1;
 }
@@ -302,6 +306,9 @@
   float: left;
   width: 290px;
   margin-right: 70px;
+}
+.main-wrapper .main-box .content-box .detail-wrapper .detail-list2 video {
+  width: 100%;
 }
 .main-wrapper .main-box .content-box .detail-wrapper .detail-list3 {
   float: left;

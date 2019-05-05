@@ -109,14 +109,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% for(var i=0;i<trData.length;i++) {%>
+                                        <% for(var i=0;i<trData['course_item'].length;i++) {%>
                                             <tr>
-                                                <td><%= trData[i]['user_name']%></td>
-                                                <td><%= trData[i]['称重']%></td>
-                                                <td><%= trData[i]['增菌']%></td>
-                                                <td><%= trData[i]['血浆凝固酶试验']%></td>
-                                                <td><%= trData[i]['消毒']%></td>
-                                                <td><%= trData[i]['革兰氏染色']%></td>
+                                                <td><%= trData['course_item'][i]['user_loginname']%></td>
+                                                <td><%= trData['course_item'][i]['title']%></td>
+                                                <td><%= trData['course_item'][i]['增菌']%></td>
+                                                <td><%= trData['course_item'][i]['血浆凝固酶试验']%></td>
+                                                <td><%= trData['course_item'][i]['消毒']%></td>
+                                                <td><%= trData['course_item'][i]['革兰氏染色']%></td>
+                                                <td><%= trData['course_item'][i]['item_score']%></td>
                                             </tr>
                                         <%}%>
                                     </tbody>

@@ -25,8 +25,9 @@
 <body>
   <%- include("share/header") %>
     <div class="main-wrapper">
-      <div class="main-box">
         <%- include("share/stumenu")%>
+      <div class="main-box">
+   
         <div class="content-box">
                 <div class="step-box clearfix">
                     <input type="hidden" id="tokend" value="<%= token%>">
@@ -41,7 +42,7 @@
                         <div class="drag-box"></div>
                     </div>
                     <div class="list"><label>视频标题：</label><input type="text" class="video-title"></div>
-                    <input type="submit" value="提交" id="sbtn">
+                    <input class="btns" type="submit" value="提交" id="sbtn">
                 </div>
              </div>
       </div>

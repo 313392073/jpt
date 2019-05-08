@@ -10,7 +10,7 @@ module.exports = function(router){
             },
             res2:['res1',function (done, rest){
                 let obj = {
-                    batch:rest['res1']['obj'],
+                    batch:rest['res1']?rest['res1']['obj']:'',
                     type:0*1,
                     token:req.session.token
                 }
@@ -22,8 +22,8 @@ module.exports = function(router){
                 res.send("网络错误")
             }else{
                 res.render('stuBeforeClass',{
-                    title:'学生课前习题',
-                    courseList:result['res2']['obj'],
+                    title:'课前习题',
+                    courseList:result['res2']?result['res2']['obj']:[],
                     makeOrder:base.makeOrder,
                     batch:result['res1']?result['res1']['obj']:'',
                     token:req.session.token,
@@ -51,16 +51,15 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
-            console.log(result['res2']['obj'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{
                 res.render('stuCheckProcess',{
-                    title:'学生检验流程',
+                    title:'检验流程',
                     userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
                     token:req.session.token?req.session.token:'',
                     batch:result['res1']?result['res1']['obj']:'',
-                    dataList:result['res2']['obj'],
+                    dataList:result['res2']?result['res2']['obj']:[],
                     nowurl:'/stucheckprocess',
                     baseurl:base.publicPath
                 })
@@ -87,7 +86,7 @@ module.exports = function(router){
             // console.log(result['res2']['obj'])
             console.log(result['res2']['obj'].sort(base.sortOrder('handled_answer')))
             res.render('stuAnswerProcess',{
-                title:'学生检验流程的答案',
+                title:'检验流程的答案',
                 trData:result['res2']?result['res2']['obj']:[],
                 sortData:result['res2']?result['res2']['obj'].sort(base.sortOrder('handled_answer')):[],
                 nowurl:'/stuanswerprocess'
@@ -109,9 +108,9 @@ module.exports = function(router){
                api.stuSum(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj'])
+            console.log(result['res2'])
            res.render('stuSummarize',{
-               title:'学生总结',
+               title:'总结',
                trData:result['res2']?result['res2']['obj']:[],
                nowurl:'/stusummarize'
            })
@@ -126,7 +125,7 @@ module.exports = function(router){
             }
         },function(error,result) {
            res.render('stuUpload',{
-               title:'学生视频上传',
+               title:'视频上传',
                batch:result['res1']?result['res1']['obj']:'',
                token:req.session.token,
                nowurl:'/stuupload',
@@ -146,12 +145,11 @@ module.exports = function(router){
                    token:req.session.token,
                    batch:rest['res1']?rest['res1']['obj']:''
                }
-               console.log(params)
                api.stuVrList(req,params,done)
             }]
         },function(error,result) {
            res.render('stuDiscuss',{
-               title:'学生讨论',
+               title:'讨论',
                trData:result['res2']?result['res2']['obj']:[],
                batch:result['res1']?result['res1']['obj']:'',
                token:req.session.token,
@@ -170,7 +168,7 @@ module.exports = function(router){
             },
             res2:['res1',function (done, rest){
                 let obj = {
-                    batch:rest['res1']['obj'],
+                    batch:rest['res1']?rest['res1']['obj']:'',
                     type:3*1,
                     token:req.session.token
                 }
@@ -178,7 +176,7 @@ module.exports = function(router){
             }]
         },function(error,result) {
             res.render('stuVR',{
-                title:'学生VR实验',
+                title:'VR实验',
                 userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
                 trData:result['res2']?result['res2']['obj']:[],
                 batch:result['res1']?result['res1']['obj']:'',
@@ -206,7 +204,7 @@ module.exports = function(router){
         },function(error,result) {
             console.log(result['res2'])
             res.render('stuVideo',{
-                title:'学生视频',
+                title:'视频',
                 trData:result['res2']?result['res2']['obj']:[],
                 nowurl:'/stuvideo'
             })
@@ -222,7 +220,7 @@ module.exports = function(router){
             },
         },function(error,result) {
             res.render('stuAfterClass',{
-                title:'学生课后',
+                title:'课后',
                 batch:result['res1']?result['res1']['obj']:'',
                 token:req.session.token,
                 nowurl:'/stuaftercalss',
@@ -247,9 +245,9 @@ module.exports = function(router){
                 api.getStubeforeClass(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj'])
+            console.log(result['res2'])
             res.render('stuImproveProcess',{
-                title:'学生完善流程',
+                title:'完善流程',
                 userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
                 token:req.session.token?req.session.token:'',
                 batch:result['res1']?result['res1']['obj']:'',

@@ -1,9 +1,9 @@
 .sidebar {
-  position: absolute;
-  left: -215px;
   width: 180px;
   background-color: #eef2f2;
   padding-bottom: 15px;
+  margin-right: 20px;
+  float: left;
 }
 .sidebar .back {
   height: 60px;

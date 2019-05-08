@@ -2,7 +2,7 @@
 @import "ctool/common.css";
 .header-wrapper {
   width: 100%;
-  min-width: 1415px;
+  min-width: 1200px;
   height: 104px;
   margin: 0 auto;
   background-color: #00b2b8;
@@ -83,7 +83,7 @@
 }
 .nav-wrapper {
   width: 100%;
-  min-width: 1415px;
+  min-width: 1200px;
   height: 40px;
   line-height: 40px;
   background-color: #ccf0f1;
@@ -122,12 +122,15 @@
 .nav-wrapper .nav-box .back-home a:hover {
   opacity: 0.9;
 }
+.nav-wrapper .nav-box .back-home .loginout {
+  margin-right: 5px;
+}
 .sidebar {
-  position: absolute;
-  left: -215px;
   width: 180px;
   background-color: #eef2f2;
   padding-bottom: 15px;
+  margin-right: 20px;
+  float: left;
 }
 .sidebar .back {
   height: 60px;
@@ -178,26 +181,25 @@
   color: #a2a4a4;
   font-size: 16px;
 }
-.sidebar .menu .tab li:hover a {
+.sidebar .menu .tab li:hover a,
+.sidebar .menu .tab li.active a {
   color: #00b2b8;
   background-color: #ccf0f1;
 }
 .main-wrapper {
-  width: 100%;
-  min-width: 1200px;
+  width: 1200px;
   margin: 35px auto;
 }
 .main-wrapper .main-box {
-  width: 1200px;
-  margin: 0 auto;
-  position: relative;
+  float: left;
+  width: 1000px;
 }
 .main-wrapper .main-box .left-sidebar {
   float: left;
-  width: 315px;
-  margin-right: 35px;
+  width: 300px;
+  margin-right: 15px;
   background-color: #eef2f2;
-  padding: 30px;
+  padding: 25px;
 }
 .main-wrapper .main-box .left-sidebar > h3 {
   font-size: 16px;
@@ -223,7 +225,7 @@
 }
 .main-wrapper .main-box .content-box {
   float: left;
-  width: 850px;
+  width: 685px;
 }
 .main-wrapper .main-box .content-box .list {
   margin-bottom: 5px;

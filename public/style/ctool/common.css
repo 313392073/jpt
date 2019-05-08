@@ -3,7 +3,6 @@ html {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
     height: 100%;
-    min-width: 1415px;
   }
   body {
     margin: 0;
@@ -12,8 +11,7 @@ html {
     line-height: 1.5;
     color: #333;
     background-color: #fff;
-    min-height: 100%;
-    min-width: 1860px;
+    box-sizing: border-box;
   }
   article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
     display: block;

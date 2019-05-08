@@ -25,8 +25,8 @@
 <body>
   <%- include("share/header") %>
     <div class="main-wrapper">
+    <%- include("share/tchmenu")%>
       <div class="main-box">
-        <%- include("share/tchmenu")%>
         <div class="content-box">
                 <div class="total-box clearfix">
                     <p class="desc">学习正确率统计</p>
@@ -49,7 +49,7 @@
                                     <th>姓名</th>
                                     <% var arr = Object.keys(trData?trData['course_right_lv']:{})%>
                                     <%for(var i=0;i<arr.length;i++){%>
-                                    <th>第<%= arr[i]%>题</th>
+                                    <th>第<%= i+1%>题</th>
                                     <%}%>
                                     <th>得分</th>
                                 </tr>
@@ -60,9 +60,9 @@
                                 <%for(var i=0;i<dataDetail.length;i++) {%>
                                 <tr>
                                     <td><%= dataDetail[i]['userName']%></td>
-                                    <td><%= dataDetail[i]['1']?(dataDetail[i]['1'] == 0?'√':'×'):'x'%></td>
-                                    <td><%= dataDetail[i]['2']?(dataDetail[i]['2'] == 0?'√':'×'):'x'%></td>
-                                    <td><%= dataDetail[i]['3']?(dataDetail[i]['3'] == 0?'√':'×'):'x'%></td>
+								<%for(var j=1;j<arr.length+1;j++){%>
+									<td><%= dataDetail[i] && dataDetail[i][j] == 0?'√':'×'%></td>
+								<%}%>
                                     <td class="score"><%= dataDetail[i]['sumscore']%></td>
                                 </tr>
                                 <%}%>
@@ -79,10 +79,11 @@
         var colors = ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#8d98b3','#e5cf0d','#97b552','#95706d']
         Object.keys(obj).forEach(function(item,index) {
             var datas = [
-                { value: (100 - obj[item]*1)*1, name: '总占比例' },
-                { value: obj[item], name: '正确率' }
+                { value: 100-obj[item], name: '错误率' },
+                { value: obj[item]*1, name: '正确率' }
             ]
-            getInit('echart'+(index+1)*1, ['#cccccc', colors[index]], '第'+index+'题', getData(datas));
+				console.log(datas)
+            getInit('echart'+(index+1)*1, ['#cccccc', colors[index]], index, getData(datas));
         })
         function getInit(obj,color,titile,datas){
             var myChart = echarts.init(document.getElementById(obj));
@@ -100,7 +101,7 @@
                 },
                 series: [
                     {
-                        name: titile,
+                        name: titile==1?"国际理解":"生化特性",
                         type: 'pie',
                         radius: '80%',
                         center: ['50%', '50%'],
@@ -114,8 +115,20 @@
                         },
                         label:{
                             show:true,
-                            position:'inside',
-                            align:'bottom'
+                            position:'outer',
+                            formatter: "{b}{c}({d}%)",//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
+                            textStyle : {                   
+                                color:'#696767',
+                                align:'center',
+                                verticalAlign:'middle',
+                                fontWeight:'normal',
+                                fontSize:14
+                            }
+                        },
+                        labelLine:{
+                            show:true,
+                            length:5,
+                            length2:10
                         },
                         hoverOffset:0,
                         hoverAnimation:false

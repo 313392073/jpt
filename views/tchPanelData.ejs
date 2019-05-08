@@ -25,8 +25,9 @@
 <body>
   <%- include("share/header") %>
     <div class="main-wrapper">
-      <div class="main-box">
         <%- include("share/tchmenu")%>
+      <div class="main-box">
+       
         <div class="content-box">
             <table>
                 <thead>
@@ -35,19 +36,23 @@
                         <th>称重</th>
                         <th>增菌</th>
                         <th>消毒</th>
-                        <th>血浆凝固酶试验</th>
-                        <th>革兰氏染色</th>
+                        <th>分离</th>
+                        <th>初步鉴定</th>
+                        <th>确认鉴定1革兰氏染色</th>
+                        <th>确认鉴定2血浆凝固酶试验</th>
                     </tr>
                 </thead>
                 <tbody>
                     <%for(var i=0;i<trData.length;i++) {%>
                         <tr>
-                            <td>第<%= trData[i]['group_id']%>组</td>
-                            <td><%= trData[i]['称重']%></td>
-                            <td><%= trData[i]['增菌']%></td>
-                            <td><%= trData[i]['消毒']%></td>
-                            <td><%= trData[i]['血浆凝固酶试验']%></td>
-                            <td><%= trData[i]['革兰氏染色']%></td>
+                            <td>第<%= i+1%>组</td>
+                            <td><%= trData[i]['增菌']?trData[i]['增菌']:0 %></td>
+                            <td><%= trData[i]['消毒']?trData[i]['消毒']:0 %></td>
+                            <td><%= trData[i]['称重']?trData[i]['称重']:0 %></td>
+                            <td><%= trData[i]['分离']?trData[i]['分离']:0 %></td>
+                            <td><%= trData[i]['初步鉴定']?trData[i]['初步鉴定']:0 %></td>
+                            <td><%= trData[i]['确认鉴定1革兰氏染色']?trData[i]['确认鉴定1革兰氏染色']:0 %></td>
+                            <td><%= trData[i]['确认鉴定2血浆凝固酶试验']?trData[i]['确认鉴定2血浆凝固酶试验']:0 %></td>
                         </tr>
                     <%}%>
                 </tbody>

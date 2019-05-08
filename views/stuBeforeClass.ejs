@@ -25,9 +25,10 @@
 <body>
   <%- include("share/header") %>
     <div class="main-wrapper">
+      <%- include("share/stumenu")%>
       <div class="main-box">
         <input type="hidden" name="batch" id="batch" value="<%= batch%>">
-        <%- include("share/stumenu")%>
+        
           <div class="left-sidebar">
             <h3>课前习题</h3>
             <input type="hidden" value="<%= token%>" id="tokend">

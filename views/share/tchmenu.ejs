@@ -29,7 +29,7 @@
             <li <%= nowurl == '/tchvr' ? 'class = active': ''%>>
                 <a href="/tchvr.html">VR实验</a>
             </li>
-            <li <%= nowurl == '/tchupload' ? 'class = active': ''%>>
+            <li <%= nowurl == '/tchupload' ||  nowurl == '/tchvideo' ? 'class = active': ''%>>
                 <a href="/tchupload.html">上传视频</a>
             </li>
             <li <%= nowurl == '/tchregroup' ? 'class = active': ''%>>
@@ -38,7 +38,7 @@
             <li <%= nowurl == '/tchpaneldata' ? 'class = active': ''%>>
                 <a href="/tchpaneldata.html">小组数据</a>
             </li>
-            <li <%= nowurl == '/tchvrcheck' ? 'class = active': ''%>>
+            <li <%= nowurl == '/tchvrcheck' ? 'class = active': ''%> style="display: none">
                 <a href="/tchvrcheck.html">VR考核</a>
             </li>
             <li <%= nowurl == '/tchvideoreview' ? 'class = active': ''%>>

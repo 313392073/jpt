@@ -25,8 +25,9 @@
 <body>
   <%- include("share/header") %>
     <div class="main-wrapper">
+            <%- include("share/tchmenu")%>
       <div class="main-box">
-        <%- include("share/tchmenu")%>
+       
         <div class="content-box">
                 <div class="step-box clearfix">
                     <input type="hidden" id="tokend" value="<%= token%>">
@@ -41,7 +42,8 @@
                         <div class="drag-box"></div>
                     </div>
                     <div class="list"><label>视频标题：</label><input type="text" class="video-title"></div>
-                    <input type="submit" value="提交" id="sbtn">
+                    <input class="btns" type="submit" value="提交" id="sbtn">
+                    <button class="btns" onclick="getDetail()">查看视频列表</button>
                 </div>
              </div>
       </div>
@@ -79,6 +81,11 @@
               });
         }
       }) 
+
+      function getDetail() {
+          console.log(25)
+          window.location.href="/tchvideo.html"
+      }
     </script>
 </body>
 

@@ -35,9 +35,9 @@ module.exports = function(router){
                 api.teaScore(req,params,done)
              }]
          },function(error,result) {
-             console.log(result['res2']['obj']['course_item'].length)
+             console.log(result['res2'])
             res.render('tchVR',{
-                title:'老师VR实验',
+                title:'VR实验',
                 trData:result['res2']?result['res2']['obj']:[],
                 nowurl:'/tchvr'
             })
@@ -81,9 +81,9 @@ module.exports = function(router){
                api.teaClassList(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj'])
+            console.log(result['res2'])
            res.render('tchBeforeClass',{
-               title:'老师课前',
+               title:'课前习题',
                trData:result['res2']?result['res2']['obj']:[],
                nowurl:'/tchbeforeclass'
            })
@@ -104,9 +104,9 @@ module.exports = function(router){
                api.teaClassList(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
+            console.log(result['res2']['obj'])
            res.render('tchCorrectRate',{
-               title:'老师课前习题正确率',
+               title:'课前习题-正确率统计',
                trData:result['res2']?result['res2']['obj']:[],
                nowurl:'/tchcorrectrate'
            })
@@ -138,7 +138,7 @@ module.exports = function(router){
         },function(error,result) {
             console.log(result['res3'])
             res.render('tchVerifyProcess',{
-                title:'老师检验流程测试结果',
+                title:'检验流程',
                 step:result['res2']?result['res2']['obj'].sort(base.sortOrder('answer')):[],
                 trData:result['res3']?result['res3']['obj']:{},
                 nowurl:'/tchverifyprocess'
@@ -163,7 +163,7 @@ module.exports = function(router){
         },function(error,result) {
             console.log(result['res2'])
             res.render('tchAfterClass',{
-                title:'老师课后',
+                title:'课后报告',
                 trData:result['res2']?result['res2']['obj']:[],
                 nowurl:'/tchafterclass'
             })
@@ -187,9 +187,8 @@ module.exports = function(router){
                 api.teaScore(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj'])
             res.render('tchImproveProcess',{
-                title:'老师完善流程',
+                title:'完善流程',
                 trData:result['res2']?result['res2']['obj']:[],
                 nowurl:'/tchimproveprocess'
             })
@@ -210,9 +209,9 @@ module.exports = function(router){
                api.teaGroupData(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj'])
+            console.log(result['res2'])
            res.render('tchPanelData',{
-               title:'老师小组数据',
+               title:'小组数据',
                trData:result['res2']?result['res2']['obj']:[],
                nowurl:'/tchpaneldata'
            })
@@ -235,7 +234,7 @@ module.exports = function(router){
              }]
          },function(error,result) {
             res.render('tchRegroup',{
-                title:'老师重新分组',
+                title:'分组',
                 trData:result['res2']?result['res2']['obj']:[],
                 token:req.session.token,
                 nowurl:'/tchregroup',
@@ -252,13 +251,36 @@ module.exports = function(router){
              }
          },function(error,result) {
             res.render('tchUpload',{
-                title:'老师文件上传',
+                title:'上传视频',
                 batch:result['res1']?result['res1']['obj']:'',
                 token:req.session.token,
                 nowurl:'/tchupload',
                 baseurl:base.publicPath
             })
          })
+    })
+
+    //学生视频列表
+    router.get('/tchvideo.html',function(req,res){
+        async.auto({
+            res1:function(done){
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+                let params={
+                    batch:rest['res1']?rest['res1']['obj']:'',
+                    token:req.session.token
+                }
+                api.getUploadList(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result['res2'])
+            res.render('tchVideo',{
+                title:'视频',
+                trData:result['res2']?result['res2']['obj']:[],
+                nowurl:'/tchvideo'
+            })
+        })
     })
 
      // 老师视频点评
@@ -272,13 +294,12 @@ module.exports = function(router){
                     token:req.session.token,
                     batch:rest['res1']?rest['res1']['obj']:''
                  }
-                 console.log(params)
                 api.teaVideoComment(req,params,done)
              }]
          },function(error,result) {
-             console.log(result['res2']['obj'])
+             console.log(result['res2'])
             res.render('tchVideoReview',{
-                title:'老师视频点评',
+                title:'视频点评',
                 trData:result['res2']?result['res2']['obj']:[],
                 nowurl:'/tchvideoreview'
             })
@@ -289,7 +310,7 @@ module.exports = function(router){
     // 老师VR考核
     router.get('/tchvrcheck.html',function(req,res){
         res.render('tchvrCheck',{
-            title:'老师小组数据',
+            title:'VR考核',
             nowurl:'/tchvrcheck'
         })
     })
@@ -307,9 +328,5 @@ module.exports = function(router){
         res.render('tchSummarize',{
             title:'老师总结'
         })
-    })
-
-    router.get('/exlce',function(req,res) {
-        res.render('exlce')
     })
 }

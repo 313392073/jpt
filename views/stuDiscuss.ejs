@@ -23,8 +23,9 @@
 <body>
     <%- include("share/header") %>
         <div class="main-wrapper">
+            <%- include("share/stumenu")%>
             <div class="main-box">
-                <%- include("share/stumenu")%>
+             
                     <div class="content-box">
                         <input type="hidden" value="<%= token%>" id="tokend">
                         <input type="hidden" value="<%= batch%>" id="batch">
@@ -32,28 +33,32 @@
                             <thead>
                                 <tr>
                                     <th> 姓名 </th>
-                                    <th> 称重 </th>
-                                    <th> 增菌 </th>
                                     <th> 消毒 </th>
-                                    <th> 血浆凝固酶试验 </th>
-                                    <th> 革兰氏染色 </th>
+                                    <th> 增菌 </th>
+                                    <th> 称重 </th>
+                                    <th> 分离 </th>
+                                    <th> 初步鉴定 </th>
+                                    <th> 确认鉴定1革兰氏染色 </th>
+                                    <th> 确认鉴定2血浆凝固酶试验 </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <%for(var i=0;i<trData['recordlist'].length;i++){%>
                                 <tr>
                                     <td><%= trData['recordlist'][i]['user_name']%></td>
-                                    <td><%= trData['recordlist'][i]['称重']%></td>
-                                    <td><%= trData['recordlist'][i]['增菌']%></td>
-                                    <td><%= trData['recordlist'][i]['消毒']%></td>
-                                    <td><%= trData['recordlist'][i]['血浆凝固酶试验']%></td>
-                                    <td><%= trData['recordlist'][i]['革兰氏染色']%></td>
+                                    <td><%= trData['recordlist'][i]['消毒'] || '-'%></td>
+                                    <td><%= trData['recordlist'][i]['增菌'] || '-'%></td>
+                                    <td><%= trData['recordlist'][i]['称重'] || '-'%></td>
+                                    <td><%= trData['recordlist'][i]['分离'] || '-'%></td>
+                                    <td><%= trData['recordlist'][i]['初步鉴定'] || '-'%></td>
+                                    <td><%= trData['recordlist'][i]['确认鉴定1革兰氏染色'] || '-'%></td>
+                                    <td><%= trData['recordlist'][i]['确认鉴定2血浆凝固酶试验'] || '-'%></td>
                                 </tr>
                                 <%}%>
                             </tbody>
                         </table>
                         <div class="comments">
-                            <p class="file-report">评论<span><%= trData['comments'].length%></span></p>
+                            <p class="file-report">评论区</p>
                             <div class="com-box">
                                 <div class="header-icon">
                                     <img src="./images/icon/header.png" alt="头像">

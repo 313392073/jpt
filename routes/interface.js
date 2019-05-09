@@ -241,5 +241,14 @@ module.exports = {
     },
     getUploadList:function(req,params,done) {
         urlReq('GET','/v1/api/comm/uploadlist',params,req,done)
+    },
+    getvideo:function(req,params,done) {
+        urlReq('GET','/v1/api/stu/comments/getvideo',params,req,done)
+    },
+    getZan:function(req,params,done) {
+        urlReq('GET','/v1/api/comm/att/like',params,req,done)
+    },
+    getComment:function(req,params,done) {
+        urlReq('POST','/v1/api/stu/comments/video',params,req,done)
     }
 }

@@ -32,7 +32,11 @@
     
           <div class="content-box">
             <div class="main">
-              <video src="/img/01.mp4" controls="controls"></video>
+              <%if(mgs['upload_net_url']) {%>
+              <video src="<%= mgs['upload_net_url']%>" controls="controls"></video>
+              <%} else {%>
+                <p style="font-size: 16px;color: red;height: 550px;line-height: 550px;background-color: #f4f4f4;text-align: center;width: 100%">老师端尚未上传教学视频</p>
+              <%}%>
             </div>
             <div class="comments">
               <p class="file-report">填写报告</p>

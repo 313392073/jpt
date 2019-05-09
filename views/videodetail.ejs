@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <link rel="stylesheet" href="/style/videodetail.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <!--[if !IE]> -->
+  <script type="text/javascript" src="/js/tool/jquery.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]>
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+  <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <script type="text/javascript" src="/js/tool/layer/layer.js"></script>
+</head>
+
+<body>
+  <%- include("share/header") %>
+    <div class="main-wrapper">
+        <%- include("share/stumenu")%>
+      <div class="main-box">
+          <%if(trData['upload_net_url']) {%>
+            <video src="<%= trData['upload_net_url']%>" controls="controls"></video>
+          <%} else {%>
+            <p style="font-size: 16px;color: red;height: 550px;line-height: 550px;background-color: #f4f4f4;text-align: center;width: 100%">老师端尚未上传教学视频</p>
+          <%}%>
+          <div class="comments">
+              <p class="file-report">评论区</p>
+              <div class="com-box">
+                  <div class="header-icon">
+                      <img src="./images/icon/header.png" alt="头像">
+                  </div>
+                  <div class="comments-main">
+                      <textarea name="commented" id="commented" cols="30" rows="3" placeholder="我要评论..."></textarea>
+                  </div>
+              </div>
+          </div>
+          <div class="btn-box">
+              <button class="sbtn">发布评论</button>
+          </div>
+          <div class="comments-list">
+              <%for(var i=0;i<trData['comments'].length;i++){%>
+              <div class="list">
+                  <div class="header-icon">
+                      <img src="<%= trData['comments'][i]['userHeadImage']%>" alt="<%= trData['comments'][i]['userLoginname']%>">
+                  </div>
+                  <div class="comments-main">
+                      <span><%= trData['comments'][i]['userLoginname']%></span>
+                      <p><%= trData['comments'][i]['comment']%> <a href="javascript:void(0)"><i class="iconfont icon-dianzan"></i><%= trData['comments'][i]['likesUserNum']%></a></p>
+                  </div>
+              </div>
+              <%}%>
+          </div>
+      </div>
+    </div>
+</body>
+
+</html>

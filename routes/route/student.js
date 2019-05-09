@@ -210,6 +210,73 @@ module.exports = function(router){
             })
         })
     })
+
+    //学生视频
+    router.get('/videodetail.html',function(req,res){
+        async.auto({
+            res1:function(done){
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+                let params={
+                    batch:rest['res1']?rest['res1']['obj']:'',
+                    token:req.session.token
+                }
+                api.getUploadList(req,params,done)
+            }]
+        },function(error,result) {
+            var attid = req.query.attid;
+            var datas = {}
+            if(result['res2'] && result['res2']['obj'].length>0) {
+                result['res2']['obj'].forEach(function(item,index) {
+                    if(item.attid == attid) {
+                        datas = item;
+                    }
+                })
+            }
+            res.render('videodetail',{
+                title:'视频',
+                trData:datas,
+                nowurl:'/stuvideo'
+            })
+        })
+    })
+
+    router.post('/getcomment',function(req,res) {
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+                let params = {
+                    batch:rest['res1']?rest['res1']['obj']:'',
+                    token:req.session.token,
+                    att:res.body.att
+                }
+                api.getComment(req,params,done)
+            }]
+        },function(error,result) {
+            console.log(result)
+            res.send(result)
+        })
+    })
+    //点赞
+    router.post('/getzan',function(req,res) {
+        async.auto({
+            res1:function(done) {
+                console.log(req.body)
+                let params={
+                    attid:req.body.attid*1,
+                    token:req.session.token
+                }
+                console.log(params)
+                api.getZan(req,params,done)
+            }
+        },function(error,result) {
+            console.log(result)
+            res.send(result)
+        })
+    })
     
 
     // 学生课后
@@ -218,13 +285,22 @@ module.exports = function(router){
             res1:function(done) {
                 api.getBatch(req,done)
             },
+            res2:['res1',function(done,rest) {
+                let params = {
+                    token:req.session.token,
+                    batch:rest['res1']?rest['res1']['obj']:''
+                }
+                api.getvideo(req,params,done)
+            }]
         },function(error,result) {
+            console.log(result)
             res.render('stuAfterClass',{
                 title:'课后',
                 batch:result['res1']?result['res1']['obj']:'',
                 token:req.session.token,
                 nowurl:'/stuaftercalss',
-                baseurl:base.publicPath
+                baseurl:base.publicPath,
+                mgs:result['res2']?result['res2']['obj']:{}
             })
         })
     })

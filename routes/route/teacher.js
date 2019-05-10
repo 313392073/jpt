@@ -19,6 +19,22 @@ module.exports = function(router){
         })
     })
 
+    router.get('/getstart',function(req,res) {
+        async.auto({
+            res1:function(done) {
+                api.getBatch(req,done)
+            },
+            res2:['res1',function(done,rest) {
+                let params = {
+                    token:req.session.token,
+                    batch:rest['res1']?rest['res1']['obj']:''
+                }
+                api.getstart(req,params,done)
+            }]
+        },function(error,result) {
+            res.send(result['res2']?result['res2']:{})
+        })
+    })
 
      // VR实验-老师端
      router.get('/tchvr.html',function(req,res){
@@ -233,6 +249,7 @@ module.exports = function(router){
                 api.teaGroupRepart(req,params,done)
              }]
          },function(error,result) {
+             console.log(result['res2'])
             res.render('tchRegroup',{
                 title:'分组',
                 trData:result['res2']?result['res2']['obj']:[],

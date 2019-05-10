@@ -250,5 +250,8 @@ module.exports = {
     },
     getComment:function(req,params,done) {
         urlReq('POST','/v1/api/stu/comments/video',params,req,done)
+    },
+    getstart:function(req,params,done) {
+        urlReq('POST','/v1/api/tea/course/restart',params,req,done)
     }
 }

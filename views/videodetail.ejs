@@ -33,6 +33,9 @@
             <p style="font-size: 16px;color: red;height: 550px;line-height: 550px;background-color: #f4f4f4;text-align: center;width: 100%">老师端尚未上传教学视频</p>
           <%}%>
           <div class="comments">
+                <input type="hidden" value="<%= token%>" id="tokend">
+              <input type="hidden" id="attid" value="<%= attid%>">
+              <input type="hidden" id="batch" value="<%= batch%>">
               <p class="file-report">评论区</p>
               <div class="com-box">
                   <div class="header-icon">
@@ -61,6 +64,52 @@
           </div>
       </div>
     </div>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript">
+        $(".sbtn").on("click",function() {
+                var attid = $.trim($("#attid").val())?$.trim($("#attid").val())*1:0
+                var batch = $.trim($("#batch").val())
+                var tokend = $.trim($("#tokend").val())
+                var commented = $.trim($("#commented").val())
+                if(commented == '' || commented == null) {
+                    layer.alert('请输入报告内容',{
+                        title:'温馨提示'
+                    })
+                }else{
+                    let obj = {
+                        "attid":attid*1,
+                        "comment":commented,
+                        "batch":batch
+                    }
+                    $.ajax({
+                        type:'POST',
+                        url:'<%= baseurl%>/v1/api/stu/comments/video?token='+tokend+"&batch="+batch,
+                        dataType:'json',
+                        contentType: "application/json",
+                        data:JSON.stringify(obj),
+                        success:function(res) {
+                            console.log(res)
+                           if(res.success == 1 && res.code == 200) {
+                                layer.alert(res.msg,{
+                                    title:'温馨提示',
+                                    yes:function(){
+                                        window.location.reload()
+                                    }
+                                })
+                           }else{
+                                layer.alert(res.msg,{
+                                    title:'温馨提示',
+                                    yes:function(){
+                                        window.location.reload()
+                                    }
+                                })
+                           }
+                            
+                        }
+                    })
+                }
+            })
+    </script>
 </body>
 
 </html>

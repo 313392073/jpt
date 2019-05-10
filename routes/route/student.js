@@ -222,6 +222,7 @@ module.exports = function(router){
                     batch:rest['res1']?rest['res1']['obj']:'',
                     token:req.session.token
                 }
+                console.log(params)
                 api.getUploadList(req,params,done)
             }]
         },function(error,result) {
@@ -234,10 +235,15 @@ module.exports = function(router){
                     }
                 })
             }
+            console.log(datas)
             res.render('videodetail',{
                 title:'视频',
                 trData:datas,
-                nowurl:'/stuvideo'
+                nowurl:'/stuvideo',
+                baseurl:base.publicPath,
+                token:req.session.token?req.session.token:'',
+                attid:attid,
+                batch:result['res1']?result['res1']['obj']:'',
             })
         })
     })
@@ -251,8 +257,13 @@ module.exports = function(router){
                 let params = {
                     batch:rest['res1']?rest['res1']['obj']:'',
                     token:req.session.token,
-                    att:res.body.att
+                    att:{
+                        attid:req.body.attid?req.body.attid*1:0,
+                        batch:rest['res1']?rest['res1']['obj']:'',
+                        comment:req.body.comment?req.body.comment:''
+                    }
                 }
+                console.log(params)
                 api.getComment(req,params,done)
             }]
         },function(error,result) {

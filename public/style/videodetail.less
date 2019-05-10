@@ -9,59 +9,56 @@
     .main-box{
         float: left;
         width: 1000px;
-        .main-box{
+        &>video{
             width: 100%;
-            &>video{
-                width: 100%;
+        }
+        .comments{
+            width: 100%;
+            .file-report{
+                line-height: 40px;
+                color: #333333;
+                font-size: 20px;
+                margin: 15px 0;
             }
-            .comments{
-                width: 100%;
-                .file-report{
-                    line-height: 40px;
-                    color: #333333;
-                    font-size: 20px;
-                    margin: 15px 0;
+            .com-box{
+                overflow: hidden;
+                .header-icon{
+                    width: 60px;
+                    float: left;
                 }
-                .com-box{
-                    overflow: hidden;
-                    .header-icon{
-                        width: 60px;
-                        float: left;
-                    }
-                    .comments-main{
-                        float: left;
-                        width: 940px;
-                        textarea{
-                            border: none;
-                            width: 100%;
-                            height: 100%;
-                            box-sizing: border-box;
-                            padding: 10px;
-                            color: #999999;
-                            border: 1px solid #ddd;
-                            border-radius: 4px;
-                        }
+                .comments-main{
+                    float: left;
+                    width: 940px;
+                    textarea{
+                        border: none;
+                        width: 100%;
+                        height: 100%;
+                        box-sizing: border-box;
+                        padding: 10px;
+                        color: #999999;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
                     }
                 }
             }
-            .btn-box{
-                margin: 25px auto;
-                text-align: center;
-                button{
-                    display: inline-block;
-                    width: 102px;
-                    height: 36px;
-                    line-height: 36px;;
-                    background-color: #ff7900;
-                    color: #ffffff;
-                    font-size: 18px;
-                    border: none;
-                    border-radius: 18px;
-                    outline: none;
-                    cursor: pointer;
-                    &:hover{
-                        opacity: 0.8;
-                    }
+        }
+        .btn-box{
+            margin: 25px auto;
+            text-align: center;
+            button{
+                display: inline-block;
+                width: 102px;
+                height: 36px;
+                line-height: 36px;;
+                background-color: #ff7900;
+                color: #ffffff;
+                font-size: 18px;
+                border: none;
+                border-radius: 18px;
+                outline: none;
+                cursor: pointer;
+                &:hover{
+                    opacity: 0.8;
                 }
             }
         }

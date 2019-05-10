@@ -36,7 +36,7 @@
                         <thead>
                         <tr>
                             <th>学生</th>
-                            <th class="scored">得分<b class="operate-arrow"></b><span class="up"></span><span class="down"></span></th>
+                            <th class="scored">得分<b class="operate-arrow"><span class="up"></span><span class="down"></span></b></th>
                         </tr>
                         </thead>
                         <tbody id="sortData">
@@ -227,10 +227,10 @@
                 }
             };
         }
-        $(".up").on("click",function() {
-            if(dataArr.length > 0) {
-                var dataArr = $("#hidesortDatas").val();
-                var dataBrr = dataArr.sort(sortBy('score'));
+        $(".down").on("click",function() {
+            var dataArrd = JSON.parse($("#hidesortDatas").val());
+            if(dataArrd.length > 0) {   
+                var dataBrr = dataArrd.sort(sortBy('score'));
                 var str = '';
                 for(var i=0;i<dataBrr.length;i++) {
                     str += "<tr><td>"+dataBrr[i]['user_name']+"</td><td>"+dataBrr[i]['score']+"</td></tr>"
@@ -239,10 +239,10 @@
             }
         })
 
-        $(".down").on("click",function() {
-            if(dataArr.length > 0) {
-                var dataArr = $("#hidesortDatas").val();
-                var dataBrr = dataArr.sort(sortDown('score'));
+        $(".up").on("click",function() {
+            var dataArrd = JSON.parse($("#hidesortDatas").val());
+            if(dataArrd.length > 0) {
+                var dataBrr = dataArrd.sort(sortDown('score'));
                 var str = '';
                 for(var i=0;i<dataBrr.length;i++) {
                     str += "<tr><td>"+dataBrr[i]['user_name']+"</td><td>"+dataBrr[i]['score']+"</td></tr>"

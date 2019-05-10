@@ -78,16 +78,58 @@
                                     <img src="<%= trData['comments'][i]['userHeadImage']%>" alt="<%= trData['comments'][i]['userLoginname']%>">
                                 </div>
                                 <div class="comments-main">
+                                    <% var arr = trData['comments']?trData['comments'][i]['likesUserLoginname'].split(','):[]%>
+                                    <% var flag = false %>
+                                    <% var userLoginname = userLoginname%>
+                                    <%if(arr.length>0) {%>
+                                        <% for(var k=0;k<arr.length;k++) {%>
+                                            <% if(arr[k] && (arr[k] == userLoginname)) {%>
+                                            <% flag = true%>
+                                            <%}%>
+                                        <%}%>
+                                    <%}%>
                                     <span><%= trData['comments'][i]['userLoginname']%></span>
-                                    <p><%= trData['comments'][i]['comment']%> <a href="javascript:void(0)"><i class="iconfont icon-dianzan"></i><%= trData['comments'][i]['likesUserNum']%></a></p>
+                                    <p><%= trData['comments'][i]['comment']%>
+                                         <a href="javascript:void(0)">
+                                             <i class="iconfont icon-dianzan" <%= !flag?"onclick=getzan(this)":''%> data-ids="<%= trData['comments'][i]['id']%>" <%= flag?"style=color:#999999":''%>></i>
+                                             <%= trData['comments'][i]['likesUserNum']%>
+                                            </a>
+                                        </p>
                                 </div>
                             </div>
                             <%}%>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
         <script type="text/javascript">
+            function getzan(This) {
+                var attid = $.trim($(This).data('ids'))
+                    $.ajax({
+                    url:'/getzan',
+                    type:'post',
+                    dataType:'json',
+                    data:{'attid':attid,"atttype":2*1},
+                    success:function(res) {
+                        console.log(res)
+                        if(res && res.success == 1 && res.code == 200) {
+                            layer.alert("点赞成功，请勿再赞",{
+                                    title:'温馨提示',
+                                    yes:function(){
+                                        window.location.reload()
+                                    }
+                                })
+                            }else{
+                                layer.alert("网络错误，请稍后再试",{
+                                    title:'温馨提示',
+                                    yes:function(){
+                                        window.location.reload()
+                                    }
+                                })
+                        }
+                    }
+                })
+            }
             $(".sbtn").on("click",function() {
                 var tokend = $.trim($("#tokend").val())
                 var batch = $.trim($("#batch").val())

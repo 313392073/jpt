@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>
+  </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <link rel="stylesheet" href="/style/tchVideoReview.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <!--[if !IE]> -->
+  <script type="text/javascript" src="/js/tool/jquery.js"></script>
+  <!-- <![endif]-->
+  <!--[if IE]>
+        <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+  <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <script type="text/javascript" src="/js/tool/layer/layer.js"></script>
+</head>
+
+<body>
+  <%- include("share/header") %>
+    <div class="main-wrapper">
+        <%- include("share/tchmenu")%>
+      <div class="main-box">
+      
+        <div class="item-box clearfix">
+            <%for(var i=0;i<trData.length;i++) {%>
+            <div class="item">
+                <p class="item-title"><%= trData[i]['user_name']%></p>
+                <p class="item-btns">
+                    <a href="javscript:void(0)" class="btn-zan"><i class="iconfont icon-dianzan"></i><%= trData[i]['likes_user_num']%></a>
+                    <a href="javscript:void(0)"><i class="iconfont icon-xiaoxi"></i><%= trData[i]['look_num']%></a>
+                </p>
+                <p class="item-comment">评论区</p>
+                <%for(var k=0;k<trData[i]['comments'].length;k++) {%>
+                <div class="list">
+                    <div class="header-icon">
+                        <img src="<%= trData[i]['comments'][k]['userHeadImage']%>" alt="<%= trData[i]['comments'][k]['likesUserLoginname']%>">
+                    </div>
+                    <div class="comments-main">
+                        <span><%= trData[i]['comments'][k]['likesUserLoginname']%></span>
+                        <p><%= trData[i]['comments'][k]['comment']%> </p>
+                    </div>
+                </div>
+                <%}%>
+            </div>
+            <%}%>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/js/common.js"></script>
+</body>
+
+</html>

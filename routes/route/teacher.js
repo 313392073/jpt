@@ -51,11 +51,12 @@ module.exports = function(router){
                 api.teaScore(req,params,done)
              }]
          },function(error,result) {
-             console.log(result['res2'])
             res.render('tchVR',{
                 title:'VR实验',
                 trData:result['res2']?result['res2']['obj']:[],
-                nowurl:'/tchvr'
+                nowurl:'/tchvr',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
          })
         
@@ -79,7 +80,9 @@ module.exports = function(router){
            res.render('tchVR',{
                title:'个人成绩',
                trData:result['res2']?result['res2']['obj']:[],
-               nowurl:'/score'
+               nowurl:'/score',
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+               usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
    })
@@ -97,11 +100,12 @@ module.exports = function(router){
                api.teaClassList(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
            res.render('tchBeforeClass',{
                title:'课前习题',
                trData:result['res2']?result['res2']['obj']:[],
-               nowurl:'/tchbeforeclass'
+               nowurl:'/tchbeforeclass',
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+               usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
     })
@@ -120,11 +124,12 @@ module.exports = function(router){
                api.teaClassList(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj'])
            res.render('tchCorrectRate',{
                title:'课前习题-正确率统计',
                trData:result['res2']?result['res2']['obj']:[],
-               nowurl:'/tchcorrectrate'
+               nowurl:'/tchcorrectrate',
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+               usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
     })
@@ -152,12 +157,13 @@ module.exports = function(router){
                 api.teaVr(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res3'])
             res.render('tchVerifyProcess',{
                 title:'检验流程',
                 step:result['res2']?result['res2']['obj'].sort(base.sortOrder('answer')):[],
                 trData:result['res3']?result['res3']['obj']:{},
-                nowurl:'/tchverifyprocess'
+                nowurl:'/tchverifyprocess',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
     })
@@ -177,15 +183,15 @@ module.exports = function(router){
                 api.teaAfterReport(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
             res.render('tchAfterClass',{
                 title:'课后报告',
                 trData:result['res2']?result['res2']['obj']:[],
-                nowurl:'/tchafterclass'
+                nowurl:'/tchafterclass',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
     })
-
 
      // 完善流程-老师端
      router.get('/tchimproveprocess.html',function(req,res){
@@ -206,7 +212,9 @@ module.exports = function(router){
             res.render('tchImproveProcess',{
                 title:'完善流程',
                 trData:result['res2']?result['res2']['obj']:[],
-                nowurl:'/tchimproveprocess'
+                nowurl:'/tchimproveprocess',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
     })
@@ -229,7 +237,9 @@ module.exports = function(router){
            res.render('tchPanelData',{
                title:'小组数据',
                trData:result['res2']?result['res2']['obj']:[],
-               nowurl:'/tchpaneldata'
+               nowurl:'/tchpaneldata',
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
     })
@@ -255,7 +265,9 @@ module.exports = function(router){
                 trData:result['res2']?result['res2']['obj']:[],
                 token:req.session.token,
                 nowurl:'/tchregroup',
-                baseurl:base.publicPath
+                baseurl:base.publicPath,
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
          })
     })
@@ -272,7 +284,9 @@ module.exports = function(router){
                 batch:result['res1']?result['res1']['obj']:'',
                 token:req.session.token,
                 nowurl:'/tchupload',
-                baseurl:base.publicPath
+                baseurl:base.publicPath,
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
          })
     })
@@ -295,7 +309,9 @@ module.exports = function(router){
             res.render('tchVideo',{
                 title:'视频',
                 trData:result['res2']?result['res2']['obj']:[],
-                nowurl:'/tchvideo'
+                nowurl:'/tchvideo',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
     })
@@ -318,7 +334,9 @@ module.exports = function(router){
             res.render('tchVideoReview',{
                 title:'视频点评',
                 trData:result['res2']?result['res2']['obj']:[],
-                nowurl:'/tchvideoreview'
+                nowurl:'/tchvideoreview',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
          })
     })

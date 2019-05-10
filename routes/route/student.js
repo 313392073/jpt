@@ -17,7 +17,6 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(err,result) {
-            console.log(result['res2'])
             if(err == 'Unauthorized ' || err == 'batcherror'){
                 res.send("网络错误")
             }else{
@@ -28,7 +27,9 @@ module.exports = function(router){
                     batch:result['res1']?result['res1']['obj']:'',
                     token:req.session.token,
                     nowurl:'/stubeforeclass',
-                    baseurl:base.publicPath
+                    baseurl:base.publicPath,
+                    userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                    usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
                 })
             }
         })
@@ -57,6 +58,7 @@ module.exports = function(router){
                 res.render('stuCheckProcess',{
                     title:'检验流程',
                     userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                    usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):'',
                     token:req.session.token?req.session.token:'',
                     batch:result['res1']?result['res1']['obj']:'',
                     dataList:result['res2']?result['res2']['obj']:[],
@@ -79,7 +81,6 @@ module.exports = function(router){
                     token:req.session.token,
                     batch:rest['res1']?rest['res1']['obj']:''
                 }
-                console.log(params)
                api.stuVr(req,params,done)
             }]
         },function(error,result) {
@@ -89,7 +90,9 @@ module.exports = function(router){
                 title:'检验流程的答案',
                 trData:result['res2']?result['res2']['obj']:[],
                 sortData:result['res2']?result['res2']['obj'].sort(base.sortOrder('handled_answer')):[],
-                nowurl:'/stuanswerprocess'
+                nowurl:'/stuanswerprocess',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
     })
@@ -108,11 +111,13 @@ module.exports = function(router){
                api.stuSum(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
+            console.log(result['res2']['obj']['courseType3'])
            res.render('stuSummarize',{
                title:'总结',
                trData:result['res2']?result['res2']['obj']:[],
-               nowurl:'/stusummarize'
+               nowurl:'/stusummarize',
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+               usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
     })
@@ -129,7 +134,9 @@ module.exports = function(router){
                batch:result['res1']?result['res1']['obj']:'',
                token:req.session.token,
                nowurl:'/stuupload',
-               baseurl:base.publicPath
+               baseurl:base.publicPath,
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+               usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
    })
@@ -148,13 +155,16 @@ module.exports = function(router){
                api.stuVrList(req,params,done)
             }]
         },function(error,result) {
+           console.log(result['res2']?result['res2']['obj']:[])
            res.render('stuDiscuss',{
                title:'讨论',
                trData:result['res2']?result['res2']['obj']:[],
                batch:result['res1']?result['res1']['obj']:'',
                token:req.session.token,
                nowurl:'/studiscuss',
-               baseurl:base.publicPath
+               baseurl:base.publicPath,
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+               usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
     })
@@ -175,9 +185,11 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(error,result) {
+            console.log(result['res2']?result['res2']['obj']:[])
             res.render('stuVR',{
                 title:'VR实验',
                 userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):'',
                 trData:result['res2']?result['res2']['obj']:[],
                 batch:result['res1']?result['res1']['obj']:'',
                 token:req.session.token?req.session.token:'',
@@ -206,7 +218,9 @@ module.exports = function(router){
             res.render('stuVideo',{
                 title:'视频',
                 trData:result['res2']?result['res2']['obj']:[],
-                nowurl:'/stuvideo'
+                nowurl:'/stuvideo',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
     })
@@ -244,48 +258,27 @@ module.exports = function(router){
                 token:req.session.token?req.session.token:'',
                 attid:attid,
                 batch:result['res1']?result['res1']['obj']:'',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
     })
 
-    router.post('/getcomment',function(req,res) {
-        async.auto({
-            res1:function(done) {
-                api.getBatch(req,done)
-            },
-            res2:['res1',function(done,rest) {
-                let params = {
-                    batch:rest['res1']?rest['res1']['obj']:'',
-                    token:req.session.token,
-                    att:{
-                        attid:req.body.attid?req.body.attid*1:0,
-                        batch:rest['res1']?rest['res1']['obj']:'',
-                        comment:req.body.comment?req.body.comment:''
-                    }
-                }
-                console.log(params)
-                api.getComment(req,params,done)
-            }]
-        },function(error,result) {
-            console.log(result)
-            res.send(result)
-        })
-    })
     //点赞
     router.post('/getzan',function(req,res) {
         async.auto({
             res1:function(done) {
-                console.log(req.body)
                 let params={
                     attid:req.body.attid*1,
-                    token:req.session.token
+                    token:req.session.token,
+                    atttype:req.body.atttype*1
                 }
                 console.log(params)
                 api.getZan(req,params,done)
             }
         },function(error,result) {
             console.log(result)
-            res.send(result)
+            res.send(result['res1'])
         })
     })
     
@@ -311,7 +304,9 @@ module.exports = function(router){
                 token:req.session.token,
                 nowurl:'/stuaftercalss',
                 baseurl:base.publicPath,
-                mgs:result['res2']?result['res2']['obj']:{}
+                mgs:result['res2']?result['res2']['obj']:{},
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
     })
@@ -336,6 +331,7 @@ module.exports = function(router){
             res.render('stuImproveProcess',{
                 title:'完善流程',
                 userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):'',
                 token:req.session.token?req.session.token:'',
                 batch:result['res1']?result['res1']['obj']:'',
                 trData:result['res2']?result['res2']['obj']:[],

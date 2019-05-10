@@ -201,7 +201,7 @@
 }
 .main-wrapper .main-box .content-box table {
   width: 100%;
-  margin: 15px 0;
+  margin-bottom: 15px;
 }
 .main-wrapper .main-box .content-box table thead tr {
   height: 60px;
@@ -296,7 +296,7 @@
 }
 .main-wrapper .main-box .content-box .comments-list .list .comments-main {
   float: left;
-  width: 1140px;
+  width: 940px;
   font-size: 14px;
   line-height: 18px;
 }

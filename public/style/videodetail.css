@@ -214,6 +214,9 @@
   width: 60px;
   float: left;
 }
+.main-wrapper .main-box .comments .com-box .header-icon img {
+  max-width: 40px;
+}
 .main-wrapper .main-box .comments .com-box .comments-main {
   float: left;
   width: 940px;
@@ -247,4 +250,54 @@
 }
 .main-wrapper .main-box .btn-box button:hover {
   opacity: 0.8;
+}
+.main-wrapper .main-box .comments-list {
+  border-top: 1px solid #ddd;
+  padding-top: 30px;
+}
+.main-wrapper .main-box .comments-list .desc {
+  font-size: 16px;
+  color: red;
+  margin-bottom: 5px;
+}
+.main-wrapper .main-box .comments-list .list {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.main-wrapper .main-box .comments-list .list .zanitem {
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+}
+.main-wrapper .main-box .comments-list .list .headers {
+  max-width: 40px;
+}
+.main-wrapper .main-box .comments-list .list .header-icon {
+  width: 60px;
+  float: left;
+  text-align: center;
+}
+.main-wrapper .main-box .comments-list .list .header-icon img {
+  max-width: 40px;
+}
+.main-wrapper .main-box .comments-list .list .comments-main {
+  float: left;
+  width: 940px;
+  font-size: 14px;
+  line-height: 18px;
+}
+.main-wrapper .main-box .comments-list .list .comments-main span {
+  color: #00b2b8;
+}
+.main-wrapper .main-box .comments-list .list .comments-main p {
+  color: #333333;
+}
+.main-wrapper .main-box .comments-list .list .comments-main p a {
+  margin-left: 30px;
+  color: #333333;
+}
+.main-wrapper .main-box .comments-list .list .comments-main p a i {
+  color: #548ded;
+  margin-right: 3px;
+  font-size: 18px;
 }

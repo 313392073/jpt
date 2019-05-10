@@ -25,7 +25,11 @@
 <body>
   <%- include("share/header") %>
     <div class="main-wrapper">
+    <%if(usertype == 0) {%>
         <%- include("share/stumenu")%>
+    <%} else {%>
+        <%- include("share/tchmenu")%>
+    <%}%>
       <div class="main-box">
           <%if(trData['upload_net_url']) {%>
             <video src="<%= trData['upload_net_url']%>" controls="controls"></video>
@@ -50,14 +54,31 @@
               <button class="sbtn">发布评论</button>
           </div>
           <div class="comments-list">
+              <p class="desc">点赞成员：</p>
+                <% var likelist = trData['likes_user_loginname']?trData['likes_user_loginname'].split(","):[]%>
+                <% var likeimgs = trData['likes_user_headimage']?trData['likes_user_headimage'].split(","):[]%>
+                <div class="list zanbox">
+                    <% for(var i=0;i<likelist.length;i++) {%>
+                        <%if(likelist[i]) {%>
+                            <span class="zanitem">
+                                <img class="headers" src="<%= likeimgs[i]%>" alt="">
+                                <br>
+                                <span><%= likelist[i]%></span>
+                            </span>
+                        <%}%>
+                    <%}%>
+                </div>
+                <p class="desc">评论列表：</p>
               <%for(var i=0;i<trData['comments'].length;i++){%>
               <div class="list">
+                    
                   <div class="header-icon">
                       <img src="<%= trData['comments'][i]['userHeadImage']%>" alt="<%= trData['comments'][i]['userLoginname']%>">
                   </div>
+                  
                   <div class="comments-main">
                       <span><%= trData['comments'][i]['userLoginname']%></span>
-                      <p><%= trData['comments'][i]['comment']%> <a href="javascript:void(0)"><i class="iconfont icon-dianzan"></i><%= trData['comments'][i]['likesUserNum']%></a></p>
+                      <p><%= trData['comments'][i]['comment']%></p>
                   </div>
               </div>
               <%}%>
@@ -88,7 +109,6 @@
                         contentType: "application/json",
                         data:JSON.stringify(obj),
                         success:function(res) {
-                            console.log(res)
                            if(res.success == 1 && res.code == 200) {
                                 layer.alert(res.msg,{
                                     title:'温馨提示',

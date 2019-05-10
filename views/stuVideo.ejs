@@ -34,8 +34,18 @@
                 <div class="desc clearfix">
                     <p class="desc-detail"><%= trData[i]['user_name']%></p>
                     <p class="desc-btns">
-                        <a href="javscript:void(0)" class="btn-zan" data-ids="<%= trData[i]['attid']%>"><i class="iconfont icon-dianzan"></i><%= trData[i]['likes_user_num']%></a>
-                        <a href="/videodetail.html?attid=<%= trData[i]['attid']%>" ><i class="iconfont icon-xiaoxi"></i><%= trData[i]['look_num']%></a>
+                        <% var arr = trData[i]['likes_user_loginname']?trData[i]['likes_user_loginname'].split(','):[]%>
+                        <% var flag = false %>
+                        <% var userLoginname = userLoginname%>
+                        <%if(arr.length>0) {%>
+                          <% for(var k=0;k<arr.length;k++) {%>
+                              <% if(arr[k] && (arr[k] == userLoginname)) {%>
+                                <% flag = true%>
+                              <%}%>
+                          <%}%>
+                        <%}%>
+                        <a href="javscript:void(0)" <%= !flag?"onclick=getzan(this)":''%> class="btn-zan" data-ids="<%= trData[i]['attid']%>"><i class="iconfont icon-dianzan" <%= flag?"style=color:#999999":''%> ></i><%= trData[i]['likes_user_num']%></a>
+                        <a href="/videodetail.html?attid=<%= trData[i]['attid']%>" ><i class="iconfont icon-xiaoxi"></i><%= trData[i]['comments']?trData[i]['comments'].length:0%></a>
                     </p>
                 </div>
             </div>
@@ -44,24 +54,32 @@
       </div>
     </div>
     <script type="text/javascript">
-      $(".btn-zan").on("click",function() {
-          var attid = $.trim($(this).data('ids'))
-          $.ajax({
-            url:'/getzan',
-            type:'post',
-            dataType:'json',
-            data:{'attid':attid},
-            success:function(res) {
-              console.log(res)
+      function getzan(This) {
+        var attid = $.trim($(This).data('ids'))
+        $.ajax({
+          url:'/getzan',
+          type:'post',
+          dataType:'json',
+          data:{'attid':attid,"atttype":1*1},
+          success:function(res) {
+            if(res && res.success == 1 && res.code == 200) {
+              layer.alert("点赞成功，请勿再赞",{
+                    title:'温馨提示',
+                    yes:function(){
+                        window.location.reload()
+                    }
+                })
+            }else{
+              layer.alert("网络错误，请稍后再试",{
+                  title:'温馨提示',
+                  yes:function(){
+                      window.location.reload()
+                  }
+              })
             }
-          })
-      })
-      $(".commentd").on("click",function() {
-         var attid = $.trim($(this).data('ids'))
-         console.log(attid)
-         window.location.href = ''
-         
-      })
+          }
+        })
+      }
     </script>
 </body>
 

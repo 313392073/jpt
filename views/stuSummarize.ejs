@@ -43,6 +43,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <%if(trData['courseType0'] && trData['courseType0'].length) {%>
                     <tr>
                       <td><%= trData['courseType0'][0]?trData['courseType0'][0]['user_loginname']:'' %></td>
                       <% if(trData['courseType0']) { %>
@@ -54,6 +55,9 @@
                       <%}%>
                       <td class="score"><%= score%></td>
                   </tr>
+                  <%}else{%>
+                    <tr><td colspan="2">暂未答题</td></tr>
+                    <%}%>
                 </tbody>
               </table>
             </div>
@@ -73,6 +77,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                    <%if(trData['courseType1'] && trData['courseType1'].length) {%>
                     <tr>
                         <td><%= trData['courseType1'][0]?trData['courseType1'][0]['user_loginname']:'' %></td>
                         <% if(trData['courseType1']) { %>
@@ -84,6 +89,9 @@
                         <%}%>
                         <td class="score"><%= score%></td>
                     </tr>
+                    <%}else{%>
+                      <tr><td colspan="2">暂未答题</td></tr>
+                      <%}%>
                 </tbody>
               </table>
             </div>
@@ -103,6 +111,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                    <%if(trData['courseType2'] && trData['courseType2'].length) {%>
                     <tr>
                         <td><%= trData['courseType2'][0]?trData['courseType2'][0]['user_loginname']:'' %></td>
                         <% if(trData['courseType2']) { %>
@@ -114,6 +123,9 @@
                         <%}%>
                         <td class="score"><%= score%></td>
                     </tr>
+                    <%}else{%>
+                      <tr><td colspan="2">暂未答题</td></tr>
+                      <%}%>
                 </tbody>
               </table>
             </div>
@@ -131,13 +143,17 @@
                     </tr>
                   </thead>
                   <tbody>
+                      <%if(trData['courseType3'] && trData['courseType3'].length) {%>
                       <%for(var k=0;k<trData['courseType3'].length;k++) {%>
                           <tr>
                             <td><%= trData['courseType3'][k]['course_item']%></td>
-                            <td><%= trData['courseType3'][k]['handled_answer']?trData['courseType3'][k]['handled_answer']:'/'%></td>
-                            <td><%= (trData['courseType3'][k]['handled_answer']?trData['courseType3'][k]['handled_answer']:false)?"已完成":"未完成"%></td>
+                            <td><%= trData['courseType3'][k]['answer']?trData['courseType3'][k]['answer']:'/'%></td>
+                            <td><%= (trData['courseType3'][k]['answer']?trData['courseType3'][k]['answer']:false)?"已完成":"未完成"%></td>
                           </tr>
                         <%}%>
+                        <%}else {%>
+                          <tr><td colspan="3">暂未答题</td></tr>
+                      <%}%>
                   </tbody>
                 </table>
               </div>
@@ -145,13 +161,21 @@
                 <h3>
                   <span></span>上传的视频</h3>
                 <div class="video-box">
+                  <%if(trData['video']['upload_net_url']) {%>
                   <video src="<%= trData['video']['upload_net_url']%>" controls></video>
+                  <%} else {%>
+                    <p>暂未上传视频</p>
+                  <%}%>
                 </div>
               </div>
               <div class="detail-list3">
                 <h3>
                   <span></span>我的总结</h3>
-                <p class="report"><%= trData['afterclassSum']['class_sum_remarks']%></p>
+                  <%if(trData['afterclassSum']['class_sum_remarks']) {%>
+                  <p class="report"><%= trData['afterclassSum']['class_sum_remarks']%></p>
+                <%} else {%>
+                  <p>暂未发表总结</p>
+                <%}%>
               </div>
             </div>
           </div>

@@ -39,7 +39,7 @@
                   <% for(var k=0;k<dataList.length;k++) {%>
                   <div class="main-item" data-id="<%= k%>">
                     <div class="item-content">
-                        <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-handle="<%= dataList[k]['handled_answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
+                        <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-handle="<%= dataList[k]['handled_answer']?dataList[k]['handled_answer']:0%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
                             <option value="0" class="noselect">请选择你的答案</option>
                             <% for(var i=0;i<dataList.length;i++) {%>
                                 <% if(dataList[i]['if_handle'] == 0) {%>
@@ -58,7 +58,8 @@
                     <%}%>
                 </div>
               <div class="btn-box">
-                  <input type="submit" class="sbtn" value="提交">
+                  <input type="submit" class="sbtn tbtn" value="提交">
+                  <input type="submit" class="sbtn ebtn" value="清空选择">
               </div>
       </div>
       </div>
@@ -72,11 +73,25 @@
       </div>
   </div>
   <script type="text/javascript">
+     $(".main select").each(function() {
+        var pthis = $(this);
+        var handled_answer = $.trim($(pthis).data('handle'))
+        $(this).attr('old',handled_answer)
+        $(pthis).find("option").each(function() {
+            if($(this).val() == handled_answer) {
+                $(pthis).find("option").not("option[value='0']").eq(handled_answer-1).prop('selected',"selected")
+            }
+        })
+        if(handled_answer == 0) {
+            $(pthis).find("option[value='0']").prop('selected',"selected")
+        } 
+        $(".main select").closest(".main-item").siblings("div").find("option[value="+handled_answer+"]").not("option[value='0']").hide()
+    })
     $(".icon-closed").on("click",function(){
         $(".tips-wrapper").addClass('hides')
     })
 
-    $(".sbtn").on("click",function() {
+    $(".tbtn").on("click",function() {
         var tokend = $.trim($("#tokend").val())
         var batch = $.trim($("#batch").val())
         var userLoginname = $.trim($('#userLoginname').val())
@@ -135,23 +150,19 @@
             }
         })
     })
-    $(".main select").each(function() {
-        var pthis = $(this);
-        var handled_answer = $.trim($(pthis).data('handle'))
-        $(this).attr('old',handled_answer)
-        $(pthis).find("option").each(function() {
-            if($(this).val() == handled_answer) {
-                $(pthis).find("option").not("option[value='0']").eq(handled_answer-1).prop('selected',"selected")
-            }
+
+    $(".ebtn").on("click",function() {
+        $(".main select").each(function() {
+            $(this).attr('old','0')
+            $(this).find("option[value='0']").prop('selected',"selected")
+            $(this).find("option").show()
         })
-        if(handled_answer == 0) {
-            $(pthis).find("option[value='0']").prop('selected',"selected")
-        } 
-        $(".main select").closest(".main-item").siblings("div").find("option[value="+handled_answer+"]").not("option[value='0']").hide()
     })
+   
    $(".main select").change(function() {
        oldVal = $(this).attr('old');
        var _thisValue = $(this).find("option:selected").val();
+       console.log(oldVal,_thisValue)
        $(this).closest(".main-item").siblings(".main-item").find("option[value="+_thisValue+"]").not("option[value='0']").hide();
        $(this).closest(".main-item").siblings(".main-item").find("option[value="+oldVal+"]").show();
        $(this).find("option[value="+oldVal+"]").show();

@@ -31,9 +31,16 @@
         <div class="content-box">
             <div class="process-box">
               <%for(var i=0;i<step.length;i++) {%>
-              <div class="step-item">
-                <input type="text" value="<%= step[i]['course_item']%>" readonly>
-              </div>
+                <%if(step[i]['if_handle'] == 0) {%>
+                  <%var str = step[i]['handled_answer']?step[i]['handled_answer']:0%>
+                <div class="step-item">
+                  <input type="text" value="<%= crr[str*1 - 1]%>" readonly>
+                </div>
+                <%}else{%>
+                  <div class="step-item">
+                      <input type="text" value="暂未答题" readonly>
+                    </div>
+                <%}%>
               <%}%>
             </div>
             <div class="list-box">
@@ -48,7 +55,7 @@
                           <%} else {%>
                             <% wnum = item.split(',').length%>
                           <%}%>
-                        <p class="allright">全班正确率<%= rnum/(rnum+wnum).toFixed(2)*100%>%</p>
+                        <p class="allright">答题正确率<%= rnum/(rnum+wnum).toFixed(2)*100%>%</p>
                     </div>
                     <%if(item.substr(item.length-1,1) == 'r') {%>
                       <div class="list-right">

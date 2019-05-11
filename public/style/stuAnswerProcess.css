@@ -80,6 +80,7 @@
   float: left;
   line-height: 104px;
   color: #ffffff;
+  font-size: 16px;
 }
 .nav-wrapper {
   width: 100%;
@@ -173,7 +174,7 @@
 }
 .sidebar .menu .tab li {
   line-height: 25px;
-  padding: 0 25px;
+  padding: 0 20px;
 }
 .sidebar .menu .tab li a {
   display: block;
@@ -211,8 +212,8 @@
   position: relative;
 }
 .main-wrapper .main-box .content-box .main .main-item {
-  height: 100px;
-  margin-bottom: 10px;
+  height: 90px;
+  margin-bottom: 5px;
 }
 .main-wrapper .main-box .content-box .main .main-item .item-content {
   position: relative;
@@ -240,9 +241,10 @@
   left: 50%;
   margin-left: -10px;
   bottom: -25px;
-  width: 19px;
-  height: 41px;
-  background: url("../images/bottom-3.png") no-repeat center;
+  width: 30px;
+  height: 30px;
+  background: url("../images/arrdown.png") no-repeat center;
+  background-size: contain;
 }
 .main-wrapper .main-box .answer-box {
   margin: 50px auto;

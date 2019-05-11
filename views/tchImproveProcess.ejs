@@ -143,16 +143,13 @@
         <script src="/js/tool/echarts.min.js"></script>
         <script>
             $(function () {
-                console.log($("#datad").val())
                 var datad = JSON.parse($("#datad").val());
                 var daraArr = [];
                 var valueArr = []
-                Object.keys(datad).forEach(function(item) {
-                    daraArr.push('第'+item+"题")
+                Object.keys(datad).forEach(function(item,index) {
+                    daraArr.push('第'+(index*1+1)+"题")
                     valueArr.push(datad[item])
                 })
-                console.log(daraArr)
-                console.log(valueArr)
                 var myChart = echarts.init(document.getElementById('chart'), 'macarons');
                 myChart.setOption({
                     tooltip: {

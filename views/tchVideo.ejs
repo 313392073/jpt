@@ -29,6 +29,7 @@
       <div class="main-box">
        
         <div class="content-box clearfix">
+           <%if(trData && trData.length > 0) {%>
             <%for(var i=0;i<trData.length;i++){%>
             <div class="list">
                 <video src="<%= trData[i]['upload_net_url']%>" controls="controls"></video>
@@ -40,6 +41,9 @@
                     </p>
                 </div>
             </div>
+            <%}%>
+            <%} else {%>
+              <p style="text-align: center;color: red;line-height: 100px;font-size: 18px;">学员暂未上传视频</p>
             <%}%>
         </div>
       </div>

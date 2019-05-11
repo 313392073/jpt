@@ -28,6 +28,7 @@
         <%- include("share/stumenu")%>
       <div class="main-box">
         <div class="content-box clearfix">
+          <%if(trData && trData.length > 0) {%>
             <%for(var i=0;i<trData.length;i++){%>
             <div class="list">
                 <video src="<%= trData[i]['upload_net_url']%>" controls="controls"></video>
@@ -44,11 +45,14 @@
                               <%}%>
                           <%}%>
                         <%}%>
-                        <a href="javscript:void(0)" <%= !flag?"onclick=getzan(this)":''%> class="btn-zan" data-ids="<%= trData[i]['attid']%>"><i class="iconfont icon-dianzan" <%= flag?"style=color:#999999":''%> ></i><%= trData[i]['likes_user_num']%></a>
+                        <a href="javascript:void(0)" <%= !flag?"onclick=getzan(this)":''%> class="btn-zan" data-ids="<%= trData[i]['attid']%>"><i class="iconfont icon-dianzan" <%= flag?"style=color:#999999":''%> ></i><%= trData[i]['likes_user_num']%></a>
                         <a href="/videodetail.html?attid=<%= trData[i]['attid']%>" ><i class="iconfont icon-xiaoxi"></i><%= trData[i]['comments']?trData[i]['comments'].length:0%></a>
                     </p>
                 </div>
             </div>
+            <%} %>
+            <%} else {%>
+              <p style="text-align: center;color: red;line-height: 100px;font-size: 18px;">学员暂未上传视频</p>
             <%}%>
         </div>
       </div>

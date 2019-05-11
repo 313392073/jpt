@@ -80,6 +80,7 @@
   float: left;
   line-height: 104px;
   color: #ffffff;
+  font-size: 16px;
 }
 .nav-wrapper {
   width: 100%;
@@ -173,7 +174,7 @@
 }
 .sidebar .menu .tab li {
   line-height: 25px;
-  padding: 0 25px;
+  padding: 0 20px;
 }
 .sidebar .menu .tab li a {
   display: block;
@@ -206,14 +207,12 @@
   padding: 35px 20px;
 }
 .main-wrapper .main-box .content-box .total-box .desc {
-  width: 15%;
-  float: left;
   font-size: 16px;
   color: #333333;
 }
 .main-wrapper .main-box .content-box .total-box .echart-box {
   float: left;
-  width: 85%;
+  width: 100%;
 }
 .main-wrapper .main-box .content-box .total-box .echart-box .redus-left {
   float: left;

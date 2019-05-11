@@ -80,6 +80,7 @@
   float: left;
   line-height: 104px;
   color: #ffffff;
+  font-size: 16px;
 }
 .nav-wrapper {
   width: 100%;
@@ -173,7 +174,7 @@
 }
 .sidebar .menu .tab li {
   line-height: 25px;
-  padding: 0 25px;
+  padding: 0 20px;
 }
 .sidebar .menu .tab li a {
   display: block;
@@ -226,10 +227,11 @@
   padding: 0 5px;
 }
 .main-wrapper .main-box .content-box .main .item-bg {
-  width: 19px;
-  height: 41px;
-  margin: 25px auto 0;
-  background: url("../images/bottom-3.png") no-repeat center;
+  width: 25px;
+  height: 25px;
+  background: url("../images/arrdown.png") no-repeat center;
+  background-size: contain;
+  margin: 10px auto 0;
 }
 .main-wrapper .main-box .content-box .btn-box {
   margin: 35px auto;

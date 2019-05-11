@@ -80,6 +80,7 @@
   float: left;
   line-height: 104px;
   color: #ffffff;
+  font-size: 16px;
 }
 .nav-wrapper {
   width: 100%;
@@ -272,6 +273,17 @@
   line-height: 35px;
   background-color: #00b2b8;
   color: #ffffff;
+}
+.main-wrapper .main-box .content-box .per-achive .detail-box table thead tr:nth-child(1) {
+  background-color: transparent;
+  color: #333333;
+}
+.main-wrapper .main-box .content-box .per-achive .detail-box table thead tr .titled {
+  border-right: 1px solid#eeeeee;
+  font-size: 16px;
+}
+.main-wrapper .main-box .content-box .per-achive .detail-box table thead tr .titled.desctitle {
+  border-left: 1px solid #eeeeee;
 }
 .main-wrapper .main-box .content-box .per-achive .detail-box table tbody tr {
   line-height: 45px;

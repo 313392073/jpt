@@ -62,9 +62,9 @@
                                             <%for(var i=0;i<dataDetail.length;i++) {%>
                                         <tr>
                                             <td><%= dataDetail[i]['userName']%></td>
-                                            <td><%= dataDetail[i]&&dataDetail[i]['1'] == 0?'√':'×'%></td>
-                                            <td><%= dataDetail[i]&&dataDetail[i]['2'] == 0?'√':'×'%></td>
-                                            <td><%= dataDetail[i]&&dataDetail[i]['3'] == 0?'√':'×'%></td>
+                                            <%for(var j=1;j<arr.length+1;j++){%>
+                                                <td><%= dataDetail[i] && dataDetail[i][j] == 0?'√':'×'%></td>
+                                            <%}%>
                                             <td class="score"><%= dataDetail[i]['sumscore']%></td>
                                         </tr>
                                         <%}%>
@@ -107,7 +107,7 @@
                         {
                             name: titile,
                             type: 'pie',
-                            radius: '60%',
+                            radius: '55%',
                             center: ['50%', '50%'],
                             data: datas.nowData,
                             itemStyle: {
@@ -115,25 +115,27 @@
                                     shadowBlur: 10,
                                     shadowOffsetX: 0,
                                     shadowColor: 'rgba(0, 0, 0, 0.6)'
+                                },
+                                formatter:function(val){ //让series 中的文字进行换行
+                                     return val.name.split("-").join("\n");
                                 }
                             },
                             label:{
                                 show:true,
-                                padding:[5,5],
                                 position:'outer',
-                                formatter: "{b}({d}%)",//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
+                                formatter: "{b}\n{d}%",//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
                                 textStyle : {                   
                                     color:'#696767',
                                     align:'center',
                                     verticalAlign:'middle',
                                     fontWeight:'normal',
                                     fontSize:14
-                                }
+                                },
                             },
                             labelLine:{
                                 show:true,
-                                length:5,
-                                length2:10
+                                length:8,
+                                length2:14
                             },
                             hoverOffset:0,
                             hoverAnimation:false

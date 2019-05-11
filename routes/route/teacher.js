@@ -157,9 +157,16 @@ module.exports = function(router){
                 api.teaVr(req,params,done)
             }]
         },function(error,result) {
+            var crr = [];
+            if(result['res2'] && result['res2']['obj']) {
+                result['res2']['obj'].forEach((function(item) {
+                    crr.push(item['course_item'])
+                }))
+            }
             res.render('tchVerifyProcess',{
                 title:'检验流程',
                 step:result['res2']?result['res2']['obj'].sort(base.sortOrder('answer')):[],
+                crr:crr,
                 trData:result['res3']?result['res3']['obj']:{},
                 nowurl:'/tchverifyprocess',
                 userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
@@ -205,7 +212,6 @@ module.exports = function(router){
                     courseType:2*1,
                     batch:rest['res1']?rest['res1']['obj']:''
                 }
-                console.log(params)
                 api.teaScore(req,params,done)
             }]
         },function(error,result) {
@@ -233,7 +239,6 @@ module.exports = function(router){
                api.teaGroupData(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
            res.render('tchPanelData',{
                title:'小组数据',
                trData:result['res2']?result['res2']['obj']:[],
@@ -259,7 +264,6 @@ module.exports = function(router){
                 api.teaGroupRepart(req,params,done)
              }]
          },function(error,result) {
-             console.log(result['res2'])
             res.render('tchRegroup',{
                 title:'分组',
                 trData:result['res2']?result['res2']['obj']:[],
@@ -305,7 +309,6 @@ module.exports = function(router){
                 api.getUploadList(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
             res.render('tchVideo',{
                 title:'视频',
                 trData:result['res2']?result['res2']['obj']:[],
@@ -330,7 +333,6 @@ module.exports = function(router){
                 api.teaVideoComment(req,params,done)
              }]
          },function(error,result) {
-             console.log(result['res2'])
             res.render('tchVideoReview',{
                 title:'视频点评',
                 trData:result['res2']?result['res2']['obj']:[],

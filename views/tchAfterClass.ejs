@@ -37,11 +37,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%if(trData && trData.length > 0) {%>
                         <%for(var i=0;i<trData.length;i++) {%>
                             <tr>
                                 <td><%= trData[i]['user_name']%></td>
                                 <td><%= trData[i]['class_sum_remarks']%></td>
                             </tr>
+                        <%}%>
+                        <%} else {%>
+                            <tr><td colspan="2">暂无任何报告</td></tr>
                         <%}%>
                     </tbody>
                 </table>

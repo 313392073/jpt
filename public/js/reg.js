@@ -8,7 +8,8 @@ if(typeof FileReader==='undefined'){
 }else{
 	input1.addEventListener('change',readFile,false);
 }
-
+var baseurl = $.trim($("#hideurl").val())
+var batchd = $.trim($("#batchd").val())
 function readFile(){
 	var file = this.files[0];
 	/*console.log(file);  //获取到的文件*/
@@ -23,9 +24,10 @@ function readFile(){
         var formData = new FormData();
         formData.append("file", fileData);
         formData.append("token", "");
+        formData.append("batch", "");
 		console.log(formData)
         $.ajax({
-            url: "<%= baseurl%>/v1/api/comm/uploadfile",
+            url: baseurl+"/v1/api/comm/uploadfile",
             type: 'POST',
             cache: false,
             data: formData,

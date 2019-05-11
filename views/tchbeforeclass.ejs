@@ -46,6 +46,15 @@
                         <table>
                             <thead>
                                 <tr>
+                                    <th></th>
+                                    <% var arr = Object.keys(trData?trData['course_right_lv']:{})%>
+                                    <%for(var i=0;i<arr.length;i++){%>
+                                    <%var str = 'title'+ (i*1+1)%>
+                                    <th><p class="titled <%= i==0?'desctitle':''%>" data-flag="<%= (trData['course_right_detail'] && trData['course_right_detail'].length >0)?trData['course_right_detail'][0][str]:'no'%>"><%= (trData['course_right_detail'] && trData['course_right_detail'].length >0)?(trData['course_right_detail'][0][str] == 1 ?'生化特性':'国际理解'):''%> </p></th>
+                                    <%}%>
+                                    <th></th>
+                                </tr>
+                                <tr>
                                     <th>姓名</th>
                                     <% var arr = Object.keys(trData?trData['course_right_lv']:{})%>
                                     <%for(var i=0;i<arr.length;i++){%>
@@ -60,9 +69,9 @@
                                 <%for(var i=0;i<dataDetail.length;i++) {%>
                                 <tr>
                                     <td><%= dataDetail[i]['userName']%></td>
-								<%for(var j=1;j<arr.length+1;j++){%>
-									<td><%= dataDetail[i] && dataDetail[i][j] == 0?'√':'×'%></td>
-								<%}%>
+                                        <%for(var j=1;j<arr.length+1;j++){%>
+                                            <td><%= dataDetail[i] && dataDetail[i][j] == 0?'√':'×'%></td>
+                                        <%}%>
                                     <td class="score"><%= dataDetail[i]['sumscore']%></td>
                                 </tr>
                                 <%}%>
@@ -76,6 +85,16 @@
     <script src="/js/tool/echarts.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript">
+        $(".titled").each(function(index,item) {
+            var str = $(this).data('flag')
+            if(str == 1) {
+                $(".titled").eq(index).css({'color':'#2ec7c9'})
+            }
+            if(str == 2) {
+                $(".titled").eq(index).css({'color':'#d87a80'})
+            }
+        })
+
         var obj = JSON.parse($("#hideData").val());
         var colors = ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#8d98b3','#e5cf0d','#97b552','#95706d']
         Object.keys(obj).forEach(function(item,index) {
@@ -117,7 +136,7 @@
                         label:{
                             show:true,
                             position:'outer',
-                            formatter: "{b}{c}({d}%)",//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
+                            formatter: "{b}\n{d}%",//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
                             textStyle : {                   
                                 color:'#696767',
                                 align:'center',
@@ -128,8 +147,8 @@
                         },
                         labelLine:{
                             show:true,
-                            length:5,
-                            length2:10
+                            length:8,
+                            length2:15
                         },
                         hoverOffset:0,
                         hoverAnimation:false
@@ -157,54 +176,6 @@
 
 
 
-        // var myChart = echarts.init(document.getElementById('echart1'));
-        // var option = {
-        //     color:['#cccccc','#2ec7c9'],
-        //     tooltip: {
-        //         trigger: 'item',
-        //         formatter: "{a} <br/>{b} : {c} ({d}%)"
-        //     },
-        //     legend: {
-        //         show: false,
-        //         orient: 'vertical',
-        //         left: 'left',
-        //         data: data.name
-        //     },
-        //     series: [
-        //         {
-        //             name: '生化特性',
-        //             type: 'pie',
-        //             radius: '50%',
-        //             center: ['50%', '50%'],
-        //             data: data.nowData,
-        //             itemStyle: {
-        //                 emphasis: {
-        //                     shadowBlur: 10,
-        //                     shadowOffsetX: 0,
-        //                     shadowColor: 'rgba(0, 0, 0, 0.6)'
-        //                 }
-        //             }
-        //         }
-        //     ]
-        // };
-        
-        // function getData() {
-        //     let names = [];
-        //     let nowData = [];
-        //     var datas = [
-        //         { value: 8, name: '默认数据' },
-        //         { value: 92, name: '生化特性' }
-        //     ]
-        //     datas.forEach(function (item, index) {
-        //         names.push(item.name);
-        //         nowData.push(item)
-        //     })
-        //     return {
-        //         names: names,
-        //         nowData: nowData
-        //     }
-        // }
-        // myChart.setOption(option);
     </script>
 </body>
 

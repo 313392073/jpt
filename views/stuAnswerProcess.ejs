@@ -35,8 +35,7 @@
                 <% for(var k=0;k<trData.length;k++) {%>
                 <div class="main-item" data-id="<%= k%>">
                     <div class="item-content">
-                        <select class="default-value" data-handle="<%= trData[k]['handled_answer']%>" data-tag="<%= trData[k]['answer']%>" data-courseitemid="<%= trData[k]['course_item_id']%>" data-itemscore="<%= trData[k]['item_score']%>">
-                            <option value="0" class="noselect">请选择你的答案</option>
+                        <select disabled="disabled" class="default-value" data-handle="<%= trData[k]['handled_answer']?trData[k]['handled_answer']:0%>" data-tag="<%= trData[k]['answer']%>" data-courseitemid="<%= trData[k]['course_item_id']%>" data-itemscore="<%= trData[k]['item_score']%>">
                             <% for(var i=0;i<trData.length;i++) {%>
                                 <% if(trData[i]['if_handle'] == 0) {%>
                                     <option class="option<%=i%>" value="<%= trData[i]['title']%>"><%= trData[i]['course_item']%></option>
@@ -58,9 +57,9 @@
           <%for(var i=0;i<trData.length;i++){%>
               <% num+= trData[i]['score']?trData[i]['score']*1:0%>
               <%if(trData[i]['score'] > 0){%>
-                <span><%= trData[i]['title'] %>、<%= crr[trData[i]['handled_answer']-1]%>（<i class="right">正确</i>）</span>
+                <span><%= trData[i]['title'] %>、<%= crr[trData[i]['handled_answer']*1 - 1]%>（<i class="right">正确</i>）</span>
               <%}else{%>
-                <span><%= trData[i]['title'] %>、<%= crr[trData[i]['handled_answer']-1]%>（<i class="error">错误</i>）</span>
+                <span><%= trData[i]['title'] %>、<%= crr[trData[i]['handled_answer']*1 - 1]%>（<i class="error">错误</i>）</span>
               <%}%>
           <%}%>
           <p class="score">得分：<span><%= num%>分</span></p>
@@ -81,14 +80,6 @@
                 $(pthis).find("option[value='0']").prop('selected',"selected")
             } 
             $(".main select").closest(".main-item").siblings("div").find("option[value="+handled_answer+"]").not("option[value='0']").hide()
-        })
-        $(".main select").change(function() {
-            oldVal = $(this).attr('old');
-            var _thisValue = $(this).find("option:selected").val();
-            $(this).closest(".main-item").siblings(".main-item").find("option[value="+_thisValue+"]").not("option[value='0']").hide();
-            $(this).closest(".main-item").siblings(".main-item").find("option[value="+oldVal+"]").show();
-            $(this).find("option[value="+oldVal+"]").show();
-            $(this).attr("old",_thisValue)
         })
     </script>
 </body>

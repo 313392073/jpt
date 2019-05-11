@@ -178,7 +178,7 @@ module.exports = function(router){
             res2:['res1',function(done,rest) {
                 let params = {
                     token:req.session.token,
-                    batch:rest['res2']?rest['res2']['obj']:''
+                    batch:rest['res1']?rest['res1']['obj']:''
                 }
                 api.teaAfterReport(req,params,done)
             }]

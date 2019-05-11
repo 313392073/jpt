@@ -84,12 +84,16 @@ module.exports = function(router){
                api.stuVr(req,params,done)
             }]
         },function(error,result) {
-            // console.log(result['res2']['obj'])
-            console.log(result['res2']['obj'].sort(base.sortOrder('handled_answer')))
+            var crr = [];
+            if(result['res2'] && result['res2']['obj']) {
+                result['res2']['obj'].forEach((function(item) {
+                    crr.push(item['course_item'])
+                }))
+            }
             res.render('stuAnswerProcess',{
                 title:'检验流程的答案',
                 trData:result['res2']?result['res2']['obj']:[],
-                sortData:result['res2']?result['res2']['obj'].sort(base.sortOrder('handled_answer')):[],
+                crr:crr,
                 nowurl:'/stuanswerprocess',
                 userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
                 usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
@@ -111,7 +115,6 @@ module.exports = function(router){
                api.stuSum(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2']['obj']['courseType3'])
            res.render('stuSummarize',{
                title:'总结',
                trData:result['res2']?result['res2']['obj']:[],
@@ -155,7 +158,6 @@ module.exports = function(router){
                api.stuVrList(req,params,done)
             }]
         },function(error,result) {
-           console.log(result['res2']?result['res2']['obj']:[])
            res.render('stuDiscuss',{
                title:'讨论',
                trData:result['res2']?result['res2']['obj']:[],
@@ -185,7 +187,6 @@ module.exports = function(router){
                 api.getStubeforeClass(req,obj,done)
             }]
         },function(error,result) {
-            console.log(result['res2']?result['res2']['obj']:[])
             res.render('stuVR',{
                 title:'VR实验',
                 userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
@@ -214,7 +215,6 @@ module.exports = function(router){
                 api.getUploadList(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
             res.render('stuVideo',{
                 title:'视频',
                 trData:result['res2']?result['res2']['obj']:[],
@@ -236,7 +236,6 @@ module.exports = function(router){
                     batch:rest['res1']?rest['res1']['obj']:'',
                     token:req.session.token
                 }
-                console.log(params)
                 api.getUploadList(req,params,done)
             }]
         },function(error,result) {
@@ -249,7 +248,6 @@ module.exports = function(router){
                     }
                 })
             }
-            console.log(datas)
             res.render('videodetail',{
                 title:'视频',
                 trData:datas,
@@ -273,11 +271,9 @@ module.exports = function(router){
                     token:req.session.token,
                     atttype:req.body.atttype*1
                 }
-                console.log(params)
                 api.getZan(req,params,done)
             }
         },function(error,result) {
-            console.log(result)
             res.send(result['res1'])
         })
     })
@@ -297,7 +293,6 @@ module.exports = function(router){
                 api.getvideo(req,params,done)
             }]
         },function(error,result) {
-            console.log(result)
             res.render('stuAfterClass',{
                 title:'课后',
                 batch:result['res1']?result['res1']['obj']:'',
@@ -327,7 +322,6 @@ module.exports = function(router){
                 api.getStubeforeClass(req,params,done)
             }]
         },function(error,result) {
-            console.log(result['res2'])
             res.render('stuImproveProcess',{
                 title:'完善流程',
                 userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',

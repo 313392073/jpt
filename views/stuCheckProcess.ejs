@@ -39,11 +39,11 @@
                   <% for(var k=0;k<dataList.length;k++) {%>
                   <div class="main-item" data-id="<%= k%>">
                     <div class="item-content">
-                        <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
+                        <select class="default-value" data-tag="<%= dataList[k]['answer']%>" data-handle="<%= dataList[k]['handled_answer']%>" data-courseitemid="<%= dataList[k]['course_item_id']%>" data-itemscore="<%= dataList[k]['item_score']%>">
                             <option value="0" class="noselect">请选择你的答案</option>
                             <% for(var i=0;i<dataList.length;i++) {%>
                                 <% if(dataList[i]['if_handle'] == 0) {%>
-                                    <option <%= dataList[i]['handled_answer'] == (k+1)?"selected":''%> class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
+                                    <option class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
                                  <%} else {%>
                                     <option  class="option<%=i%>" value="<%= dataList[i]['title']%>"><%= dataList[i]['course_item']%></option>
                                  <%}%>
@@ -102,7 +102,6 @@
             }
             arr.push(obj) 
         })
-        
         $.ajax({
             type:'post',
             url:'<%= baseurl%>/v1/api/course/submit?token='+tokend+"&batch="+batch,
@@ -136,15 +135,20 @@
             }
         })
     })
-    var oldVal = '';
     $(".main select").each(function() {
-        if($(this).find("option:selected")) {
-            var _thisValue = $(this).find("option:selected").val();
-            $(this).attr('old',_thisValue)
-            $(".main select").closest(".main-item").siblings("div").find("option[value="+_thisValue+"]").not("option[value='0']").hide()
-        }
+        var pthis = $(this);
+        var handled_answer = $.trim($(pthis).data('handle'))
+        $(this).attr('old',handled_answer)
+        $(pthis).find("option").each(function() {
+            if($(this).val() == handled_answer) {
+                $(pthis).find("option").not("option[value='0']").eq(handled_answer-1).prop('selected',"selected")
+            }
+        })
+        if(handled_answer == 0) {
+            $(pthis).find("option[value='0']").prop('selected',"selected")
+        } 
+        $(".main select").closest(".main-item").siblings("div").find("option[value="+handled_answer+"]").not("option[value='0']").hide()
     })
-
    $(".main select").change(function() {
        oldVal = $(this).attr('old');
        var _thisValue = $(this).find("option:selected").val();

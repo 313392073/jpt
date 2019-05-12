@@ -27,12 +27,11 @@
     <div class="main-wrapper">
         <%- include("share/tchmenu")%>
       <div class="main-box">
-       
         <div class="content-box">
             <div class="process-box">
               <%for(var i=0;i<step.length;i++) {%>
-                <%if(step[i]['if_handle'] == 0) {%>
-                  <%var str = step[i]['handled_answer']?step[i]['handled_answer']:0%>
+                <%if(step[i]['answer']) {%>
+                  <%var str = step[i]['answer']?step[i]['answer']:0%>
                 <div class="step-item">
                   <input type="text" value="<%= crr[str*1 - 1]%>" readonly>
                 </div>

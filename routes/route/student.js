@@ -28,7 +28,7 @@ module.exports = function(router){
                     token:req.session.token,
                     nowurl:'/stubeforeclass',
                     baseurl:base.publicPath,
-                    userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                    userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                     usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
                 })
             }
@@ -57,7 +57,7 @@ module.exports = function(router){
             }else{
                 res.render('stuCheckProcess',{
                     title:'检验流程',
-                    userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                    userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                     usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):'',
                     token:req.session.token?req.session.token:'',
                     batch:result['res1']?result['res1']['obj']:'',
@@ -95,7 +95,7 @@ module.exports = function(router){
                 trData:result['res2']?result['res2']['obj']:[],
                 crr:crr,
                 nowurl:'/stuanswerprocess',
-                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                 usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
@@ -119,7 +119,7 @@ module.exports = function(router){
                title:'总结',
                trData:result['res2']?result['res2']['obj']:[],
                nowurl:'/stusummarize',
-               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
@@ -138,7 +138,7 @@ module.exports = function(router){
                token:req.session.token,
                nowurl:'/stuupload',
                baseurl:base.publicPath,
-               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
@@ -165,7 +165,7 @@ module.exports = function(router){
                token:req.session.token,
                nowurl:'/studiscuss',
                baseurl:base.publicPath,
-               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+               userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
            })
         })
@@ -189,7 +189,7 @@ module.exports = function(router){
         },function(error,result) {
             res.render('stuVR',{
                 title:'VR实验',
-                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                 usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):'',
                 trData:result['res2']?result['res2']['obj']:[],
                 batch:result['res1']?result['res1']['obj']:'',
@@ -219,7 +219,7 @@ module.exports = function(router){
                 title:'视频',
                 trData:result['res2']?result['res2']['obj']:[],
                 nowurl:'/stuvideo',
-                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                 usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
@@ -256,7 +256,7 @@ module.exports = function(router){
                 token:req.session.token?req.session.token:'',
                 attid:attid,
                 batch:result['res1']?result['res1']['obj']:'',
-                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                 usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
@@ -300,7 +300,7 @@ module.exports = function(router){
                 nowurl:'/stuaftercalss',
                 baseurl:base.publicPath,
                 mgs:result['res2']?result['res2']['obj']:{},
-                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                 usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):''
             })
         })
@@ -324,7 +324,7 @@ module.exports = function(router){
         },function(error,result) {
             res.render('stuImproveProcess',{
                 title:'完善流程',
-                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userLoginname']:''):'',
+                userLoginname:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userName']:''):'',
                 usertype:req.session.user?(req.session.user['user']?JSON.parse(req.session.user['user'])['userType']:''):'',
                 token:req.session.token?req.session.token:'',
                 batch:result['res1']?result['res1']['obj']:'',

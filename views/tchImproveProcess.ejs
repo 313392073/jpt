@@ -113,7 +113,7 @@
                                     <tbody>
                                         <% for(var i=0;i<trData['vrrecord_score'].length;i++) {%>
                                             <tr>
-                                                <td><%= trData['vrrecord_score'][i]['user_loginname']%></td>
+                                                <td><%= trData['vrrecord_score'][i]['user_name']%></td>
                                                 <td data-num="<%= trData['vrrecord_score'][i]['称重']?trData['vrrecord_score'][i]['称重']*1:0*1%>"><%= trData['vrrecord_score'][i]['称重']*1 > 0 ? '√':'x'%></td>
                                                 <td data-num="<%= trData['vrrecord_score'][i]['增菌']?trData['vrrecord_score'][i]['增菌']*1:0*1%>"><%= trData['vrrecord_score'][i]['增菌']*1 > 0 ? '√':'x'%></td>
                                                 <td data-num="<%= trData['vrrecord_score'][i]['消毒']?trData['vrrecord_score'][i]['消毒']*1:0*1%>"><%= trData['vrrecord_score'][i]['消毒']*1 > 0 ? '√':'x'%></td>

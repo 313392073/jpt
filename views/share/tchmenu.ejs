@@ -4,12 +4,15 @@
             <i class="iconfont icon-home"></i>返回首页</a>
     </div>
     <div class="menu">
-        <a href="javascript:void(0)">
-            <i class="iconfont icon-home"></i>课前</a>
         <ul class="tab">
             <li onclick="restart()">
                 <a href="javascript:void(0)">重新开课</a>
             </li>
+        </ul>
+        <a href="javascript:void(0)">
+            <i class="iconfont icon-home"></i>课前</a>
+        <ul class="tab">
+            
             <li <%= nowurl == '/tchbeforeclass' ? 'class = active': ''%>>
                 <a href="tchbeforeclass.html">课前习题</a>
             </li>

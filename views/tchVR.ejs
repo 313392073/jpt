@@ -38,27 +38,33 @@
                                             <th>姓名</th>
                                             <th>称重</th>
                                             <th>增菌</th>
-                                            <th>血浆凝固酶试验</th>
                                             <th>消毒</th>
-                                            <th>革兰氏染色</th>
+                                            <th>分离</th>
+                                            <th>初步鉴定</th>
+                                            <th>确认鉴定1革兰氏染色</th>
+                                            <th>确认鉴定2血浆凝固酶试验</th>
                                             <th>得分</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <% for(var i=0;i<trData['vrrecord_score'].length;i++) {%>
                                             <tr>
-                                                <td><%= trData['vrrecord_score'][i]['user_loginname']%></td>
+                                                <td><%= trData['vrrecord_score'][i]['user_name']%></td>
                                                 <td data-num="<%= trData['vrrecord_score'][i]['称重']?trData['vrrecord_score'][i]['称重']*1:0*1%>"><%= trData['vrrecord_score'][i]['称重']*1 > 0?'√':'x'%></td>
-                                                <td data-num="<%= trData['vrrecord_score'][i]['增菌']?trData['vrrecord_score'][i]['增菌']*1:0*1%>"><%= trData['vrrecord_score'][i]['增菌']*1 > 0 ?'√':'x'%></td>
-                                                <td data-num="<%= trData['vrrecord_score'][i]['血浆凝固酶试验']?trData['vrrecord_score'][i]['血浆凝固酶试验']*1:0*1%>"><%= trData['vrrecord_score'][i]['血浆凝固酶试验']*1 > 0 ? '√':'x'%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['增菌']?trData['vrrecord_score'][i]['增菌']*1:0*1%>"><%= trData['vrrecord_score'][i]['增菌']*1 > 0 ? '√':'x'%></td>
                                                 <td data-num="<%= trData['vrrecord_score'][i]['消毒']?trData['vrrecord_score'][i]['消毒']*1:0*1%>"><%= trData['vrrecord_score'][i]['消毒']*1 > 0 ? '√':'x'%></td>
-                                                <td data-num="<%= trData['vrrecord_score'][i]['革兰氏染色']?trData['vrrecord_score'][i]['革兰氏染色']*1:0*1%>"><%= trData['vrrecord_score'][i]['革兰氏染色']*1 > 0 ? '√':'x'%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['分离']?trData['vrrecord_score'][i]['分离']*1:0*1%>"><%= trData['vrrecord_score'][i]['分离']*1 > 0 ? '√':'x'%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['初步鉴定']?trData['vrrecord_score'][i]['初步鉴定']*1:0*1%>"><%= trData['vrrecord_score'][i]['初步鉴定']*1 > 0 ? '√':'x'%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['确认鉴定1革兰氏染色']?trData['vrrecord_score'][i]['确认鉴定1革兰氏染色']*1:0*1%>"><%= trData['vrrecord_score'][i]['确认鉴定1革兰氏染色']*1 > 0 ? '√':'x'%></td>
+                                                <td data-num="<%= trData['vrrecord_score'][i]['确认鉴定2血浆凝固酶试验']?trData['vrrecord_score'][i]['确认鉴定2血浆凝固酶试验']*1:0*1%>"><%= trData['vrrecord_score'][i]['确认鉴定2血浆凝固酶试验']*1 > 0 ?'√':'x'%></td>
                                                 <%var cz = trData['vrrecord_score'][i]['称重']?trData['vrrecord_score'][i]['称重']*1:0*1%>
+                                                <%var jd1 = trData['vrrecord_score'][i]['确认鉴定2血浆凝固酶试验']?trData['vrrecord_score'][i]['确认鉴定2血浆凝固酶试验']*1:0*1%>
                                                 <%var zj = trData['vrrecord_score'][i]['增菌']?trData['vrrecord_score'][i]['增菌']*1:0*1%>
-                                                <%var xj = trData['vrrecord_score'][i]['血浆凝固酶试验']?trData['vrrecord_score'][i]['血浆凝固酶试验']*1:0*1%>
+                                                <%var cbjd = trData['vrrecord_score'][i]['初步鉴定']?trData['vrrecord_score'][i]['初步鉴定']*1:0*1%>
                                                 <%var xd = trData['vrrecord_score'][i]['消毒']?trData['vrrecord_score'][i]['消毒']*1:0*1%>
-                                                <%var gl = trData['vrrecord_score'][i]['革兰氏染色']?trData['vrrecord_score'][i]['革兰氏染色']*1:0*1%>
-                                                <td><%= cz*1 +zj*1+xj*1+xd*1+gl*1%></td>
+                                                <%var jd2 = trData['vrrecord_score'][i]['确认鉴定1革兰氏染色']?trData['vrrecord_score'][i]['确认鉴定1革兰氏染色']*1:0*1%>
+                                                <%var fl = trData['vrrecord_score'][i]['分离']?trData['vrrecord_score'][i]['分离']*1:0*1%>
+                                                <td><%= cz*1 +jd1*1+zj*1+xd*1+cbjd*1+xd*1+jd2*1+fl*1%></td>
                                             </tr>
                                         <%}%>
                                     </tbody>
